@@ -1,0 +1,157 @@
+{
+    "entries": {
+        "access_control_ruby_configuration": "{\"showRubyLinkToEveryone\":true,\"countriesToShowRuby\":[\"NL\"],\"peopleIdToShowRuby\":[\"c2eca2e6-0256-4073-903f-27c54a79d92b\",\"e1d3555b-759b-4794-95c1-e44e032932ed\",\"b937635a-1017-4bdc-a2a3-e88e8dc3b1eb\",\"3ff30568-d489-4de4-a1e5-aa7d2747ffab\",\"49acce3e-e646-411a-9ab2-658beac61da0\",\"0381d043-cd21-4df9-b665-618e3ac00ff0\",\"c44c4ee0-f796-4e3b-bb4b-19f408d7d888\",\"5a648fb8-6959-4597-8a4b-6c7b997fdd6f\",\"1abda42b-fc2f-43fc-ab02-f12864e3db20\",\"06036e5e-d082-44ca-a76d-9bab4c154ca3\",\"ed75b6a1-849c-4664-b142-deb60b2366f1\",\"9585b933-6654-43d7-9305-5bd1d49d65c0\",\"9a6a9ca8-1c0b-453f-a3db-a52590d115f4\",\"7af4fd19-ade9-4780-bf8e-d119218a6cc7\",\"1f04e83f-eb3b-48ba-8aa9-722520dac5ff\",\"2284d301-21a5-48a0-a539-b68e234b9cbc\",\"ed595c95-a7fb-4b70-b7a9-a3a730fc6ade\",\"18ac7a2c-7303-432e-a8ed-e453a6220f53\",\"e6557e8c-35c8-4ccd-bf78-c984d00c33f1\",\"d024e46d-b32d-42d5-8130-3c9c65848359\",\"e3e0a113-47ad-4620-ada4-12bebf5523ba\",\"edae9918-2cb0-4c2c-b674-58e6e0ea063f\",\"3ff30568-d489-4de4-a1e5-aa7d2747ffab\",\"3057e46d-8611-4f91-9764-3d68c53847b1\",\"e700bbed-d11b-4eed-9e3c-882b6c770871\",\"c15baa17-5b15-426e-a343-57cb71392358\",\"0381d043-cd21-4df9-b665-618e3ac00ff0\",\"3bc957ca-d9d8-4542-bc01-ae9e9188c1dd\",\"482949fe-6a97-4d04-8b2a-84354b414c9c\",\"3001e83e-bf30-41f2-9dff-5df6eb8c30d1\",\"3113e945-f006-4e08-aeae-7dae6732f1cc\",\"0c54ecc9-6dd4-42d1-bb5d-3742c5aef00c\",\"65a07d09-4d0e-41ec-a563-56343d16b789\",\"1471a67a-8d08-406e-8457-81ec42f3fda4\",\"f4f93a01-13b2-4996-b439-676ce0c4ddfd\",\"9deb2322-72c2-42ca-b99d-18df44f5bfd2\",\"3a24eb9e-ba9d-4335-9308-77c24dc0c3e2\",\"cc4d1e35-1464-4c3c-ab2d-2a9ac8c20664\",\"01266c9e-a03a-42fa-ab85-0b0b4ff41868\",\"fffca90e-8cf2-483e-9b93-eb2284a0889c\",\"7c1c929b-48a9-4847-bfd6-205180015568\",\"2858d306-2aaf-49cd-8402-43c40cf1f5fb\",\"733977b1-442c-4438-8bd0-5ae681e90f75\",\"eaaf51c1-92c8-4182-bacf-920d26cc55b3\",\"70674aed-2a9b-4199-b17a-e441def97c80\",\"09c0ac21-9180-4913-bc74-b2173aa39484\",\"681e24be-c601-424d-832c-744f3347d41e\",\"44f9548d-ca15-4564-871c-3e70c39ee6a6\",\"0cfd0ca3-e700-4dc5-be13-c57b15ec2359\",\"e10543bd-abf1-4858-96b2-4dd63a8163c7\",\"69590006-9e91-4ac2-a433-0ea8be7a273b\",\"281a9342-1471-49d2-b53f-458fd235fc21\",\"a6c23c7f-ee36-4e60-872a-dd7606c9a087\",\"03ce4354-f2ef-49e0-98fb-f51ab79cb832\",\"bdc844ea-96e8-4ec4-b002-57abbe4d3cec\",\"897f57b4-f298-4c6c-9f8a-3446cd5d89af\",\"45ae6d04-a58f-42a8-9acf-b1ce384f2c14\",\"1412d865-28e0-4aa6-85a7-c99230e8fc29\",\"bc3c2cde-34fe-47b6-b6ae-c839066d0b93\",\"4685a5b3-2f3c-4d1d-a937-8eb906b4a699\"]}",
+        "acr_polling_time": "1000",
+        "aiCoach": "true",
+        "aiCoachUsers": "{\"users\":[\"5a648fb8-6959-4597-8a4b-6c7b997fdd6f\",\"5109be21-03b0-4aa2-a6d9-fca9466b0054\",\"f0da52c6-4f2d-4ade-b9f4-549b4ecd9642\",\"1f04e83f-eb3b-48ba-8aa9-722520dac5ff\",\"0381d043-cd21-4df9-b665-618e3ac00ff0\",\"9af8894c-eaad-49e0-bac4-17c108124c69\",\"ec930b1d-edb3-403f-a01c-bd558d8ea9aa\",\"d024e46d-b32d-42d5-8130-3c9c65848359\",\"be5e777b-c449-45e1-8236-f6d644d2d7a6\",\"b32da263-449b-4a00-87a1-3951f144a5f8\",\"1abda42b-fc2f-43fc-ab02-f12864e3db20\",\"b0c264ce-1507-45f1-b304-a92c80b1462c\",\"bffd3aff-c5d2-4c3a-9b6c-6896a4555fec\",\"05a425c2-51d1-4dbd-828d-ee5cef35a3c4\",\"d024e46d-b32d-42d5-8130-3c9c65848359\",\"f42be1a4-4261-4b79-8fbd-0a2dc0cc47dd\",\"522a31d8-8f00-49f0-8279-2251a88f53f2\",\"18ac7a2c-7303-432e-a8ed-e453a6220f53\",\"93117613-13a7-457a-9b31-5d25e3e8b3c3\",\"3611a953-ad17-4b05-a4ff-b7434b5dabd5\",\"edae9918-2cb0-4c2c-b674-58e6e0ea063f\",\"70e169d1-8dc7-4f7f-a95b-8b14f5dd475f\",\"f84928af-ca6e-4742-875f-1728e3cfcfcd\",\"a4efa91d-5067-479f-a8a3-6d6c4bbf3ff3\",\"137f330d-f261-4108-b55a-cb5011f1015d\",\"4db40f90-a051-4292-89dc-ac72dd76f027\",\"9511d3c8-d235-47fa-aedf-f18f1dafb7ea\",\"bfb1dcd8-ed3b-4db2-8db6-7283f4e57b5a\",\"49a9c9c5-11a5-4b00-ad18-75b0f836b01a\",\"18bbc315-17fb-4763-b716-147c6e9825a6\",\"9b5b117f-60cc-4f05-88fe-0025f38340a8\",\"b84ed539-35fc-4d95-b245-a2b5beb0272d\",\"559e4b20-9114-462e-8b29-44fbe044d66b\",\"400a30d9-a386-4ae7-ab69-169debc79c6a\",\"77009043-6563-45fa-ada7-ec19b74cc786\",\"7cfac137-997a-41a4-9dff-2266dd35f0e3\",\"c3cb3a94-10b5-4be7-965d-7c3b70fdf24c\",\"4629c62c-10f6-4d71-9d09-1b7c51373aa4\",\"c32e8569-5eb9-475c-b987-0c7a3d2b69b0\",\"11110cd1-cc97-4764-b50f-204ae260a4e2\",\"7c365372-a726-4162-8467-513f6f39c2f4\",\"ff91ff4c-ccaf-464d-adf9-f0838449125d\",\"880199c5-a051-4205-b7e1-7b24143921ae\",\"975bead1-5a9a-403e-9a9c-b6a6771424df\",\"f469a69e-07fb-4a76-937e-871d138d978c\",\"3693513c-b2b3-47bc-b08c-05c4957dcfbe\",\"032f5768-897e-46bc-abde-9c3024dfd4d8\",\"46786fb2-60c5-42ab-9188-92797ceef361\",\"dcb7c1b6-986a-4d8c-8cc7-f81f95f82a2a\",\"947194fc-e625-41b5-94b6-12760e022242\",\"eba942a7-15c0-48f0-b886-dae92901ecfe\",\"a31c9634-af07-4c91-91e3-b0b8d8073cac\",\"802f5a21-5093-4487-8551-f53b65c90848\",\"80fa5c11-3e82-42eb-859e-94f491def797\",\"e6c03629-5197-44a3-837d-f4112ab4a780\",\"16603c3e-3a5f-4f1c-8ec8-b7e939ced3ad\",\"183a270b-4cfb-41ca-8c09-afb48ba73f8c\",\"c0ebf3f0-dd04-4083-927f-967fde1c4c30\",\"45ca175a-f572-4d76-840a-3f4665e15e03\",\"480e60f7-ce25-47e2-910b-dd5e0386cce2\",\"095d9cb5-d192-405f-89ef-a51e6ae6de62\",\"bf4695c0-97da-4e84-8cc6-9eacac9a070b\",\"c263d7a0-a57b-4054-b1ab-86a732239068\",\"a45d2c04-6819-431d-95e0-b64776aa6061\",\"60f30964-dc55-4456-84c1-d9ffe6c4774c\",\"cc6134e8-5629-451a-9484-f8a7be51be27\",\"2b7d6642-cb49-4aca-8f7c-d39bec92cec3\",\"22a1b166-65e4-45e7-ae7e-eadb0e55a6c7\",\"4fe76aef-3410-4ecb-8b09-5bcbbd5b0812\",\"9aa27d50-9f14-47f3-8aa2-ecf93f3d4ad6\",\"865d11ea-9b6a-4d0e-95e2-b8f87ca04c85\",\"5429b5a1-7bb8-4337-b773-37476f625fe0\",\"42dbb1ac-2aac-4025-bd2a-5a2aacbbc894\",\"330e84c1-f0fe-405e-8eb2-760c42a78a98\",\"73ae18bb-e087-4c06-8375-29b9a468d5a8\",\"fb96cd44-2869-4aba-931b-33e0ff9969bb\",\"402b15ff-4f13-47c2-acb7-82058086819a\",\"8374a6ca-b129-4e8d-b26f-303cb6c122b9\",\"f14c330f-30f3-4901-912e-2edc73131930\",\"04ac4540-a098-4aba-bf01-98946e2615f5\",\"5c1a1256-bc68-4739-8675-8bfb9919cdae\",\"d48e9dcb-7d64-4827-ae96-04f96b59335c\",\"6529857f-69e3-48f0-845f-ef3a33024812\",\"9613a4cd-0e9e-4486-8a26-1855544a34e1\",\"10d34c48-942a-4804-9429-0463609fddf8\",\"ad96c4cf-6a76-4302-ae9f-ac82e0cab1c3\",\"575bb91f-77f8-441b-ace8-5996bf91296c\",\"e976260a-3247-4baf-bfc1-e67ce8f99f9a\",\"049b960d-7c60-4971-86a3-b6751f9411f3\",\"135b8dee-f5e5-4081-952d-13cd794bb9d2\",\"52ae115e-8b21-4db7-9356-cace4f32dcc8\",\"3c29f78d-35f7-4a65-86cd-d84b4c4fa5bb\",\"23132156-80a5-44a2-ba9e-db38a49b9dc5\",\"8e72793b-e935-453b-ac45-81da5fadc8d8\",\"cc323b16-af33-4c62-beeb-09a8e9094e76\",\"09d6d563-0659-49ec-83d9-e5712322ed26\",\"4db40f90-a051-4292-89dc-ac72dd76f027\",\"6ead43f9-a654-45cd-91a8-ac1fc110a38e\",\"51967280-acb2-4492-94c8-7afb3a9f0dd5\",\"c6afff16-2e9d-4fd1-88c1-a771a3f6ce18\",\"0959e5a6-eb2d-49af-81d2-183c514d9cbb\",\"e6557e8c-35c8-4ccd-bf78-c984d00c33f1\",\"9a6a9ca8-1c0b-453f-a3db-a52590d115f4\",\"c1a2925b-3e17-4fbc-b35a-4d4a204a6055\",\"81fa374e-c88c-4fb7-9b04-7187e10bcc32\",\"3ebe3259-9ca7-4b4f-b099-c2afb3227720\",\"9b3fcf34-bed2-4513-9b0b-df462a532db3\",\"8215da9b-e5b4-48ca-9250-8a2df96db821\",\"c08cf296-6564-4e79-bba7-619010b54176\",\"0181e3f4-caba-45a2-82de-895b70c47157\",\"b39c8ac5-ca98-48e3-8d00-0041f26566e7\",\"854005f3-35d5-4254-99fd-984104e759a3\",\"17dab96a-c956-4d3a-b47d-9da4661a2ef4\",\"58faa98f-bf22-4a85-90b5-e9d2bdec3131\",\"440b395e-adbd-473d-ac6e-0dd75acc2063\",\"f7b2e529-925a-4661-acb2-f9190f2dcf47\",\"8dd29924-00c4-4c5f-b1b8-da206198e57b\",\"c17290e4-da1a-47dd-a826-1d8eb39bcd7f\",\"514c6933-38b1-4141-9b1f-e844258efde0\",\"f412c354-ff13-450a-85b4-d19275833a93\",\"6ead43f9-a654-45cd-91a8-ac1fc110a38e\",\"01cbc5f0-96c2-4112-9ee3-2b0445967a73\",\"903e92b2-cbce-414d-b606-f966064a6cf5\",\"e475e442-3da6-47d7-b029-ee85e0d96a0e\",\"1d49e7fc-02ea-4881-a939-98753e7b9b98\",\"43b3d20f-0ad7-496c-b29d-daa267b31e79\",\"a1768e95-d1c7-4b80-b5f0-eb92ee13420c\",\"2b4181cd-bd86-43ae-bef5-b46792072658\",\"94728471-807b-417d-beea-497cf06a7989\",\"31a55a6e-4db0-4023-b200-a7317b1156d8\",\"1df748b6-edb6-4068-a128-222391395292\",\"a4d875a8-b0be-4a2e-bcb1-13a680e9d639\",\"d939291f-6261-4e8c-8454-82a44d23ba1e\",\"39192ab3-b447-4f83-9a67-7656e2194439\",\"e31ddb6d-123d-4790-8af1-90fd623fd393\",\"d257ffeb-774a-4c30-ae38-5ff520566cb6\",\"0b0c5e6e-29ff-435c-bb83-c3b71a4d0165\",\"8627dd3a-a32d-4104-ab2f-28ad8b4fff78\",\"91fc5155-6d7a-49c6-9f20-fdf5fe013d8f\",\"72d4c1c5-667f-4d08-aa90-1fc359e509c5\",\"ccac2a29-9a85-45fc-bd9d-5e66610aa000\",\"1072cebc-1358-424b-81e8-7499240a477a\",\"d892b817-5781-4314-b261-f0c849d36dc9\",\"0959e5a6-eb2d-49af-81d2-183c514d9cbb\",\"d2bc7db3-3797-41c0-bd5c-565bda94fecb\",\"7e9ea104-ab92-427a-aa8d-e4dd25ce691f\",\"8cb01e24-33ad-4baf-8c52-a98adcbfb3a4\",\"ab072838-e10a-467b-942d-9eb53a586e6b\",\"edae9918-2cb0-4c2c-b674-58e6e0ea063f\",\"e3fedb4e-f257-4f96-ac0d-9622da771888\",\"664848f4-de1d-4896-bf0d-df09d01c6a91\",\"ad86f292-df4f-4443-84c3-f093e8b96b78\",\"ee75c5ca-84fb-4958-a85c-5bc63f8b15d5\",\"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\"c6dd0293-053c-4309-ba88-33270ac2e757\",\"949d6f9f-9d53-4436-8cfe-cc1a032b7896\",\"ea223700-1110-4888-ae9d-cd510b236b5f\",\"5f5797d6-241a-4db9-93b1-25a62ca9d34b\",\"05df3dc4-eb97-4738-b4ec-046fb9e49209\",\"6e4c041a-b6a4-4d9c-b865-5837c74f5f89\",\"a3ee9979-2864-4adb-8800-7d9a3b4e567f\",\"b9c95ec5-b11c-4f36-8953-6a2c25f1454d\",\"9608463e-cb5b-4be5-a086-987be3933930\",\"18c9c867-9574-4b11-a870-c09c6995caec\",\"b4fa8ac9-e623-4cf6-9de2-d704b13a76a7\",\"69751f09-43dd-4536-ad59-fbfab3b5062b\",\"1f01ef43-a6af-41ac-b688-3fba70e29136\",\"b3765bc1-5c3b-44fb-9fc9-ec8107457396\",\"c583ce65-8e5f-42ac-9ad6-da118825a7c2\",\"43267349-00fe-4e71-9940-b7e1417de0bc\",\"9511d3c8-d235-47fa-aedf-f18f1dafb7ea\",\"bfb1dcd8-ed3b-4db2-8db6-7283f4e57b5a\",\"49a9c9c5-11a5-4b00-ad18-75b0f836b01a\",\"18bbc315-17fb-4763-b716-147c6e9825a6\",\"9b5b117f-60cc-4f05-88fe-0025f38340a8\",\"b84ed539-35fc-4d95-b245-a2b5beb0272d\",\"559e4b20-9114-462e-8b29-44fbe044d66b\",\"400a30d9-a386-4ae7-ab69-169debc79c6a\",\"77009043-6563-45fa-ada7-ec19b74cc786\",\"7cfac137-997a-41a4-9dff-2266dd35f0e3\",\"c3cb3a94-10b5-4be7-965d-7c3b70fdf24c\",\"4629c62c-10f6-4d71-9d09-1b7c51373aa4\",\"c32e8569-5eb9-475c-b987-0c7a3d2b69b0\",\"11110cd1-cc97-4764-b50f-204ae260a4e2\",\"7c365372-a726-4162-8467-513f6f39c2f4\",\"ff91ff4c-ccaf-464d-adf9-f0838449125d\",\"880199c5-a051-4205-b7e1-7b24143921ae\",\"975bead1-5a9a-403e-9a9c-b6a6771424df\",\"f469a69e-07fb-4a76-937e-871d138d978c\",\"3693513c-b2b3-47bc-b08c-05c4957dcfbe\",\"032f5768-897e-46bc-abde-9c3024dfd4d8\",\"46786fb2-60c5-42ab-9188-92797ceef361\",\"dcb7c1b6-986a-4d8c-8cc7-f81f95f82a2a\",\"947194fc-e625-41b5-94b6-12760e022242\",\"eba942a7-15c0-48f0-b886-dae92901ecfe\",\"a31c9634-af07-4c91-91e3-b0b8d8073cac\",\"802f5a21-5093-4487-8551-f53b65c90848\",\"80fa5c11-3e82-42eb-859e-94f491def797\",\"e6c03629-5197-44a3-837d-f4112ab4a780\",\"16603c3e-3a5f-4f1c-8ec8-b7e939ced3ad\",\"183a270b-4cfb-41ca-8c09-afb48ba73f8c\",\"c0ebf3f0-dd04-4083-927f-967fde1c4c30\",\"45ca175a-f572-4d76-840a-3f4665e15e03\",\"480e60f7-ce25-47e2-910b-dd5e0386cce2\",\"095d9cb5-d192-405f-89ef-a51e6ae6de62\",\"bf4695c0-97da-4e84-8cc6-9eacac9a070b\",\"c263d7a0-a57b-4054-b1ab-86a732239068\",\"a45d2c04-6819-431d-95e0-b64776aa6061\",\"60f30964-dc55-4456-84c1-d9ffe6c4774c\",\"cc6134e8-5629-451a-9484-f8a7be51be27\",\"2b7d6642-cb49-4aca-8f7c-d39bec92cec3\",\"22a1b166-65e4-45e7-ae7e-eadb0e55a6c7\",\"4fe76aef-3410-4ecb-8b09-5bcbbd5b0812\",\"9aa27d50-9f14-47f3-8aa2-ecf93f3d4ad6\",\"865d11ea-9b6a-4d0e-95e2-b8f87ca04c85\",\"5429b5a1-7bb8-4337-b773-37476f625fe0\",\"42dbb1ac-2aac-4025-bd2a-5a2aacbbc894\",\"330e84c1-f0fe-405e-8eb2-760c42a78a98\",\"73ae18bb-e087-4c06-8375-29b9a468d5a8\",\"fb96cd44-2869-4aba-931b-33e0ff9969bb\",\"402b15ff-4f13-47c2-acb7-82058086819a\",\"8374a6ca-b129-4e8d-b26f-303cb6c122b9\",\"f14c330f-30f3-4901-912e-2edc73131930\",\"04ac4540-a098-4aba-bf01-98946e2615f5\",\"5c1a1256-bc68-4739-8675-8bfb9919cdae\",\"d48e9dcb-7d64-4827-ae96-04f96b59335c\",\"6529857f-69e3-48f0-845f-ef3a33024812\",\"9613a4cd-0e9e-4486-8a26-1855544a34e1\",\"10d34c48-942a-4804-9429-0463609fddf8\",\"ad96c4cf-6a76-4302-ae9f-ac82e0cab1c3\",\"575bb91f-77f8-441b-ace8-5996bf91296c\",\"e976260a-3247-4baf-bfc1-e67ce8f99f9a\",\"049b960d-7c60-4971-86a3-b6751f9411f3\",\"135b8dee-f5e5-4081-952d-13cd794bb9d2\",\"52ae115e-8b21-4db7-9356-cace4f32dcc8\",\"3c29f78d-35f7-4a65-86cd-d84b4c4fa5bb\",\"23132156-80a5-44a2-ba9e-db38a49b9dc5\",\"8e72793b-e935-453b-ac45-81da5fadc8d8\",\"cc323b16-af33-4c62-beeb-09a8e9094e76\",\"09d6d563-0659-49ec-83d9-e5712322ed26\",\"5cd24a36-5c15-412b-bb08-9f3cc6e2be6d\",\"f8d93fe1-3a06-4486-b0d6-7713946b2da5\",\"7e4b4154-3d00-4b75-92d5-046fa9c6c2cd\",\"75c4d60b-d1a7-40ff-a5d4-d96931572c00\",\"0efdeae6-16a8-45a7-aff1-385f163a3be4\",\"1ee4b939-2d80-41cb-9129-83040185ea90\",\"f9133b85-0bfd-4865-bfe6-48712fca3e15\",\"1ff21b69-7288-4929-ae37-a2b397dcb1b4\",\"df78d4b8-04a9-4202-9544-8ef8dbeeee31\",\"f75adc77-f910-41cf-912d-59e485ab9c67\",\"4752f467-e483-42d7-9108-ffff37318e85\",\"1777751f-7235-434b-8e6e-e8a2cd865848\",\"da5923d9-a16e-417f-a1ed-c30ae6061178\",\"920fa6e7-63df-4ee1-8a10-2d88a1b8862b\",\"11ac6422-701d-4924-b22b-a0a6305c3fdf\",\"6d3b1518-e206-4507-b3cd-9a29e8ca5f25\",\"c414ab57-0255-4f00-ace9-3c99588ed7bf\",\"8bb63b57-e46f-4eaf-8147-8dae821a9495\",\"b38012ce-3e00-479d-9680-ef8e108ffcc8\",\"4498d143-80a3-4d14-a329-d42699a8fd75\",\"3fd9ddd4-1315-4ecf-bb17-7ced3ce67529\",\"05c98a6c-28e5-432d-8dd1-6b5490bfec1e\",\"d93e4fa9-990b-45e3-83f4-8e6dd68028a5\",\"486a9b1b-c112-4841-ae45-1e0bd34ff411\",\"aa0825bf-6c1f-43cc-bad6-1bdab2c41fb4\",\"adfacc06-5671-4190-bf74-38b3077580f9\",\"51a6c815-e52b-4ad2-a92a-94b2b0c52ba8\",\"3ab68a8f-4479-4209-a234-e7075acb41f4\",\"e5b5b5c7-8e35-45d0-bcc5-e8472a784980\",\"3560551b-dfe0-4216-8dbd-8435310b10a0\",\"52e10531-834d-430d-8fe6-ee51d64b795b\",\"1aacc43f-d57e-4a8d-be91-cb0655ee8c43\",\"d83fc5ce-b811-4d93-887d-63527bc5b836\",\"1037ff05-01c8-4296-b180-d6d0d119a4fe\",\"44459ef5-d1b3-4dfc-939c-e5fca68fd0b0\",\"0412160d-7038-4692-8ee8-19a360a195dc\",\"5afecace-3c52-4a77-ab78-df3b4454670c\",\"e6c92d0d-2f87-49e6-b663-1448a793e1f8\",\"0c647f41-729a-42cd-9a90-64e3e9a5f896\",\"887f29e8-bbdf-4ad4-9eed-0cda01cd9b12\",\"4cd27191-f147-4b77-ad38-5198bb2706f7\",\"1677b3d5-b39f-48e9-88b9-56597e610ebb\",\"f32c4a95-0e85-44f4-8bef-9ef360e06a5f\",\"168b2a9a-be9f-47cf-ba67-1556faec5dde\",\"a16d41ed-ea87-4065-a144-a017d5b96465\",\"f3fc4464-320e-4297-9b0c-870e13d7eaf4\",\"40273218-0a18-4f64-8547-2f6d571e4ef8\",\"88f34a9a-a464-4620-9e25-4bd1ad94ca8c\",\"5a58eaa0-1362-4eb8-801b-0cbac571cf0c\",\"49acce3e-e646-411a-9ab2-658beac61da0\",\"cfdf271a-a128-4d91-bcf1-398720264572\",\"793b81f4-d227-42a2-bbe4-3693cc3f4f2f\",\"f4c71bf8-9746-44dc-8ad2-20ba79b7e1e0\",\"920763e3-15c0-4bdc-ae93-9c5b8ba4a6d6\",\"e26adcf0-97b8-4323-9edb-7ab7e3e3679c\",\"343de75e-5cbe-4259-986f-be9c6376efcc\",\"2e092c99-92fc-4ace-86fd-8e15d711a557\",\"092660c2-c09d-4cb8-b896-f50d22e2e9a1\",\"0e21dd18-e62d-46c1-ad88-79fcff8b0f5f\",\"5703e9f3-6e6f-4741-96a5-fa057b32e945\",\"1a675f08-a16c-465d-8f9d-968c405cf734\",\"9ed3e4bd-b251-4cc1-871d-a0edb236268c\",\"2e91aeaf-d1f0-4d91-8b1e-b0f7b999ddde\"]}",
+        "android_new_relic_configuration": "{\"enabledFor\":100,\"analyticsEventEnabled\":100,\"nativeCrashReportingEnabled\":0,\"crashReportingEnabled\":0,\"interactionTracingEnabled\":0,\"networkRequestEnabled\":0,\"networkErrorRequestEnabled\":0,\"httpResponseBodyCaptureEnabled\":0,\"loggingEnabled\":0,\"qrLogsEnabled\":100,\"webViewInstrumentation\":0,\"contentfulLogsEnabled\":0,\"ulLogsEnabled\":100,\"offlineStorageEnabled\":0,\"geolocationEnabled\":0,\"logLevel\":\"ERROR\",\"androidToken\":\"eu01xxaee7837a526d32f62088ed58e1dee1e13c04-NRMA\",\"iosToken\":\"eu01xxbb5a95df2eca59c9b4bff9a84fa816e9a7ed-NRMA\",\"users\":[\"feaf82fc-e697-42ab-a562-5de6fa2b5452\",\"092660C2-C09D-4CB8-B896-F50D22E2E9A1\",\"5a648fb8-6959-4597-8a4b-6c7b997fdd6f\",\"0381d043-cd21-4df9-b665-618e3ac00ff0\",\"9af8894c-eaad-49e0-bac4-17c108124c69\",\"1ec12725-21c8-42ee-a175-d63dea68a9f4\"]}",
+        "block_multiple_requests": "true",
+        "blocked_membership_types": "home",
+        "bookGroupClass": "true",
+        "contentful_refresh_settings": "{\"refreshInterval\":0,\"refreshOn\":\"background\"}",
+        "e2e_users": "feaf82fc-e697-42ab-a562-5de6fa2b5452,cd15a87a-eb4f-41fd-a8f0-0db2adcafd10,f31aaac5-3810-4943-9007-f5300769fe98,93117613-13a7-457a-9b31-5d25e3e8b3c3,feaf82fc-e697-42ab-a562-5de6fa2b5452,2f6cc21b-98a7-4346-8800-901744dfd3fb,FEAF82FC-E697-42AB-A562-5DE6FA2B5452,CD15A87A-EB4F-41FD-A8F0-0DB2ADCAFD10,F31AAAC5-3810-4943-9007-F5300769FE98,93117613-13A7-457A-9B31-5D25E3E8B3C3,FEAF82FC-E697-42AB-A562-5DE6FA2B5452,2F6CC21B-98A7-4346-8800-901744DFD3FB,4BF6BAD4-40A8-46FD-9F6C-B147A5320B0A,36519A94-C78A-4BB6-A2D5-355FAAB00437,5A648FB8-6959-4597-8A4B-6C7B997FDD6F,2435C54E-226B-4185-B223-99E4A6DFEB37",
+        "enable_screenshot_blocking": "true",
+        "firebasePerformance": "true",
+        "fittastic_configuration": "{\"displayOnHome\":false,\"displayOnProgress\": false,\"signUpDateBefore\":\"2024-12-01\",\"startDate\":\"2024-12-01\",\"endDate\":\"2025-01-31\",\"memberWhitelist\":[\"E91294FE-2450-4134-99D7-5BA763CF523B\",\"2284D301-21A5-48A0-A539-B68E234B9CBC\",\"2C616FAB-8AAD-4C33-83DF-77A05B1ABCAA\",\"E601DD4F-19DA-4EF6-9A84-CA728DF80687\",\"73CBB6FB-F049-461C-A3CA-273297100CBB\",\"A204640F-2B91-4444-B1EB-CAF8564B2DC1\",\"A17317C2-A0B6-43E4-A497-F941313BFD45\",\"7B3E2F03-DDEE-4314-A9F4-6D710E02E2A0\",\"119133B9-F945-43C7-A8AA-E29467B9291C\",\"0FD3289E-BE8E-4162-9185-432A9481BDB5\",\"F8E8C6F2-7E70-45D9-8D13-EB46788908C4\",\"16DAE981-DFAB-427E-AF38-0F574AF99DE5\",\"2890026B-1049-4994-9FD3-A4D56569932E\",\"28C722BB-B8FD-4A21-9063-2B7B6E4FFB56\",\"51304030-63F7-4070-B94C-3B577D01645F\",\"B9B02257-B669-486A-B0A2-3CCBFF430971\"]}",
+        "google_health_warning_text": "true",
+        "groupClassesConfiguration": "{}",
+        "hide_walk_through": "false",
+        "ios_new_relic_configuration": "{\"enabledFor\":100,\"analyticsEventEnabled\":0,\"nativeCrashReportingEnabled\":0,\"crashReportingEnabled\":0,\"interactionTracingEnabled\":0,\"networkRequestEnabled\":0,\"networkErrorRequestEnabled\":0,\"httpResponseBodyCaptureEnabled\":0,\"loggingEnabled\":100,\"webViewInstrumentation\":0,\"contentfulLogsEnabled\":10,\"qrLogsEnabled\":100,\"ulLogsEnabled\":100,\"maxOfflineStorageSize\":100,\"offlineStorageEnabled\":100,\"geolocationEnabled\":100,\"logLevel\":\"INFO\",\"androidToken\":\"eu01xxaee7837a526d32f62088ed58e1dee1e13c04-NRMA\",\"iosToken\":\"eu01xxbb5a95df2eca59c9b4bff9a84fa816e9a7ed-NRMA\",\"users\":[\"feaf82fc-e697-42ab-a562-5de6fa2b5452\",\"092660C2-C09D-4CB8-B896-F50D22E2E9A1\",\"5a648fb8-6959-4597-8a4b-6c7b997fdd6f\",\"9af8894c-eaad-49e0-bac4-17c108124c69\",\"84484eef-412d-42b7-a0c6-bdbc1c5a8dae\",\"1ec12725-21c8-42ee-a175-d63dea68a9f4\"]}",
+        "magic_links": "{\"https://redirect.basic-fit.com/member\":\"https://member.basic-fit.com\",\"https://redirect.basic-fit.com/my\":\"https://my.basic-fit.com\"}",
+        "newMagicLinks": "true",
+        "newProgressScreen": "true",
+        "newTrainings": "true",
+        "new_relic_configuration": "{\"enabledFor\":0,\"analyticsEventEnabled\":0,\"nativeCrashReportingEnabled\":0,\"crashReportingEnabled\":0,\"interactionTracingEnabled\":0,\"networkRequestEnabled\":0,\"networkErrorRequestEnabled\":0,\"httpResponseBodyCaptureEnabled\":0,\"loggingEnabled\":0,\"webViewInstrumentation\":0,\"logLevel\":\"INFO\",\"androidToken\":\"eu01xx76d9e52375641cf3ba83d886c48a2fb2be5d-NRMA\",\"iosToken\":\"eu01xxd3a1b33fbc09bc41b8fadd87001f4510df56-NRMA\",\"users\":[\"feaf82fc-e697-42ab-a562-5de6fa2b5452\"]}",
+        "new_relic_enabled": "0",
+        "new_relic_users": "5a648fb8-6959-4597-8a4b-6c7b997fdd6f",
+        "new_webview_configuration": "{\"preloadOnHomeSrceen\":false,\"preloadOnProfileScreen\":true,\"preloadOnQrReason\":true,\"preloadOnDeviceChange\":true,\"preloadDebtBanner\":true}",
+        "oldProgressShowLongerSupported": "true",
+        "people_with_enabled_buddy_profile_picture": "2284D301-21A5-48A0-A539-B68E234B9CBC",
+        "people_with_new_qr_code": "3FF30568-D489-4DE4-A1E5-AA7D2747FFAB,6B1AF05F-9070-4594-8683-F072B5E3D5ED,71B93A1F-D223-4838-83D4-3A578B41B4BF,5D603360-0942-4994-842D-1CC1401C661D,1EC12725-21C8-42EE-A175-D63DEA68A9F4,E2779629-0783-4D1A-8CFC-64AD1289E5B8,56AEE6F6-C8A2-44A6-BD13-8075A3704FFE,C583CE65-8E5F-42AC-9AD6-DA118825A7C2,5A648FB8-6959-4597-8A4B-6C7B997FDD6F,9B7F78AE-5157-4B7F-8647-17C3300C80E0,F31AAAC5-3810-4943-9007-F5300769FE98,0381D043-CD21-4DF9-B665-618E3AC00FF0,9B4C3941-FD4C-4FDA-B22C-F5C12691AB62,1F04E83F-EB3B-48BA-8AA9-722520DAC5FF,3611A953-AD17-4B05-A4FF-B7434B5DABD5,42086B7E-BAB0-4C8D-9C3E-5BB1BD500E0C,C30087D0-F6D2-45F0-B79A-22C660C04C4D,56AD4F32-AB84-4B5F-A129-37C9D487902E,F32C4A95-0E85-44F4-8BEF-9EF360E06A5F,75A76445-7B38-4B13-92DF-FCB4CF1E5EE1,EC18EB71-9744-4353-84C3-AC2822D94FC5,18AC7A2C-7303-432E-A8ED-E453A6220F53,137F330D-F261-4108-B55A-CB5011F1015D,A4EFA91D-5067-479F-A8A3-6D6C4BBF3FF3,93117613-13A7-457A-9B31-5D25E3E8B3C3,4db40f90-a051-4292-89dc-ac72dd76f027,02360D86-FAFF-477E-90A2-1ED00694BE96,A1F3A78F-94CE-41E6-B64A-E40CEBAC68D2,1ABDA42B-FC2F-43FC-AB02-F12864E3DB20,236DD93A-8D11-4D19-ABAD-2F0D35449F3F,1AACC43F-D57E-4A8D-BE91-CB0655EE8C43,DD184CC9-730A-4325-A1AE-3FEBAF7FC062",
+        "people_with_new_url_to_invite_friend": "09069FE4-42AE-43B8-B3D2-D30FD3498C07,FE802A1A-F2B3-4288-82E6-2F28AAB4FB3F,E1E242FA-A2B1-41AD-AC3D-D612CDC93E3E",
+        "personalizedHomeScreen": "true",
+        "play_sound_effect_on_workout_player_and_workout_log": "true",
+        "prevent_double_scan": "true",
+        "qa_menu_users_v2": "[\"c2eca2e6-0256-4073-903f-27c54a79d92b\",\"e1d3555b-759b-4794-95c1-e44e032932ed\",\"b937635a-1017-4bdc-a2a3-e88e8dc3b1eb\",\"3ff30568-d489-4de4-a1e5-aa7d2747ffab\",\"49acce3e-e646-411a-9ab2-658beac61da0\",\"0381d043-cd21-4df9-b665-618e3ac00ff0\",\"c44c4ee0-f796-4e3b-bb4b-19f408d7d888\",\"5a648fb8-6959-4597-8a4b-6c7b997fdd6f\",\"1abda42b-fc2f-43fc-ab02-f12864e3db20\",\"06036e5e-d082-44ca-a76d-9bab4c154ca3\",\"ed75b6a1-849c-4664-b142-deb60b2366f1\",\"9585b933-6654-43d7-9305-5bd1d49d65c0\",\"9a6a9ca8-1c0b-453f-a3db-a52590d115f4\",\"7af4fd19-ade9-4780-bf8e-d119218a6cc7\",\"1f04e83f-eb3b-48ba-8aa9-722520dac5ff\",\"2284d301-21a5-48a0-a539-b68e234b9cbc\",\"ed595c95-a7fb-4b70-b7a9-a3a730fc6ade\",\"18ac7a2c-7303-432e-a8ed-e453a6220f53\",\"e6557e8c-35c8-4ccd-bf78-c984d00c33f1\",\"d024e46d-b32d-42d5-8130-3c9c65848359\",\"e3e0a113-47ad-4620-ada4-12bebf5523ba\",\"4db40f90-a051-4292-89dc-ac72dd76f027\",\"9af8894c-eaad-49e0-bac4-17c108124c69\",\"ec930b1d-edb3-403f-a01c-bd558d8ea9aa\",\"2435c54e-226b-4185-b223-99e4a6dfeb37\",\"9b3fcf34-bed2-4513-9b0b-df462a532db3\",\"d93e4fa9-990b-45e3-83f4-8e6dd68028a5\",\"5703e9f3-6e6f-4741-96a5-fa057b32e945\",\"f42be1a4-4261-4b79-8fbd-0a2dc0cc47dd\",\"03ce4354-f2ef-49e0-98fb-f51ab79cb832\"]",
+        "qr_code_configuration": "{\"refreshTime\":5000,\"useOfflineGuid\":true,\"needsToPreventDoubleScan\":true}",
+        "qr_code_px_size": "180",
+        "qr_code_size": "50",
+        "qr_code_version_2_enabled_percentage": "100",
+        "qr_error_correction_level": "M",
+        "qr_prompt_volume": "0.5",
+        "remoteConfigForUL": "false",
+        "sentry_configuration": "{\"enabledFor\":1,\"users\":[\"feaf82fc-e697-42ab-a562-5de6fa2b5452\",\"092660C2-C09D-4CB8-B896-F50D22E2E9A1\",\"9af8894c-eaad-49e0-bac4-17c108124c69\",\"84484eef-412d-42b7-a0c6-bdbc1c5a8dae\",\"1f04e83f-eb3b-48ba-8aa9-722520dac5ff\"],\"options\":{\"sampleRate\":1,\"profilesSampleRate\":1,\"tracesSampleRate\":1}}",
+        "serverside_main_tab_enabled_percentage": "100",
+        "serverside_main_tab_users": "C930B1D-EDB3-403F-A01C-BD558D8EA9AA,1F04E83F-EB3B-48BA-8AA9-722520DAC5FF,56AEE6F6-C8A2-44A6-BD13-8075A3704FFE,4DB40F90-A051-4292-89DC-AC72DD76F027",
+        "show_adaptive_programs": "false",
+        "show_badges": "true",
+        "show_badges_fr": "true",
+        "show_club_busyness": "true",
+        "show_clubs_premium_banner": "false",
+        "show_debt_pop_up": "true",
+        "show_emergency_mode": "false",
+        "show_member_get_member": "false",
+        "show_no_internet_fallback": "true",
+        "show_nxt_level_card": "false",
+        "show_popular_times_home": "false",
+        "show_qr_rating": "false",
+        "show_refer_a_friend_variant": "false",
+        "show_refer_background_variant": "false",
+        "show_shame_banner": "false",
+        "show_tour_de_france_badge": "false",
+        "show_web_shop_banner": "false",
+        "show_webshop_name_variant": "false",
+        "show_workout_finder": "true",
+        "show_workout_finder2": "false",
+        "show_workout_rating": "false",
+        "skip_tooltip_for_specific_members": "2284D301-21A5-48A0-A539-B68E234B9CBC,36519A94-C78A-4BB6-A2D5-355FAAB00437,4BF6BAD4-40A8-46FD-9F6C-B147A5320B0A,91663A5F-54EB-4DBA-B7D9-6C225735C333,FEAF82FC-E697-42AB-A562-5DE6FA2B5452,2435C54E-226B-4185-B223-99E4A6DFEB37,9AF8894C-EAAD-49E0-BAC4-17C108124C69,EC930B1D-EDB3-403F-A01C-BD558D8EA9AA",
+        "ssoLinkWebview": "true",
+        "supported_membership_options_for_invite_button": "[\"premiumBenefits\"]",
+        "supported_membership_types_for_invite_button": "[\"premium\",\"ultimate\",\"all-in\"]",
+        "tour_de_france_badge": "nl,be,lu,fr,es",
+        "ul_configuration": "{\"BF_LOGIN_URL\":\"https://login2.basic-fit.com\"}",
+        "use_expo_for_screenshot_blocking": "true",
+        "use_invite_friend_url_from_cms": "false",
+        "use_new_urls_to_invite_a_friend_countries": "",
+        "use_offline_guid": "true",
+        "webview_avoiding_view_configuration": "{\"keyboardVerticalOffset\":125,\"top\":false,\"bottom\":false}",
+        "white_listed_domains": "https://member.basic-fit.com,https://my.basic-fit.com,https://webshop.basic-fit.com,https://www.nxtlevel.com,https://staging.member.basic-fit.com"
+    },
+    "appName": "com.basicfit.trainingApp",
+    "state": "UPDATE",
+    "experimentDescriptions": [
+        {
+            "experimentId": "_exp_rollout_25",
+            "variantId": "1",
+            "experimentStartTime": "2025-07-01T09:12:41.959293Z",
+            "triggerTimeoutMillis": "15552000000",
+            "timeToLiveMillis": "15552000000"
+        },
+        {
+            "experimentId": "_exp_rollout_20",
+            "variantId": "1",
+            "experimentStartTime": "2025-03-17T10:12:17.780659Z",
+            "triggerTimeoutMillis": "15552000000",
+            "timeToLiveMillis": "15552000000"
+        },
+        {
+            "experimentId": "_exp_rollout_23",
+            "variantId": "1",
+            "experimentStartTime": "2025-04-09T09:21:06.268628Z",
+            "triggerTimeoutMillis": "15552000000",
+            "timeToLiveMillis": "15552000000"
+        },
+        {
+            "experimentId": "_exp_rollout_13",
+            "variantId": "1",
+            "experimentStartTime": "2024-12-09T09:16:44.113129Z",
+            "triggerTimeoutMillis": "15552000000",
+            "timeToLiveMillis": "15552000000"
+        },
+        {
+            "experimentId": "_exp_rollout_22",
+            "variantId": "1",
+            "experimentStartTime": "2025-03-25T13:52:06.422374Z",
+            "triggerTimeoutMillis": "15552000000",
+            "timeToLiveMillis": "15552000000"
+        }
+    ],
+    "templateVersion": "1089",
+    "rolloutMetadata": [
+        {
+            "rolloutId": "rollout_25",
+            "variantId": "1",
+            "affectedParameterKeys": [
+                "ssoLinkWebview"
+            ]
+        },
+        {
+            "rolloutId": "rollout_20",
+            "variantId": "1",
+            "affectedParameterKeys": [
+                "newMagicLinks"
+            ]
+        },
+        {
+            "rolloutId": "rollout_23",
+            "variantId": "1",
+            "affectedParameterKeys": [
+                "newProgressScreen"
+            ]
+        },
+        {
+            "rolloutId": "rollout_13",
+            "variantId": "1",
+            "affectedParameterKeys": [
+                "qr_code_configuration"
+            ]
+        },
+        {
+            "rolloutId": "rollout_22",
+            "variantId": "1",
+            "affectedParameterKeys": [
+                "newTrainings"
+            ]
+        }
+    ]
+}

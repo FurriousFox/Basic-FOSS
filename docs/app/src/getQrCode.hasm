@@ -1,0 +1,335 @@
+Function<getQrCode>45740(3 params, 37 registers, 0 symbols):
+	LoadParam           	Reg8:14, UInt8:1
+	LoadParam           	Reg8:1, UInt8:2
+	LoadConstUndefined  	Reg8:7
+	LoadConstUndefined  	Reg8:18
+	GetEnvironment      	Reg8:2, UInt8:0
+	LoadFromEnvironment 	Reg8:4, Reg8:2, UInt8:0
+	LoadFromEnvironment 	Reg8:5, Reg8:2, UInt8:1
+	LoadConstUInt8      	Reg8:3, UInt8:5
+	GetByVal            	Reg8:0, Reg8:5, Reg8:3
+	Call2               	Reg8:0, Reg8:4, Reg8:7, Reg8:0
+	GetById             	Reg8:0, Reg8:0, UInt8:1, UInt16:48702
+	; Oper[3]: String(48702) 'getEstimatedServerTimeInSec'
+
+	Call1               	Reg8:0, Reg8:0, Reg8:7
+	GetByVal            	Reg8:3, Reg8:5, Reg8:3
+	Call2               	Reg8:3, Reg8:4, Reg8:7, Reg8:3
+	GetById             	Reg8:3, Reg8:3, UInt8:2, UInt16:49457
+	; Oper[3]: String(49457) 'getServerTimeInfo'
+
+	Call1               	Reg8:4, Reg8:3, Reg8:7
+	GetById             	Reg8:10, Reg8:4, UInt8:3, UInt16:57518
+	; Oper[3]: String(57518) 'lastServerDate'
+
+	GetById             	Reg8:9, Reg8:4, UInt8:4, UInt16:41840
+	; Oper[3]: String(41840) 'serverDateInSec'
+
+	GetById             	Reg8:6, Reg8:4, UInt8:5, UInt16:41796
+	; Oper[3]: String(41796) 'ownDateInSec'
+
+	GetById             	Reg8:3, Reg8:4, UInt8:6, UInt16:61653
+	; Oper[3]: String(61653) 'deviceTime'
+
+	GetById             	Reg8:11, Reg8:4, UInt8:7, UInt16:52162
+	; Oper[3]: String(52162) 'timeDifference'
+
+	LoadConstNull       	Reg8:4
+	JEqual              	Addr8:7, Reg8:0, Reg8:4
+	Mov                 	Reg8:3, Reg8:0
+	JmpTrue             	Addr8:9, Reg8:3
+	GetById             	Reg8:3, Reg8:14, UInt8:8, UInt16:34277
+	; Oper[3]: String(34277) 'iat'
+
+	LoadFromEnvironment 	Reg8:5, Reg8:2, UInt8:0
+	LoadFromEnvironment 	Reg8:8, Reg8:2, UInt8:1
+	LoadConstUInt8      	Reg8:4, UInt8:6
+	GetByVal            	Reg8:4, Reg8:8, Reg8:4
+	Call2               	Reg8:4, Reg8:5, Reg8:7, Reg8:4
+	GetById             	Reg8:4, Reg8:4, UInt8:9, UInt16:40464
+	; Oper[3]: String(40464) 'cloneDeep'
+
+	GetGlobalObject     	Reg8:5
+	TryGetById          	Reg8:13, Reg8:5, UInt8:10, UInt16:43
+	; Oper[3]: String(43) 'Object'
+
+	GetByIdShort        	Reg8:12, Reg8:13, UInt8:11, UInt8:71
+	; Oper[3]: String(71) 'assign'
+
+	NewObject           	Reg8:8
+	PutNewOwnById       	Reg8:8, Reg8:3, UInt16:34277
+	; Oper[2]: String(34277) 'iat'
+
+	NewObject           	Reg8:3
+	Call4               	Reg8:3, Reg8:12, Reg8:13, Reg8:3, Reg8:14, Reg8:8
+	Call2               	Reg8:8, Reg8:4, Reg8:7, Reg8:3
+	TryGetById          	Reg8:4, Reg8:5, UInt8:10, UInt16:43
+	; Oper[3]: String(43) 'Object'
+
+	GetById             	Reg8:3, Reg8:4, UInt8:12, UInt16:37074
+	; Oper[3]: String(37074) 'entries'
+
+	Call2               	Reg8:3, Reg8:3, Reg8:4, Reg8:8
+	Mov                 	Reg8:17, Reg8:3
+	IteratorBegin       	Reg8:12, Reg8:17
+	LoadConstUInt8      	Reg8:4, UInt8:7
+	LoadConstString     	Reg8:16, UInt16:4096
+	; Oper[1]: String(4096) 'QR model getQrValue '
+
+	LoadConstString     	Reg8:15, UInt16:1224
+	; Oper[1]: String(1224) ' not found'
+
+	LoadConstUInt8      	Reg8:14, UInt8:2
+	LoadConstZero       	Reg8:13
+	LoadConstUInt8      	Reg8:3, UInt8:1
+	IteratorNext        	Reg8:20, Reg8:12, Reg8:17
+	Mov                 	Reg8:19, Reg8:12
+	JStrictEqual        	Addr8:93, Reg8:19, Reg8:7
+	LoadFromEnvironment 	Reg8:19, Reg8:2, UInt8:3
+	GetByIdShort        	Reg8:19, Reg8:19, UInt8:13, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	Call3               	Reg8:19, Reg8:19, Reg8:7, Reg8:20, Reg8:14
+	GetByVal            	Reg8:18, Reg8:19, Reg8:13
+	GetByVal            	Reg8:19, Reg8:19, Reg8:3
+	JmpTrue             	Addr8:57, Reg8:19
+	LoadFromEnvironment 	Reg8:20, Reg8:2, UInt8:0
+	LoadFromEnvironment 	Reg8:19, Reg8:2, UInt8:1
+	GetByVal            	Reg8:19, Reg8:19, Reg8:4
+	Call2               	Reg8:19, Reg8:20, Reg8:7, Reg8:19
+	GetById             	Reg8:21, Reg8:19, UInt8:14, UInt16:56756
+	; Oper[3]: String(56756) 'BFNewRelic'
+
+	GetById             	Reg8:20, Reg8:21, UInt8:15, UInt16:43466
+	; Oper[3]: String(43466) 'recordQREvent'
+
+	Mov                 	Reg8:22, Reg8:18
+	TryGetById          	Reg8:19, Reg8:5, UInt8:16, UInt16:32
+	; Oper[3]: String(32) 'HermesInternal'
+
+	GetByIdShort        	Reg8:19, Reg8:19, UInt8:17, UInt8:100
+	; Oper[3]: String(100) 'concat'
+
+	Call3               	Reg8:19, Reg8:19, Reg8:16, Reg8:22, Reg8:15
+	Call2               	Reg8:19, Reg8:20, Reg8:21, Reg8:19
+	Jmp                 	Addr8:-91
+	Catch               	Reg8:3
+	IteratorClose       	Reg8:12, UInt8:1
+	Throw               	Reg8:3
+	JmpFalseLong        	Addr32:134, Reg8:0
+	LoadFromEnvironment 	Reg8:3, Reg8:2, UInt8:0
+	LoadFromEnvironment 	Reg8:0, Reg8:2, UInt8:1
+	GetByVal            	Reg8:0, Reg8:0, Reg8:4
+	Call2               	Reg8:0, Reg8:3, Reg8:7, Reg8:0
+	GetById             	Reg8:13, Reg8:0, UInt8:14, UInt16:56756
+	; Oper[3]: String(56756) 'BFNewRelic'
+
+	GetById             	Reg8:12, Reg8:13, UInt8:15, UInt16:43466
+	; Oper[3]: String(43466) 'recordQREvent'
+
+	NewObject           	Reg8:3
+	GetById             	Reg8:0, Reg8:8, UInt8:18, UInt16:61647
+	; Oper[3]: String(61647) 'deviceId'
+
+	JmpTrue             	Addr8:7, Reg8:0
+	LoadConstString     	Reg8:0, UInt16:33504
+	; Oper[1]: String(33504) ''
+
+	PutNewOwnById       	Reg8:3, Reg8:0, UInt16:61647
+	; Oper[2]: String(61647) 'deviceId'
+
+	TryGetById          	Reg8:0, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	Call2               	Reg8:0, Reg8:0, Reg8:7, Reg8:11
+	PutNewOwnById       	Reg8:3, Reg8:0, UInt16:52162
+	; Oper[2]: String(52162) 'timeDifference'
+
+	TryGetById          	Reg8:0, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	Call2               	Reg8:0, Reg8:0, Reg8:7, Reg8:10
+	PutNewOwnById       	Reg8:3, Reg8:0, UInt16:57518
+	; Oper[2]: String(57518) 'lastServerDate'
+
+	TryGetById          	Reg8:0, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	Call2               	Reg8:0, Reg8:0, Reg8:7, Reg8:9
+	PutNewOwnById       	Reg8:3, Reg8:0, UInt16:41840
+	; Oper[2]: String(41840) 'serverDateInSec'
+
+	TryGetById          	Reg8:0, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	Call2               	Reg8:0, Reg8:0, Reg8:7, Reg8:6
+	PutNewOwnById       	Reg8:3, Reg8:0, UInt16:41796
+	; Oper[2]: String(41796) 'ownDateInSec'
+
+	PutNewOwnById       	Reg8:3, Reg8:1, UInt16:39080
+	; Oper[2]: String(39080) 'errorCorrectionLevel'
+
+	LoadConstString     	Reg8:0, UInt16:10043
+	; Oper[1]: String(10043) 'QR model time difference'
+
+	Call3               	Reg8:0, Reg8:12, Reg8:13, Reg8:0, Reg8:3
+	LoadFromEnvironment 	Reg8:0, Reg8:2, UInt8:4
+	GetByIdShort        	Reg8:13, Reg8:0, UInt8:13, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:12, Reg8:13, UInt8:20, UInt16:57653
+	; Oper[3]: String(57653) 'SHA256'
+
+	GetById             	Reg8:29, Reg8:8, UInt8:21, UInt16:60971
+	; Oper[3]: String(60971) 'cardNr'
+
+	GetById             	Reg8:28, Reg8:8, UInt8:22, UInt16:35937
+	; Oper[3]: String(35937) 'guid'
+
+	GetById             	Reg8:27, Reg8:8, UInt8:8, UInt16:34277
+	; Oper[3]: String(34277) 'iat'
+
+	GetById             	Reg8:26, Reg8:8, UInt8:18, UInt16:61647
+	; Oper[3]: String(61647) 'deviceId'
+
+	TryGetById          	Reg8:3, Reg8:5, UInt8:16, UInt16:32
+	; Oper[3]: String(32) 'HermesInternal'
+
+	GetByIdShort        	Reg8:14, Reg8:3, UInt8:17, UInt8:100
+	; Oper[3]: String(100) 'concat'
+
+	LoadConstString     	Reg8:30, UInt16:33504
+	; Oper[1]: String(33504) ''
+
+	Call                	Reg8:3, Reg8:14, UInt8:5
+	Call2               	Reg8:12, Reg8:12, Reg8:13, Reg8:3
+	GetByIdShort        	Reg8:3, Reg8:12, UInt8:23, UInt8:64
+	; Oper[3]: String(64) 'toString'
+
+	GetByIdShort        	Reg8:0, Reg8:0, UInt8:13, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:0, Reg8:0, UInt8:24, UInt16:34225
+	; Oper[3]: String(34225) 'enc'
+
+	GetById             	Reg8:0, Reg8:0, UInt8:25, UInt16:45423
+	; Oper[3]: String(45423) 'Hex'
+
+	Call2               	Reg8:12, Reg8:3, Reg8:12, Reg8:0
+	GetById             	Reg8:3, Reg8:12, UInt8:26, UInt16:44451
+	; Oper[3]: String(44451) 'substring'
+
+	GetByIdShort        	Reg8:13, Reg8:12, UInt8:27, UInt8:174
+	; Oper[3]: String(174) 'length'
+
+	LoadConstUInt8      	Reg8:0, UInt8:8
+	Sub                 	Reg8:0, Reg8:13, Reg8:0
+	Call2               	Reg8:3, Reg8:3, Reg8:12, Reg8:0
+	GetById             	Reg8:0, Reg8:3, UInt8:28, UInt16:38740
+	; Oper[3]: String(38740) 'toUpperCase'
+
+	Call1               	Reg8:23, Reg8:0, Reg8:3
+	GetById             	Reg8:29, Reg8:8, UInt8:21, UInt16:60971
+	; Oper[3]: String(60971) 'cardNr'
+
+	GetById             	Reg8:27, Reg8:8, UInt8:22, UInt16:35937
+	; Oper[3]: String(35937) 'guid'
+
+	GetById             	Reg8:25, Reg8:8, UInt8:8, UInt16:34277
+	; Oper[3]: String(34277) 'iat'
+
+	TryGetById          	Reg8:0, Reg8:5, UInt8:16, UInt16:32
+	; Oper[3]: String(32) 'HermesInternal'
+
+	GetByIdShort        	Reg8:12, Reg8:0, UInt8:17, UInt8:100
+	; Oper[3]: String(100) 'concat'
+
+	LoadConstString     	Reg8:30, UInt16:8909
+	; Oper[1]: String(8909) 'GM2:'
+
+	LoadConstString     	Reg8:0, UInt16:34748
+	; Oper[1]: String(34748) ':'
+
+	Mov                 	Reg8:28, Reg8:0
+	Mov                 	Reg8:26, Reg8:0
+	Mov                 	Reg8:24, Reg8:0
+	Call                	Reg8:0, Reg8:12, UInt8:8
+	LoadFromEnvironment 	Reg8:3, Reg8:2, UInt8:0
+	LoadFromEnvironment 	Reg8:2, Reg8:2, UInt8:1
+	GetByVal            	Reg8:2, Reg8:2, Reg8:4
+	Call2               	Reg8:2, Reg8:3, Reg8:7, Reg8:2
+	GetById             	Reg8:4, Reg8:2, UInt8:14, UInt16:56756
+	; Oper[3]: String(56756) 'BFNewRelic'
+
+	GetById             	Reg8:3, Reg8:4, UInt8:15, UInt16:43466
+	; Oper[3]: String(43466) 'recordQREvent'
+
+	NewObject           	Reg8:2
+	GetById             	Reg8:12, Reg8:8, UInt8:21, UInt16:60971
+	; Oper[3]: String(60971) 'cardNr'
+
+	PutNewOwnById       	Reg8:2, Reg8:12, UInt16:60971
+	; Oper[2]: String(60971) 'cardNr'
+
+	TryGetById          	Reg8:13, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	GetById             	Reg8:12, Reg8:8, UInt8:8, UInt16:34277
+	; Oper[3]: String(34277) 'iat'
+
+	Call2               	Reg8:12, Reg8:13, Reg8:7, Reg8:12
+	PutNewOwnById       	Reg8:2, Reg8:12, UInt16:34277
+	; Oper[2]: String(34277) 'iat'
+
+	GetById             	Reg8:12, Reg8:8, UInt8:22, UInt16:35937
+	; Oper[3]: String(35937) 'guid'
+
+	PutNewOwnById       	Reg8:2, Reg8:12, UInt16:35937
+	; Oper[2]: String(35937) 'guid'
+
+	PutNewOwnById       	Reg8:2, Reg8:0, UInt16:64584
+	; Oper[2]: String(64584) 'qrValue'
+
+	GetById             	Reg8:8, Reg8:8, UInt8:18, UInt16:61647
+	; Oper[3]: String(61647) 'deviceId'
+
+	PutNewOwnById       	Reg8:2, Reg8:8, UInt16:61647
+	; Oper[2]: String(61647) 'deviceId'
+
+	TryGetById          	Reg8:8, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	Call2               	Reg8:8, Reg8:8, Reg8:7, Reg8:11
+	PutNewOwnById       	Reg8:2, Reg8:8, UInt16:52162
+	; Oper[2]: String(52162) 'timeDifference'
+
+	TryGetById          	Reg8:8, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	Call2               	Reg8:8, Reg8:8, Reg8:7, Reg8:10
+	PutNewOwnById       	Reg8:2, Reg8:8, UInt16:57518
+	; Oper[2]: String(57518) 'lastServerDate'
+
+	TryGetById          	Reg8:8, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	Call2               	Reg8:8, Reg8:8, Reg8:7, Reg8:9
+	PutNewOwnById       	Reg8:2, Reg8:8, UInt16:41840
+	; Oper[2]: String(41840) 'serverDateInSec'
+
+	TryGetById          	Reg8:5, Reg8:5, UInt8:19, UInt16:65
+	; Oper[3]: String(65) 'String'
+
+	Call2               	Reg8:5, Reg8:5, Reg8:7, Reg8:6
+	PutNewOwnById       	Reg8:2, Reg8:5, UInt16:41796
+	; Oper[2]: String(41796) 'ownDateInSec'
+
+	PutNewOwnById       	Reg8:2, Reg8:1, UInt16:39080
+	; Oper[2]: String(39080) 'errorCorrectionLevel'
+
+	LoadConstString     	Reg8:1, UInt16:9838
+	; Oper[1]: String(9838) 'QR code generated successfully'
+
+	Call3               	Reg8:1, Reg8:3, Reg8:4, Reg8:1, Reg8:2
+	Ret                 	Reg8:0
+EndFunction

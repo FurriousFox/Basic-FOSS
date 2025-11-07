@@ -1,0 +1,1235 @@
+Function<QrCode>44114(2 params, 56 registers, 30 symbols):
+	CreateEnvironment   	Reg8:19
+	LoadParam           	Reg8:0, UInt8:1
+	GetById             	Reg8:10, Reg8:0, UInt8:1, UInt16:42406
+	; Oper[3]: String(42406) 'route'
+
+	GetEnvironment      	Reg8:12, UInt8:0
+	LoadFromEnvironment 	Reg8:14, Reg8:12, UInt8:0
+	LoadFromEnvironment 	Reg8:16, Reg8:12, UInt8:1
+	LoadConstUInt8      	Reg8:0, UInt8:19
+	GetByVal            	Reg8:1, Reg8:16, Reg8:0
+	LoadConstUndefined  	Reg8:3
+	Call2               	Reg8:1, Reg8:14, Reg8:3, Reg8:1
+	GetById             	Reg8:2, Reg8:1, UInt8:2, UInt16:63821
+	; Oper[3]: String(63821) 'monitorLaunchToQRCode'
+
+	GetById             	Reg8:1, Reg8:2, UInt8:3, UInt16:35005
+	; Oper[3]: String(35005) 'stop'
+
+	Call1               	Reg8:1, Reg8:1, Reg8:2
+	GetByVal            	Reg8:0, Reg8:16, Reg8:0
+	Call2               	Reg8:0, Reg8:14, Reg8:3, Reg8:0
+	GetById             	Reg8:1, Reg8:0, UInt8:4, UInt16:40951
+	; Oper[3]: String(40951) 'monitorAppOpenQRCode'
+
+	GetById             	Reg8:0, Reg8:1, UInt8:3, UInt16:35005
+	; Oper[3]: String(35005) 'stop'
+
+	Call1               	Reg8:0, Reg8:0, Reg8:1
+	LoadConstUInt8      	Reg8:6, UInt8:20
+	GetByVal            	Reg8:0, Reg8:16, Reg8:6
+	Call2               	Reg8:0, Reg8:14, Reg8:3, Reg8:0
+	GetById             	Reg8:0, Reg8:0, UInt8:5, UInt16:35732
+	; Oper[3]: String(35732) 'useNavigation'
+
+	Call1               	Reg8:0, Reg8:0, Reg8:3
+	StoreToEnvironment  	Reg8:19, UInt8:0, Reg8:0
+	LoadConstUInt8      	Reg8:7, UInt8:21
+	GetByVal            	Reg8:1, Reg8:16, Reg8:7
+	Call2               	Reg8:1, Reg8:14, Reg8:3, Reg8:1
+	GetById             	Reg8:2, Reg8:1, UInt8:6, UInt16:65146
+	; Oper[3]: String(65146) 'useSelector'
+
+	LoadConstUInt8      	Reg8:4, UInt8:22
+	GetByVal            	Reg8:1, Reg8:16, Reg8:4
+	Call2               	Reg8:1, Reg8:14, Reg8:3, Reg8:1
+	GetById             	Reg8:1, Reg8:1, UInt8:7, UInt16:62181
+	; Oper[3]: String(62181) 'getDeviceId'
+
+	Call2               	Reg8:15, Reg8:2, Reg8:3, Reg8:1
+	StoreToEnvironment  	Reg8:19, UInt8:1, Reg8:15
+	GetByVal            	Reg8:1, Reg8:16, Reg8:7
+	Call2               	Reg8:1, Reg8:14, Reg8:3, Reg8:1
+	GetById             	Reg8:5, Reg8:1, UInt8:6, UInt16:65146
+	; Oper[3]: String(65146) 'useSelector'
+
+	LoadConstUInt8      	Reg8:1, UInt8:23
+	GetByVal            	Reg8:2, Reg8:16, Reg8:1
+	Call2               	Reg8:2, Reg8:14, Reg8:3, Reg8:2
+	GetById             	Reg8:2, Reg8:2, UInt8:8, UInt16:60799
+	; Oper[3]: String(60799) 'getCardnumber'
+
+	Call2               	Reg8:2, Reg8:5, Reg8:3, Reg8:2
+	StoreToEnvironment  	Reg8:19, UInt8:2, Reg8:2
+	GetByVal            	Reg8:5, Reg8:16, Reg8:7
+	Call2               	Reg8:5, Reg8:14, Reg8:3, Reg8:5
+	GetById             	Reg8:5, Reg8:5, UInt8:6, UInt16:65146
+	; Oper[3]: String(65146) 'useSelector'
+
+	GetByVal            	Reg8:4, Reg8:16, Reg8:4
+	Call2               	Reg8:4, Reg8:14, Reg8:3, Reg8:4
+	GetById             	Reg8:4, Reg8:4, UInt8:9, UInt16:55512
+	; Oper[3]: String(55512) 'getIsConnected'
+
+	Call2               	Reg8:4, Reg8:5, Reg8:3, Reg8:4
+	StoreToEnvironment  	Reg8:19, UInt8:3, Reg8:4
+	LoadFromEnvironment 	Reg8:4, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:5, Reg8:4, UInt8:10, UInt8:248
+	; Oper[3]: String(248) 'useState'
+
+	CreateClosure       	Reg8:4, Reg8:19, UInt16:44115
+	Call2               	Reg8:5, Reg8:5, Reg8:3, Reg8:4
+	LoadFromEnvironment 	Reg8:4, Reg8:12, UInt8:3
+	GetByIdShort        	Reg8:4, Reg8:4, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	LoadConstUInt8      	Reg8:9, UInt8:1
+	Call3               	Reg8:4, Reg8:4, Reg8:3, Reg8:5, Reg8:9
+	LoadConstZero       	Reg8:5
+	GetByVal            	Reg8:44, Reg8:4, Reg8:5
+	StoreToEnvironment  	Reg8:19, UInt8:4, Reg8:44
+	GetByVal            	Reg8:4, Reg8:16, Reg8:7
+	Call2               	Reg8:4, Reg8:14, Reg8:3, Reg8:4
+	GetById             	Reg8:8, Reg8:4, UInt8:6, UInt16:65146
+	; Oper[3]: String(65146) 'useSelector'
+
+	GetByVal            	Reg8:4, Reg8:16, Reg8:1
+	Call2               	Reg8:4, Reg8:14, Reg8:3, Reg8:4
+	GetById             	Reg8:4, Reg8:4, UInt8:12, UInt16:62334
+	; Oper[3]: String(62334) 'getMemberEntryTime'
+
+	Call2               	Reg8:4, Reg8:8, Reg8:3, Reg8:4
+	StoreToEnvironment  	Reg8:19, UInt8:5, Reg8:4
+	GetByVal            	Reg8:4, Reg8:16, Reg8:7
+	Call2               	Reg8:4, Reg8:14, Reg8:3, Reg8:4
+	GetById             	Reg8:4, Reg8:4, UInt8:13, UInt16:64133
+	; Oper[3]: String(64133) 'useDispatch'
+
+	Call1               	Reg8:4, Reg8:4, Reg8:3
+	StoreToEnvironment  	Reg8:19, UInt8:6, Reg8:4
+	GetByVal            	Reg8:4, Reg8:16, Reg8:7
+	Call2               	Reg8:4, Reg8:14, Reg8:3, Reg8:4
+	GetById             	Reg8:8, Reg8:4, UInt8:6, UInt16:65146
+	; Oper[3]: String(65146) 'useSelector'
+
+	LoadConstUInt8      	Reg8:4, UInt8:24
+	GetByVal            	Reg8:4, Reg8:16, Reg8:4
+	Call2               	Reg8:4, Reg8:14, Reg8:3, Reg8:4
+	GetById             	Reg8:4, Reg8:4, UInt8:14, UInt16:40413
+	; Oper[3]: String(40413) 'getHasQrAccess'
+
+	Call2               	Reg8:4, Reg8:8, Reg8:3, Reg8:4
+	StoreToEnvironment  	Reg8:19, UInt8:7, Reg8:4
+	GetByVal            	Reg8:7, Reg8:16, Reg8:7
+	Call2               	Reg8:7, Reg8:14, Reg8:3, Reg8:7
+	GetById             	Reg8:7, Reg8:7, UInt8:6, UInt16:65146
+	; Oper[3]: String(65146) 'useSelector'
+
+	GetByVal            	Reg8:1, Reg8:16, Reg8:1
+	Call2               	Reg8:1, Reg8:14, Reg8:3, Reg8:1
+	GetById             	Reg8:1, Reg8:1, UInt8:15, UInt16:61019
+	; Oper[3]: String(61019) 'getPeopleId'
+
+	Call2               	Reg8:1, Reg8:7, Reg8:3, Reg8:1
+	StoreToEnvironment  	Reg8:19, UInt8:8, Reg8:1
+	LoadConstUInt8      	Reg8:1, UInt8:25
+	GetByVal            	Reg8:1, Reg8:16, Reg8:1
+	Call2               	Reg8:1, Reg8:14, Reg8:3, Reg8:1
+	GetById             	Reg8:1, Reg8:1, UInt8:16, UInt16:64876
+	; Oper[3]: String(64876) 'useClubVisits'
+
+	Call1               	Reg8:1, Reg8:1, Reg8:3
+	GetById             	Reg8:1, Reg8:1, UInt8:17, UInt16:50031
+	; Oper[3]: String(50031) 'addNewClubVisit'
+
+	StoreToEnvironment  	Reg8:19, UInt8:9, Reg8:1
+	LoadFromEnvironment 	Reg8:1, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:7, Reg8:1, UInt8:10, UInt8:248
+	; Oper[3]: String(248) 'useState'
+
+	CreateClosure       	Reg8:1, Reg8:19, UInt16:44116
+	Call2               	Reg8:7, Reg8:7, Reg8:3, Reg8:1
+	LoadFromEnvironment 	Reg8:1, Reg8:12, UInt8:3
+	GetByIdShort        	Reg8:1, Reg8:1, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	Call3               	Reg8:1, Reg8:1, Reg8:3, Reg8:7, Reg8:9
+	GetByVal            	Reg8:8, Reg8:1, Reg8:5
+	LoadFromEnvironment 	Reg8:1, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:7, Reg8:1, UInt8:10, UInt8:248
+	; Oper[3]: String(248) 'useState'
+
+	LoadConstUInt8      	Reg8:1, UInt8:26
+	GetByVal            	Reg8:1, Reg8:16, Reg8:1
+	Call2               	Reg8:1, Reg8:14, Reg8:3, Reg8:1
+	GetById             	Reg8:1, Reg8:1, UInt8:18, UInt16:62427
+	; Oper[3]: String(62427) 'getQRCodeConfiguration'
+
+	Call1               	Reg8:1, Reg8:1, Reg8:3
+	Call2               	Reg8:7, Reg8:7, Reg8:3, Reg8:1
+	LoadFromEnvironment 	Reg8:1, Reg8:12, UInt8:3
+	GetByIdShort        	Reg8:1, Reg8:1, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	Call3               	Reg8:1, Reg8:1, Reg8:3, Reg8:7, Reg8:9
+	GetByVal            	Reg8:29, Reg8:1, Reg8:5
+	StoreToEnvironment  	Reg8:19, UInt8:10, Reg8:29
+	GetById             	Reg8:1, Reg8:29, UInt8:19, UInt16:65074
+	; Oper[3]: String(65074) 'useOfflineGuid'
+
+	StoreToEnvironment  	Reg8:19, UInt8:11, Reg8:1
+	LoadFromEnvironment 	Reg8:1, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:7, Reg8:1, UInt8:10, UInt8:248
+	; Oper[3]: String(248) 'useState'
+
+	CreateClosure       	Reg8:1, Reg8:19, UInt16:44117
+	Call2               	Reg8:7, Reg8:7, Reg8:3, Reg8:1
+	LoadFromEnvironment 	Reg8:1, Reg8:12, UInt8:3
+	GetByIdShort        	Reg8:1, Reg8:1, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	Call3               	Reg8:1, Reg8:1, Reg8:3, Reg8:7, Reg8:9
+	GetByVal            	Reg8:1, Reg8:1, Reg8:5
+	StoreToEnvironment  	Reg8:19, UInt8:12, Reg8:1
+	LoadFromEnvironment 	Reg8:7, Reg8:12, UInt8:5
+	GetById             	Reg8:13, Reg8:7, UInt8:20, UInt16:35817
+	; Oper[3]: String(35817) 'Dimensions'
+
+	GetByIdShort        	Reg8:11, Reg8:13, UInt8:21, UInt8:146
+	; Oper[3]: String(146) 'get'
+
+	LoadConstString     	Reg8:7, UInt16:34903
+	; Oper[1]: String(34903) 'window'
+
+	Call2               	Reg8:7, Reg8:11, Reg8:13, Reg8:7
+	GetByIdShort        	Reg8:13, Reg8:7, UInt8:22, UInt8:127
+	; Oper[3]: String(127) 'width'
+
+	LoadFromEnvironment 	Reg8:7, Reg8:12, UInt8:14
+	GetByIdShort        	Reg8:7, Reg8:7, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetByIdShort        	Reg8:7, Reg8:7, UInt8:23, UInt8:182
+	; Oper[3]: String(182) 'margins'
+
+	GetById             	Reg8:7, Reg8:7, UInt8:24, UInt16:52692
+	; Oper[3]: String(52692) 'exterior'
+
+	LoadConstUInt8      	Reg8:11, UInt8:2
+	Mul                 	Reg8:7, Reg8:7, Reg8:11
+	Sub                 	Reg8:7, Reg8:13, Reg8:7
+	GetGlobalObject     	Reg8:40
+	TryGetById          	Reg8:18, Reg8:40, UInt8:25, UInt16:41
+	; Oper[3]: String(41) 'Math'
+
+	GetByIdShort        	Reg8:17, Reg8:18, UInt8:26, UInt8:126
+	; Oper[3]: String(126) 'min'
+
+	GetById             	Reg8:13, Reg8:29, UInt8:27, UInt16:36927
+	; Oper[3]: String(36927) 'pxSize'
+
+	SubN                	Reg8:7, Reg8:7, Reg8:6
+	Call3               	Reg8:39, Reg8:17, Reg8:18, Reg8:13, Reg8:7
+	TryGetById          	Reg8:17, Reg8:40, UInt8:25, UInt16:41
+	; Oper[3]: String(41) 'Math'
+
+	GetByIdShort        	Reg8:13, Reg8:17, UInt8:28, UInt8:142
+	; Oper[3]: String(142) 'floor'
+
+	TryGetById          	Reg8:18, Reg8:40, UInt8:29, UInt16:21
+	; Oper[3]: String(21) 'Date'
+
+	GetByIdShort        	Reg8:7, Reg8:18, UInt8:30, UInt8:118
+	; Oper[3]: String(118) 'now'
+
+	Call1               	Reg8:18, Reg8:7, Reg8:18
+	LoadConstInt        	Reg8:7, Imm32:1000
+	Div                 	Reg8:7, Reg8:18, Reg8:7
+	Call2               	Reg8:13, Reg8:13, Reg8:17, Reg8:7
+	LoadConstUInt8      	Reg8:7, UInt8:28
+	GetByVal            	Reg8:7, Reg8:16, Reg8:7
+	Call2               	Reg8:7, Reg8:14, Reg8:3, Reg8:7
+	GetById             	Reg8:7, Reg8:7, UInt8:31, UInt16:48702
+	; Oper[3]: String(48702) 'getEstimatedServerTimeInSec'
+
+	Call1               	Reg8:14, Reg8:7, Reg8:3
+	LoadConstNull       	Reg8:7
+	JEqual              	Addr8:7, Reg8:14, Reg8:7
+	Mov                 	Reg8:13, Reg8:14
+	NewObject           	Reg8:14
+	PutNewOwnById       	Reg8:14, Reg8:15, UInt16:61647
+	; Oper[2]: String(61647) 'deviceId'
+
+	PutNewOwnById       	Reg8:14, Reg8:44, UInt16:60971
+	; Oper[2]: String(60971) 'cardNr'
+
+	PutNewOwnById       	Reg8:14, Reg8:13, UInt16:34277
+	; Oper[2]: String(34277) 'iat'
+
+	PutNewOwnById       	Reg8:14, Reg8:1, UInt16:35937
+	; Oper[2]: String(35937) 'guid'
+
+	StoreToEnvironment  	Reg8:19, UInt8:14, Reg8:14
+	TryGetById          	Reg8:13, Reg8:40, UInt8:32, UInt16:43
+	; Oper[3]: String(43) 'Object'
+
+	GetByIdShort        	Reg8:1, Reg8:13, UInt8:33, UInt8:251
+	; Oper[3]: String(251) 'values'
+
+	Call2               	Reg8:14, Reg8:1, Reg8:13, Reg8:14
+	GetByIdShort        	Reg8:13, Reg8:14, UInt8:34, UInt8:179
+	; Oper[3]: String(179) 'map'
+
+	CreateClosure       	Reg8:1, Reg8:19, UInt16:44118
+	Call2               	Reg8:13, Reg8:13, Reg8:14, Reg8:1
+	GetByIdShort        	Reg8:1, Reg8:13, UInt8:35, UInt8:44
+	; Oper[3]: String(44) 'join'
+
+	LoadConstString     	Reg8:43, UInt16:33504
+	; Oper[1]: String(33504) ''
+
+	Call2               	Reg8:28, Reg8:1, Reg8:13, Reg8:43
+	StoreToEnvironment  	Reg8:19, UInt8:15, Reg8:28
+	LoadConstString     	Reg8:1, UInt16:682
+	; Oper[1]: String(682) '0000'
+
+	StrictNeq           	Reg8:1, Reg8:28, Reg8:1
+	StoreNPToEnvironment	Reg8:19, UInt8:16, Reg8:1
+	GetByIdShort        	Reg8:10, Reg8:10, UInt8:36, UInt8:204
+	; Oper[3]: String(204) 'params'
+
+	Neq                 	Reg8:14, Reg8:10, Reg8:7
+	LoadConstString     	Reg8:13, UInt16:34229
+	; Oper[1]: String(34229) 'false'
+
+	Mov                 	Reg8:7, Reg8:13
+	JmpFalse            	Addr8:19, Reg8:14
+	GetById             	Reg8:10, Reg8:10, UInt8:37, UInt16:40046
+	; Oper[3]: String(40046) 'fallback'
+
+	Mov                 	Reg8:7, Reg8:13
+	JmpFalse            	Addr8:7, Reg8:10
+	LoadConstString     	Reg8:7, UInt16:33583
+	; Oper[1]: String(33583) 'true'
+
+	StoreToEnvironment  	Reg8:19, UInt8:17, Reg8:7
+	LoadFromEnvironment 	Reg8:7, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:10, Reg8:7, UInt8:10, UInt8:248
+	; Oper[3]: String(248) 'useState'
+
+	CreateClosure       	Reg8:7, Reg8:19, UInt16:44119
+	Call2               	Reg8:10, Reg8:10, Reg8:3, Reg8:7
+	LoadFromEnvironment 	Reg8:7, Reg8:12, UInt8:3
+	GetByIdShort        	Reg8:7, Reg8:7, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	Call3               	Reg8:7, Reg8:7, Reg8:3, Reg8:10, Reg8:11
+	GetByVal            	Reg8:13, Reg8:7, Reg8:5
+	StoreToEnvironment  	Reg8:19, UInt8:18, Reg8:13
+	GetByVal            	Reg8:7, Reg8:7, Reg8:9
+	StoreToEnvironment  	Reg8:19, UInt8:19, Reg8:7
+	LoadFromEnvironment 	Reg8:14, Reg8:12, UInt8:0
+	LoadFromEnvironment 	Reg8:11, Reg8:12, UInt8:1
+	LoadConstUInt8      	Reg8:7, UInt8:27
+	GetByVal            	Reg8:7, Reg8:11, Reg8:7
+	Call2               	Reg8:7, Reg8:14, Reg8:3, Reg8:7
+	GetById             	Reg8:9, Reg8:7, UInt8:38, UInt16:37034
+	; Oper[3]: String(37034) 'getInfo'
+
+	NewObject           	Reg8:7
+	PutNewOwnById       	Reg8:7, Reg8:44, UInt16:53809
+	; Oper[2]: String(53809) 'cardNumber'
+
+	PutNewOwnById       	Reg8:7, Reg8:1, UInt16:62765
+	; Oper[2]: String(62765) 'hasMissingValues'
+
+	Call2               	Reg8:7, Reg8:9, Reg8:3, Reg8:7
+	GetByIdShort        	Reg8:23, Reg8:7, UInt8:39, UInt8:233
+	; Oper[3]: String(233) 'title'
+
+	GetByIdShort        	Reg8:20, Reg8:7, UInt8:40, UInt8:95
+	; Oper[3]: String(95) 'description'
+
+	LoadConstUInt8      	Reg8:7, UInt8:29
+	GetByVal            	Reg8:7, Reg8:11, Reg8:7
+	Call2               	Reg8:7, Reg8:14, Reg8:3, Reg8:7
+	GetById             	Reg8:9, Reg8:7, UInt8:41, UInt16:65101
+	; Oper[3]: String(65101) 'useQrReasonCollectionQuery'
+
+	NewObject           	Reg8:7
+	NewObject           	Reg8:10
+	LoadConstUInt8      	Reg8:24, UInt8:30
+	GetByVal            	Reg8:11, Reg8:11, Reg8:24
+	Call2               	Reg8:11, Reg8:14, Reg8:3, Reg8:11
+	GetById             	Reg8:11, Reg8:11, UInt8:42, UInt16:53836
+	; Oper[3]: String(53836) 'getLanguage'
+
+	Call1               	Reg8:11, Reg8:11, Reg8:3
+	PutNewOwnById       	Reg8:10, Reg8:11, UInt16:33700
+	; Oper[2]: String(33700) 'locale'
+
+	PutNewOwnByIdShort  	Reg8:7, Reg8:10, UInt8:252
+	; Oper[2]: String(252) 'variables'
+
+	Call2               	Reg8:7, Reg8:9, Reg8:3, Reg8:7
+	GetByIdShort        	Reg8:7, Reg8:7, UInt8:43, UInt8:111
+	; Oper[3]: String(111) 'data'
+
+	StoreToEnvironment  	Reg8:19, UInt8:20, Reg8:7
+	LoadFromEnvironment 	Reg8:7, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:9, Reg8:7, UInt8:44, UInt8:245
+	; Oper[3]: String(245) 'useEffect'
+
+	NewArray            	Reg8:7, UInt16:3
+	PutOwnByIndex       	Reg8:7, Reg8:0, UInt8:0
+	PutOwnByIndex       	Reg8:7, Reg8:2, UInt8:1
+	PutOwnByIndex       	Reg8:7, Reg8:44, UInt8:2
+	CreateClosure       	Reg8:2, Reg8:19, UInt16:44120
+	Call3               	Reg8:2, Reg8:9, Reg8:3, Reg8:2, Reg8:7
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:13
+	GetByIdShort        	Reg8:2, Reg8:2, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	Call1               	Reg8:2, Reg8:2, Reg8:3
+	GetById             	Reg8:7, Reg8:2, UInt8:45, UInt16:57488
+	; Oper[3]: String(57488) 'turnOnBrightnes'
+
+	StoreToEnvironment  	Reg8:19, UInt8:21, Reg8:7
+	GetById             	Reg8:2, Reg8:2, UInt8:46, UInt16:56339
+	; Oper[3]: String(56339) 'turnOffBrightnes'
+
+	StoreToEnvironment  	Reg8:19, UInt8:22, Reg8:2
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:11
+	GetByIdShort        	Reg8:2, Reg8:2, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	Call1               	Reg8:2, Reg8:2, Reg8:3
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:12
+	GetByIdShort        	Reg8:7, Reg8:2, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	CreateClosure       	Reg8:2, Reg8:19, UInt16:44121
+	Call2               	Reg8:2, Reg8:7, Reg8:3, Reg8:2
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:2, Reg8:2, UInt8:47, UInt8:247
+	; Oper[3]: String(247) 'useRef'
+
+	Call1               	Reg8:2, Reg8:2, Reg8:3
+	StoreToEnvironment  	Reg8:19, UInt8:23, Reg8:2
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:2, Reg8:2, UInt8:47, UInt8:247
+	; Oper[3]: String(247) 'useRef'
+
+	Call1               	Reg8:2, Reg8:2, Reg8:3
+	StoreToEnvironment  	Reg8:19, UInt8:24, Reg8:2
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:2, Reg8:2, UInt8:47, UInt8:247
+	; Oper[3]: String(247) 'useRef'
+
+	Call1               	Reg8:2, Reg8:2, Reg8:3
+	StoreToEnvironment  	Reg8:19, UInt8:25, Reg8:2
+	Not                 	Reg8:9, Reg8:1
+	JmpTrue             	Addr8:12, Reg8:1
+	GetByIdShort        	Reg8:2, Reg8:13, UInt8:48, UInt8:174
+	; Oper[3]: String(174) 'length'
+
+	Greater             	Reg8:9, Reg8:2, Reg8:5
+	CreateClosure       	Reg8:2, Reg8:19, UInt16:44123
+	StoreToEnvironment  	Reg8:19, UInt8:26, Reg8:2
+	CreateClosure       	Reg8:2, Reg8:19, UInt16:44125
+	StoreToEnvironment  	Reg8:19, UInt8:27, Reg8:2
+	CreateClosure       	Reg8:2, Reg8:19, UInt16:44126
+	StoreToEnvironment  	Reg8:19, UInt8:28, Reg8:2
+	CreateClosure       	Reg8:2, Reg8:19, UInt16:44127
+	StoreToEnvironment  	Reg8:19, UInt8:29, Reg8:2
+	LoadFromEnvironment 	Reg8:5, Reg8:12, UInt8:0
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:1
+	GetByVal            	Reg8:2, Reg8:2, Reg8:6
+	Call2               	Reg8:2, Reg8:5, Reg8:3, Reg8:2
+	GetById             	Reg8:5, Reg8:2, UInt8:49, UInt16:33595
+	; Oper[3]: String(33595) 'useFocusEffect'
+
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:7, Reg8:2, UInt8:50, UInt8:14
+	; Oper[3]: String(14) 'useCallback'
+
+	CreateClosure       	Reg8:6, Reg8:19, UInt16:44139
+	NewArray            	Reg8:2, UInt16:0
+	Call3               	Reg8:2, Reg8:7, Reg8:3, Reg8:6, Reg8:2
+	Call2               	Reg8:2, Reg8:5, Reg8:3, Reg8:2
+	LoadFromEnvironment 	Reg8:2, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:5, Reg8:2, UInt8:44, UInt8:245
+	; Oper[3]: String(245) 'useEffect'
+
+	NewArray            	Reg8:2, UInt16:1
+	PutOwnByIndex       	Reg8:2, Reg8:1, UInt8:0
+	CreateClosure       	Reg8:1, Reg8:19, UInt16:44141
+	Call3               	Reg8:1, Reg8:5, Reg8:3, Reg8:1, Reg8:2
+	LoadFromEnvironment 	Reg8:1, Reg8:12, UInt8:4
+	GetByIdShort        	Reg8:2, Reg8:1, UInt8:44, UInt8:245
+	; Oper[3]: String(245) 'useEffect'
+
+	NewArray            	Reg8:1, UInt16:2
+	PutOwnByIndex       	Reg8:1, Reg8:4, UInt8:0
+	PutOwnByIndex       	Reg8:1, Reg8:0, UInt8:1
+	CreateClosure       	Reg8:0, Reg8:19, UInt16:44144
+	Call3               	Reg8:0, Reg8:2, Reg8:3, Reg8:0, Reg8:1
+	LoadFromEnvironment 	Reg8:0, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:2, Reg8:0, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:0, Reg8:12, UInt8:8
+	GetByIdShort        	Reg8:1, Reg8:0, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObject           	Reg8:0
+	LoadFromEnvironment 	Reg8:4, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:4, Reg8:4, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:4, Reg8:4, UInt8:52, UInt16:53388
+	; Oper[3]: String(53388) 'scrollView'
+
+	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:44660
+	; Oper[2]: String(44660) 'contentContainerStyle'
+
+	LoadConstFalse      	Reg8:4
+	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:58828
+	; Oper[2]: String(58828) 'bounces'
+
+	LoadFromEnvironment 	Reg8:4, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:6, Reg8:4, UInt8:53, UInt8:164
+	; Oper[3]: String(164) 'jsxs'
+
+	LoadFromEnvironment 	Reg8:4, Reg8:12, UInt8:5
+	GetByIdShort        	Reg8:5, Reg8:4, UInt8:54, UInt8:69
+	; Oper[3]: String(69) 'View'
+
+	NewObject           	Reg8:4
+	LoadFromEnvironment 	Reg8:7, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:7, Reg8:7, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:7, Reg8:7, UInt8:55, UInt16:34286
+	; Oper[3]: String(34286) 'content'
+
+	PutNewOwnByIdShort  	Reg8:4, Reg8:7, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	LoadFromEnvironment 	Reg8:7, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:11, Reg8:7, UInt8:53, UInt8:164
+	; Oper[3]: String(164) 'jsxs'
+
+	LoadFromEnvironment 	Reg8:7, Reg8:12, UInt8:5
+	GetByIdShort        	Reg8:10, Reg8:7, UInt8:54, UInt8:69
+	; Oper[3]: String(69) 'View'
+
+	NewObject           	Reg8:7
+	LoadFromEnvironment 	Reg8:14, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:14, Reg8:14, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:14, Reg8:14, UInt8:56, UInt16:39673
+	; Oper[3]: String(39673) 'innerView'
+
+	PutNewOwnByIdShort  	Reg8:7, Reg8:14, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	LoadFromEnvironment 	Reg8:14, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:16, Reg8:14, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:14, Reg8:12, UInt8:5
+	GetByIdShort        	Reg8:15, Reg8:14, UInt8:54, UInt8:69
+	; Oper[3]: String(69) 'View'
+
+	NewObject           	Reg8:14
+	NewObject           	Reg8:17
+	LoadFromEnvironment 	Reg8:18, Reg8:12, UInt8:17
+	GetById             	Reg8:18, Reg8:18, UInt8:57, UInt16:44856
+	; Oper[3]: String(44856) 'QR_MARGIN'
+
+	Add                 	Reg8:18, Reg8:39, Reg8:18
+	PutNewOwnByIdShort  	Reg8:17, Reg8:18, UInt8:127
+	; Oper[2]: String(127) 'width'
+
+	PutNewOwnByIdShort  	Reg8:14, Reg8:17, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	LoadFromEnvironment 	Reg8:17, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:22, Reg8:17, UInt8:53, UInt8:164
+	; Oper[3]: String(164) 'jsxs'
+
+	JmpTrueLong         	Addr32:131, Reg8:9
+	LoadFromEnvironment 	Reg8:17, Reg8:12, UInt8:5
+	GetByIdShort        	Reg8:18, Reg8:17, UInt8:54, UInt8:69
+	; Oper[3]: String(69) 'View'
+
+	NewObject           	Reg8:17
+	LoadFromEnvironment 	Reg8:21, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:21, Reg8:21, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:21, Reg8:21, UInt8:58, UInt16:58376
+	; Oper[3]: String(58376) 'loaderSuccess'
+
+	PutNewOwnByIdShort  	Reg8:17, Reg8:21, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	LoadFromEnvironment 	Reg8:21, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:26, Reg8:21, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:21, Reg8:12, UInt8:9
+	GetByIdShort        	Reg8:25, Reg8:21, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObject           	Reg8:21
+	Call3               	Reg8:25, Reg8:26, Reg8:3, Reg8:25, Reg8:21
+	NewArray            	Reg8:21, UInt16:2
+	PutOwnByIndex       	Reg8:21, Reg8:25, UInt8:0
+	LoadFromEnvironment 	Reg8:25, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:27, Reg8:25, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:25, Reg8:12, UInt8:10
+	GetByIdShort        	Reg8:26, Reg8:25, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObjectWithBufferLong	Reg8:25, UInt16:3, UInt16:2, UInt32:26524, UInt32:94022
+	PutNewOwnByIdShort  	Reg8:25, Reg8:28, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:25, Reg8:27, Reg8:3, Reg8:26, Reg8:25
+	PutOwnByIndex       	Reg8:21, Reg8:25, UInt8:1
+	PutNewOwnByIdShort  	Reg8:17, Reg8:21, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:17, Reg8:22, Reg8:3, Reg8:18, Reg8:17
+	JmpLong             	Addr32:571
+	LoadFromEnvironment 	Reg8:18, Reg8:12, UInt8:19
+	GetById             	Reg8:21, Reg8:18, UInt8:59, UInt16:34097
+	; Oper[3]: String(34097) 'Fragment'
+
+	NewObject           	Reg8:18
+	LoadFromEnvironment 	Reg8:25, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:27, Reg8:25, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:25, Reg8:12, UInt8:6
+	GetByIdShort        	Reg8:26, Reg8:25, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObject           	Reg8:25
+	LoadFromEnvironment 	Reg8:42, Reg8:12, UInt8:0
+	LoadFromEnvironment 	Reg8:41, Reg8:12, UInt8:1
+	LoadConstUInt8      	Reg8:36, UInt8:37
+	GetByVal            	Reg8:28, Reg8:41, Reg8:36
+	Call2               	Reg8:28, Reg8:42, Reg8:3, Reg8:28
+	GetById             	Reg8:28, Reg8:28, UInt8:60, UInt16:46918
+	; Oper[3]: String(46918) 'backgroundGradient'
+
+	PutNewOwnByIdShort  	Reg8:25, Reg8:28, UInt8:97
+	; Oper[2]: String(97) 'colors'
+
+	LoadFromEnvironment 	Reg8:28, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:31, Reg8:28, UInt8:53, UInt8:164
+	; Oper[3]: String(164) 'jsxs'
+
+	LoadFromEnvironment 	Reg8:28, Reg8:12, UInt8:5
+	GetByIdShort        	Reg8:30, Reg8:28, UInt8:54, UInt8:69
+	; Oper[3]: String(69) 'View'
+
+	NewObject           	Reg8:28
+	LoadFromEnvironment 	Reg8:32, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:32, Reg8:32, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:32, Reg8:32, UInt8:61, UInt16:64580
+	; Oper[3]: String(64580) 'qrInnerView'
+
+	PutNewOwnByIdShort  	Reg8:28, Reg8:32, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	LoadFromEnvironment 	Reg8:32, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:34, Reg8:32, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:32, Reg8:12, UInt8:5
+	GetByIdShort        	Reg8:33, Reg8:32, UInt8:54, UInt8:69
+	; Oper[3]: String(69) 'View'
+
+	NewObject           	Reg8:32
+	LoadFromEnvironment 	Reg8:35, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:35, Reg8:35, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:35, Reg8:35, UInt8:62, UInt16:64583
+	; Oper[3]: String(64583) 'qrSuccess'
+
+	PutNewOwnByIdShort  	Reg8:32, Reg8:35, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	LoadFromEnvironment 	Reg8:35, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:38, Reg8:35, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:35, Reg8:12, UInt8:7
+	GetByIdShort        	Reg8:37, Reg8:35, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObject           	Reg8:35
+	PutNewOwnByIdShort  	Reg8:35, Reg8:13, UInt8:249
+	; Oper[2]: String(249) 'value'
+
+	PutNewOwnByIdShort  	Reg8:35, Reg8:39, UInt8:191
+	; Oper[2]: String(191) 'size'
+
+	GetById             	Reg8:39, Reg8:29, UInt8:63, UInt16:39080
+	; Oper[3]: String(39080) 'errorCorrectionLevel'
+
+	PutNewOwnById       	Reg8:35, Reg8:39, UInt16:36243
+	; Oper[2]: String(36243) 'ecl'
+
+	Call3               	Reg8:35, Reg8:38, Reg8:3, Reg8:37, Reg8:35
+	PutNewOwnByIdShort  	Reg8:32, Reg8:35, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:33, Reg8:34, Reg8:3, Reg8:33, Reg8:32
+	NewArray            	Reg8:32, UInt16:2
+	PutOwnByIndex       	Reg8:32, Reg8:33, UInt8:0
+	LoadFromEnvironment 	Reg8:33, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:35, Reg8:33, UInt8:53, UInt8:164
+	; Oper[3]: String(164) 'jsxs'
+
+	LoadFromEnvironment 	Reg8:33, Reg8:12, UInt8:6
+	GetByIdShort        	Reg8:34, Reg8:33, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObject           	Reg8:33
+	GetByVal            	Reg8:36, Reg8:41, Reg8:36
+	Call2               	Reg8:36, Reg8:42, Reg8:3, Reg8:36
+	GetById             	Reg8:36, Reg8:36, UInt8:60, UInt16:46918
+	; Oper[3]: String(46918) 'backgroundGradient'
+
+	PutNewOwnByIdShort  	Reg8:33, Reg8:36, UInt8:97
+	; Oper[2]: String(97) 'colors'
+
+	LoadFromEnvironment 	Reg8:36, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:36, Reg8:36, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:36, Reg8:36, UInt8:64, UInt16:34855
+	; Oper[3]: String(34855) 'gradient'
+
+	PutNewOwnByIdShort  	Reg8:33, Reg8:36, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	LoadFromEnvironment 	Reg8:36, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:38, Reg8:36, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:36, Reg8:12, UInt8:5
+	GetByIdShort        	Reg8:37, Reg8:36, UInt8:54, UInt8:69
+	; Oper[3]: String(69) 'View'
+
+	NewObject           	Reg8:36
+	LoadFromEnvironment 	Reg8:39, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:39, Reg8:39, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:39, Reg8:39, UInt8:65, UInt16:45220
+	; Oper[3]: String(45220) 'idSurrounding'
+
+	PutNewOwnByIdShort  	Reg8:36, Reg8:39, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	Call3               	Reg8:37, Reg8:38, Reg8:3, Reg8:37, Reg8:36
+	NewArray            	Reg8:36, UInt16:3
+	PutOwnByIndex       	Reg8:36, Reg8:37, UInt8:0
+	LoadFromEnvironment 	Reg8:37, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:39, Reg8:37, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:37, Reg8:12, UInt8:10
+	GetByIdShort        	Reg8:38, Reg8:37, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObjectWithBufferLong	Reg8:37, UInt16:5, UInt16:4, UInt32:32281, UInt32:90243
+	LoadFromEnvironment 	Reg8:45, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:45, Reg8:45, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetByIdShort        	Reg8:45, Reg8:45, UInt8:66, UInt8:134
+	; Oper[3]: String(134) 'id'
+
+	PutById             	Reg8:37, Reg8:45, UInt8:1, UInt16:121
+	; Oper[3]: String(121) 'style'
+
+	GetByVal            	Reg8:41, Reg8:41, Reg8:24
+	Call2               	Reg8:41, Reg8:42, Reg8:3, Reg8:41
+	GetByIdShort        	Reg8:42, Reg8:41, UInt8:67, UInt8:242
+	; Oper[3]: String(242) 'translate'
+
+	LoadConstString     	Reg8:41, UInt16:64608
+	; Oper[1]: String(64608) 'qrcodegeneric.id'
+
+	Call2               	Reg8:42, Reg8:42, Reg8:3, Reg8:41
+	TryGetById          	Reg8:40, Reg8:40, UInt8:68, UInt16:32
+	; Oper[3]: String(32) 'HermesInternal'
+
+	GetByIdShort        	Reg8:41, Reg8:40, UInt8:69, UInt8:100
+	; Oper[3]: String(100) 'concat'
+
+	LoadConstString     	Reg8:40, UInt16:34616
+	; Oper[1]: String(34616) ' '
+
+	Call4               	Reg8:40, Reg8:41, Reg8:43, Reg8:42, Reg8:40, Reg8:44
+	PutNewOwnByIdShort  	Reg8:37, Reg8:40, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:37, Reg8:39, Reg8:3, Reg8:38, Reg8:37
+	PutOwnByIndex       	Reg8:36, Reg8:37, UInt8:1
+	LoadFromEnvironment 	Reg8:37, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:39, Reg8:37, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:37, Reg8:12, UInt8:5
+	GetByIdShort        	Reg8:38, Reg8:37, UInt8:54, UInt8:69
+	; Oper[3]: String(69) 'View'
+
+	NewObject           	Reg8:37
+	LoadFromEnvironment 	Reg8:40, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:40, Reg8:40, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:40, Reg8:40, UInt8:65, UInt16:45220
+	; Oper[3]: String(45220) 'idSurrounding'
+
+	PutNewOwnByIdShort  	Reg8:37, Reg8:40, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	Call3               	Reg8:37, Reg8:39, Reg8:3, Reg8:38, Reg8:37
+	PutOwnByIndex       	Reg8:36, Reg8:37, UInt8:2
+	PutNewOwnByIdShort  	Reg8:33, Reg8:36, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:33, Reg8:35, Reg8:3, Reg8:34, Reg8:33
+	PutOwnByIndex       	Reg8:32, Reg8:33, UInt8:1
+	PutNewOwnByIdShort  	Reg8:28, Reg8:32, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:28, Reg8:31, Reg8:3, Reg8:30, Reg8:28
+	PutNewOwnByIdShort  	Reg8:25, Reg8:28, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:26, Reg8:27, Reg8:3, Reg8:26, Reg8:25
+	NewArray            	Reg8:25, UInt16:2
+	PutOwnByIndex       	Reg8:25, Reg8:26, UInt8:0
+	LoadFromEnvironment 	Reg8:26, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:28, Reg8:26, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:26, Reg8:12, UInt8:18
+	GetByIdShort        	Reg8:27, Reg8:26, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObject           	Reg8:26
+	GetById             	Reg8:29, Reg8:29, UInt8:70, UInt16:52150
+	; Oper[3]: String(52150) 'refreshTime'
+
+	PutNewOwnByIdShort  	Reg8:26, Reg8:29, UInt8:122
+	; Oper[2]: String(122) 'duration'
+
+	Call3               	Reg8:26, Reg8:28, Reg8:3, Reg8:27, Reg8:26
+	PutOwnByIndex       	Reg8:25, Reg8:26, UInt8:1
+	PutNewOwnByIdShort  	Reg8:18, Reg8:25, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:17, Reg8:22, Reg8:3, Reg8:21, Reg8:18
+	PutNewOwnByIdShort  	Reg8:14, Reg8:17, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:15, Reg8:16, Reg8:3, Reg8:15, Reg8:14
+	NewArray            	Reg8:14, UInt16:3
+	PutOwnByIndex       	Reg8:14, Reg8:15, UInt8:0
+	LoadFromEnvironment 	Reg8:15, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:17, Reg8:15, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:15, Reg8:12, UInt8:10
+	GetByIdShort        	Reg8:16, Reg8:15, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObjectWithBufferLong	Reg8:15, UInt16:8, UInt16:5, UInt32:32291, UInt32:89737
+	PutNewOwnByIdShort  	Reg8:15, Reg8:23, UInt8:212
+	; Oper[2]: String(212) 'testID'
+
+	PutNewOwnById       	Reg8:15, Reg8:23, UInt16:60072
+	; Oper[2]: String(60072) 'accessibilityLabel'
+
+	LoadFromEnvironment 	Reg8:21, Reg8:12, UInt8:0
+	LoadFromEnvironment 	Reg8:18, Reg8:12, UInt8:1
+	GetByVal            	Reg8:22, Reg8:18, Reg8:24
+	Call2               	Reg8:22, Reg8:21, Reg8:3, Reg8:22
+	GetByIdShort        	Reg8:22, Reg8:22, UInt8:67, UInt8:242
+	; Oper[3]: String(242) 'translate'
+
+	Call2               	Reg8:22, Reg8:22, Reg8:3, Reg8:23
+	PutNewOwnByIdShort  	Reg8:15, Reg8:22, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:15, Reg8:17, Reg8:3, Reg8:16, Reg8:15
+	PutOwnByIndex       	Reg8:14, Reg8:15, UInt8:1
+	LoadFromEnvironment 	Reg8:15, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:17, Reg8:15, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:15, Reg8:12, UInt8:10
+	GetByIdShort        	Reg8:16, Reg8:15, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObjectWithBufferLong	Reg8:15, UInt16:5, UInt16:4, UInt32:17262, UInt32:78258
+	LoadFromEnvironment 	Reg8:22, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:22, Reg8:22, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:22, Reg8:22, UInt8:71, UInt16:56996
+	; Oper[3]: String(56996) 'explainText'
+
+	PutById             	Reg8:15, Reg8:22, UInt8:1, UInt16:121
+	; Oper[3]: String(121) 'style'
+
+	GetByVal            	Reg8:18, Reg8:18, Reg8:24
+	Call2               	Reg8:18, Reg8:21, Reg8:3, Reg8:18
+	GetByIdShort        	Reg8:18, Reg8:18, UInt8:67, UInt8:242
+	; Oper[3]: String(242) 'translate'
+
+	Call2               	Reg8:18, Reg8:18, Reg8:3, Reg8:20
+	PutNewOwnByIdShort  	Reg8:15, Reg8:18, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:15, Reg8:17, Reg8:3, Reg8:16, Reg8:15
+	PutOwnByIndex       	Reg8:14, Reg8:15, UInt8:2
+	PutNewOwnByIdShort  	Reg8:7, Reg8:14, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:10, Reg8:11, Reg8:3, Reg8:10, Reg8:7
+	NewArray            	Reg8:7, UInt16:3
+	PutOwnByIndex       	Reg8:7, Reg8:10, UInt8:0
+	JmpFalseLong        	Addr32:283, Reg8:9
+	LoadFromEnvironment 	Reg8:10, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:14, Reg8:10, UInt8:53, UInt8:164
+	; Oper[3]: String(164) 'jsxs'
+
+	LoadFromEnvironment 	Reg8:10, Reg8:12, UInt8:19
+	GetById             	Reg8:11, Reg8:10, UInt8:59, UInt16:34097
+	; Oper[3]: String(34097) 'Fragment'
+
+	NewObject           	Reg8:10
+	LoadFromEnvironment 	Reg8:15, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:17, Reg8:15, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:23, Reg8:12, UInt8:0
+	LoadFromEnvironment 	Reg8:22, Reg8:12, UInt8:1
+	LoadConstUInt8      	Reg8:15, UInt8:38
+	GetByVal            	Reg8:15, Reg8:22, Reg8:15
+	Call2               	Reg8:15, Reg8:23, Reg8:3, Reg8:15
+	GetById             	Reg8:16, Reg8:15, UInt8:72, UInt16:41125
+	; Oper[3]: String(41125) 'BFButton'
+
+	NewObject           	Reg8:15
+	LoadConstString     	Reg8:18, UInt16:11344
+	; Oper[1]: String(11344) 'how-to-use'
+
+	PutNewOwnByIdShort  	Reg8:15, Reg8:18, UInt8:212
+	; Oper[2]: String(212) 'testID'
+
+	GetByVal            	Reg8:18, Reg8:22, Reg8:24
+	Call2               	Reg8:18, Reg8:23, Reg8:3, Reg8:18
+	GetByIdShort        	Reg8:20, Reg8:18, UInt8:67, UInt8:242
+	; Oper[3]: String(242) 'translate'
+
+	LoadConstString     	Reg8:18, UInt16:64606
+	; Oper[1]: String(64606) 'qrcodegeneric.ButtonLabel'
+
+	Call2               	Reg8:18, Reg8:20, Reg8:3, Reg8:18
+	PutNewOwnByIdShort  	Reg8:15, Reg8:18, UInt8:233
+	; Oper[2]: String(233) 'title'
+
+	CreateClosure       	Reg8:18, Reg8:19, UInt16:44122
+	PutNewOwnByIdShort  	Reg8:15, Reg8:18, UInt8:202
+	; Oper[2]: String(202) 'onPress'
+
+	Call3               	Reg8:16, Reg8:17, Reg8:3, Reg8:16, Reg8:15
+	NewArray            	Reg8:15, UInt16:2
+	PutOwnByIndex       	Reg8:15, Reg8:16, UInt8:0
+	LoadFromEnvironment 	Reg8:16, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:18, Reg8:16, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:16, Reg8:12, UInt8:5
+	GetById             	Reg8:17, Reg8:16, UInt8:73, UInt16:40110
+	; Oper[3]: String(40110) 'TouchableOpacity'
+
+	NewObject           	Reg8:16
+	LoadConstString     	Reg8:20, UInt16:16032
+	; Oper[1]: String(16032) 'feedback-button'
+
+	PutNewOwnByIdShort  	Reg8:16, Reg8:20, UInt8:212
+	; Oper[2]: String(212) 'testID'
+
+	CreateClosure       	Reg8:19, Reg8:19, UInt16:44138
+	PutNewOwnByIdShort  	Reg8:16, Reg8:19, UInt8:202
+	; Oper[2]: String(202) 'onPress'
+
+	LoadFromEnvironment 	Reg8:19, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:19, Reg8:19, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:19, Reg8:19, UInt8:74, UInt16:61850
+	; Oper[3]: String(61850) 'feedbackContainer'
+
+	PutNewOwnByIdShort  	Reg8:16, Reg8:19, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	LoadFromEnvironment 	Reg8:19, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:21, Reg8:19, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:19, Reg8:12, UInt8:10
+	GetByIdShort        	Reg8:20, Reg8:19, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	NewObject           	Reg8:19
+	LoadConstString     	Reg8:25, UInt16:62677
+	; Oper[1]: String(62677) 'h8_2'
+
+	PutNewOwnByIdShort  	Reg8:19, Reg8:25, UInt8:25
+	; Oper[2]: String(25) 'type'
+
+	LoadFromEnvironment 	Reg8:25, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:25, Reg8:25, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:25, Reg8:25, UInt8:75, UInt16:60610
+	; Oper[3]: String(60610) 'feedbackTitle'
+
+	PutNewOwnByIdShort  	Reg8:19, Reg8:25, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	GetByVal            	Reg8:22, Reg8:22, Reg8:24
+	Call2               	Reg8:22, Reg8:23, Reg8:3, Reg8:22
+	GetByIdShort        	Reg8:23, Reg8:22, UInt8:67, UInt8:242
+	; Oper[3]: String(242) 'translate'
+
+	LoadConstString     	Reg8:22, UInt16:64249
+	; Oper[1]: String(64249) 'popupfeedback.title'
+
+	Call2               	Reg8:22, Reg8:23, Reg8:3, Reg8:22
+	PutNewOwnByIdShort  	Reg8:19, Reg8:22, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:19, Reg8:21, Reg8:3, Reg8:20, Reg8:19
+	PutNewOwnByIdShort  	Reg8:16, Reg8:19, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:16, Reg8:18, Reg8:3, Reg8:17, Reg8:16
+	PutOwnByIndex       	Reg8:15, Reg8:16, UInt8:1
+	PutNewOwnByIdShort  	Reg8:10, Reg8:15, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:9, Reg8:14, Reg8:3, Reg8:11, Reg8:10
+	PutOwnByIndex       	Reg8:7, Reg8:9, UInt8:1
+	JmpFalse            	Addr8:61, Reg8:8
+	LoadFromEnvironment 	Reg8:9, Reg8:12, UInt8:19
+	GetByIdShort        	Reg8:11, Reg8:9, UInt8:51, UInt8:163
+	; Oper[3]: String(163) 'jsx'
+
+	LoadFromEnvironment 	Reg8:9, Reg8:12, UInt8:5
+	GetById             	Reg8:10, Reg8:9, UInt8:76, UInt16:40821
+	; Oper[3]: String(40821) 'TextInput'
+
+	NewObjectWithBuffer 	Reg8:9, UInt16:4, UInt16:2, UInt16:32300, UInt16:23199
+	PutNewOwnByIdShort  	Reg8:9, Reg8:13, UInt8:249
+	; Oper[2]: String(249) 'value'
+
+	LoadFromEnvironment 	Reg8:12, Reg8:12, UInt8:17
+	GetByIdShort        	Reg8:12, Reg8:12, UInt8:11, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetById             	Reg8:12, Reg8:12, UInt8:77, UInt16:50765
+	; Oper[3]: String(50765) 'e2eInput'
+
+	PutNewOwnByIdShort  	Reg8:9, Reg8:12, UInt8:121
+	; Oper[2]: String(121) 'style'
+
+	Call3               	Reg8:8, Reg8:11, Reg8:3, Reg8:10, Reg8:9
+	PutOwnByIndex       	Reg8:7, Reg8:8, UInt8:2
+	PutNewOwnByIdShort  	Reg8:4, Reg8:7, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:4, Reg8:6, Reg8:3, Reg8:5, Reg8:4
+	PutNewOwnByIdShort  	Reg8:0, Reg8:4, UInt8:91
+	; Oper[2]: String(91) 'children'
+
+	Call3               	Reg8:0, Reg8:2, Reg8:3, Reg8:1, Reg8:0
+	Ret                 	Reg8:0
+EndFunction
+
+Function<>44115(1 params, 1 registers, 0 symbols):
+	GetEnvironment      	Reg8:0, UInt8:0
+	LoadFromEnvironment 	Reg8:0, Reg8:0, UInt8:2
+	Ret                 	Reg8:0
+EndFunction
+
+Function<>44116(1 params, 11 registers, 0 symbols):
+	GetEnvironment      	Reg8:0, UInt8:1
+	LoadFromEnvironment 	Reg8:1, Reg8:0, UInt8:0
+	LoadFromEnvironment 	Reg8:2, Reg8:0, UInt8:1
+	LoadConstUInt8      	Reg8:0, UInt8:26
+	GetByVal            	Reg8:0, Reg8:2, Reg8:0
+	LoadConstUndefined  	Reg8:2
+	Call2               	Reg8:0, Reg8:1, Reg8:2, Reg8:0
+	GetById             	Reg8:1, Reg8:0, UInt8:1, UInt16:49885
+	; Oper[3]: String(49885) 'e2eUser'
+
+	GetEnvironment      	Reg8:0, UInt8:0
+	LoadFromEnvironment 	Reg8:0, Reg8:0, UInt8:8
+	Call2               	Reg8:0, Reg8:1, Reg8:2, Reg8:0
+	Ret                 	Reg8:0
+EndFunction
+
+Function<>44117(1 params, 13 registers, 0 symbols):
+	GetEnvironment      	Reg8:0, UInt8:1
+	LoadFromEnvironment 	Reg8:1, Reg8:0, UInt8:0
+	LoadFromEnvironment 	Reg8:2, Reg8:0, UInt8:1
+	LoadConstUInt8      	Reg8:0, UInt8:27
+	GetByVal            	Reg8:0, Reg8:2, Reg8:0
+	LoadConstUndefined  	Reg8:2
+	Call2               	Reg8:0, Reg8:1, Reg8:2, Reg8:0
+	GetById             	Reg8:1, Reg8:0, UInt8:1, UInt16:42485
+	; Oper[3]: String(42485) 'generateShortGUID'
+
+	NewObject           	Reg8:0
+	GetEnvironment      	Reg8:3, UInt8:0
+	LoadFromEnvironment 	Reg8:4, Reg8:3, UInt8:11
+	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:63566
+	; Oper[2]: String(63566) 'isUsingOfflineGuid'
+
+	LoadFromEnvironment 	Reg8:3, Reg8:3, UInt8:3
+	PutNewOwnById       	Reg8:0, Reg8:3, UInt16:34058
+	; Oper[2]: String(34058) 'online'
+
+	Call2               	Reg8:0, Reg8:1, Reg8:2, Reg8:0
+	Ret                 	Reg8:0
+EndFunction
+
+Function<>44118(2 params, 2 registers, 0 symbols):
+	LoadConstString     	Reg8:0, UInt16:947
+	; Oper[1]: String(947) '0'
+
+	LoadParam           	Reg8:1, UInt8:1
+	JmpTrue             	Addr8:7, Reg8:1
+	LoadConstString     	Reg8:0, UInt16:954
+	; Oper[1]: String(954) '1'
+
+	Ret                 	Reg8:0
+EndFunction
+
+Function<>44119(1 params, 13 registers, 0 symbols):
+	GetEnvironment      	Reg8:0, UInt8:0
+	LoadFromEnvironment 	Reg8:1, Reg8:0, UInt8:16
+	JmpTrue             	Addr8:56, Reg8:1
+	GetEnvironment      	Reg8:1, UInt8:1
+	LoadFromEnvironment 	Reg8:2, Reg8:1, UInt8:0
+	LoadFromEnvironment 	Reg8:3, Reg8:1, UInt8:1
+	LoadConstUInt8      	Reg8:1, UInt8:27
+	GetByVal            	Reg8:1, Reg8:3, Reg8:1
+	LoadConstUndefined  	Reg8:3
+	Call2               	Reg8:1, Reg8:2, Reg8:3, Reg8:1
+	GetById             	Reg8:2, Reg8:1, UInt8:1, UInt16:55826
+	; Oper[3]: String(55826) 'getQrCode'
+
+	LoadFromEnvironment 	Reg8:1, Reg8:0, UInt8:14
+	LoadFromEnvironment 	Reg8:0, Reg8:0, UInt8:10
+	GetById             	Reg8:0, Reg8:0, UInt8:2, UInt16:39080
+	; Oper[3]: String(39080) 'errorCorrectionLevel'
+
+	Call3               	Reg8:0, Reg8:2, Reg8:3, Reg8:1, Reg8:0
+	Ret                 	Reg8:0
+	LoadConstString     	Reg8:0, UInt16:33504
+	; Oper[1]: String(33504) ''
+
+	Ret                 	Reg8:0
+EndFunction
+
+Function<>44120(1 params, 14 registers, 0 symbols):
+	GetEnvironment      	Reg8:0, UInt8:0
+	LoadFromEnvironment 	Reg8:2, Reg8:0, UInt8:2
+	LoadFromEnvironment 	Reg8:1, Reg8:0, UInt8:4
+	JStrictEqual        	Addr8:107, Reg8:2, Reg8:1
+	GetEnvironment      	Reg8:1, UInt8:1
+	LoadFromEnvironment 	Reg8:2, Reg8:1, UInt8:5
+	GetByIdShort        	Reg8:2, Reg8:2, UInt8:1, UInt8:49
+	; Oper[3]: String(49) 'Platform'
+
+	GetByIdShort        	Reg8:3, Reg8:2, UInt8:2, UInt8:42
+	; Oper[3]: String(42) 'OS'
+
+	LoadConstString     	Reg8:2, UInt16:35233
+	; Oper[1]: String(35233) 'ios'
+
+	JStrictNotEqual     	Addr8:82, Reg8:3, Reg8:2
+	LoadFromEnvironment 	Reg8:3, Reg8:1, UInt8:0
+	LoadFromEnvironment 	Reg8:2, Reg8:1, UInt8:1
+	LoadConstUInt8      	Reg8:1, UInt8:31
+	GetByVal            	Reg8:2, Reg8:2, Reg8:1
+	LoadConstUndefined  	Reg8:1
+	Call2               	Reg8:1, Reg8:3, Reg8:1, Reg8:2
+	GetById             	Reg8:4, Reg8:1, UInt8:3, UInt16:56756
+	; Oper[3]: String(56756) 'BFNewRelic'
+
+	GetById             	Reg8:3, Reg8:4, UInt8:4, UInt16:51182
+	; Oper[3]: String(51182) 'recordEvent'
+
+	NewObject           	Reg8:2
+	LoadFromEnvironment 	Reg8:1, Reg8:0, UInt8:4
+	PutNewOwnById       	Reg8:2, Reg8:1, UInt16:53809
+	; Oper[2]: String(53809) 'cardNumber'
+
+	LoadFromEnvironment 	Reg8:1, Reg8:0, UInt8:2
+	PutNewOwnById       	Reg8:2, Reg8:1, UInt16:62404
+	; Oper[2]: String(62404) 'storedCardNumber'
+
+	LoadConstString     	Reg8:1, UInt16:28824
+	; Oper[1]: String(28824) 'qrCrash goBack'
+
+	Call3               	Reg8:1, Reg8:3, Reg8:4, Reg8:1, Reg8:2
+	LoadFromEnvironment 	Reg8:1, Reg8:0, UInt8:0
+	GetById             	Reg8:0, Reg8:1, UInt8:5, UInt16:42156
+	; Oper[3]: String(42156) 'goBack'
+
+	Call1               	Reg8:0, Reg8:0, Reg8:1
+	LoadConstUndefined  	Reg8:0
+	Ret                 	Reg8:0
+EndFunction
+
+Function<>44121(1 params, 11 registers, 0 symbols):
+	GetEnvironment      	Reg8:0, UInt8:1
+	LoadFromEnvironment 	Reg8:0, Reg8:0, UInt8:16
+	GetByIdShort        	Reg8:2, Reg8:0, UInt8:1, UInt8:113
+	; Oper[3]: String(113) 'default'
+
+	GetByIdShort        	Reg8:1, Reg8:2, UInt8:2, UInt8:177
+	; Oper[3]: String(177) 'logEvent'
+
+	LoadConstString     	Reg8:0, UInt16:15422
+	; Oper[1]: String(15422) 'screenshot_qr'
+
+	Call2               	Reg8:0, Reg8:1, Reg8:2, Reg8:0
+	LoadConstUndefined  	Reg8:0
+	Ret                 	Reg8:0
+EndFunction
