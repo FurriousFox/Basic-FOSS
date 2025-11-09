@@ -14,5 +14,5 @@ return charSet[Math.floor(Math.random() * charSet.length)]
      + charSet[Math.floor(Math.random() * charSet.length)];
 ```
 
-**isUsingOfflineGuid** is true by default (see firebase.json)
+**isUsingOfflineGuid** is true by default (see firebase.json)  
 **online** reflects current connectivity state
