@@ -1,9 +1,9 @@
-Function<getQRCodeConfiguration>12422(1 params, 17 registers, 0 symbols):
+Function<getQRCodeConfiguration>13108(1 params, 17 registers, 0 symbols):
 	GetEnvironment      	Reg8:5, UInt8:0
-	LoadFromEnvironment 	Reg8:1, Reg8:5, UInt8:10
+	LoadFromEnvironment 	Reg8:1, Reg8:5, UInt8:9
 	LoadConstUndefined  	Reg8:3
-	LoadConstString     	Reg8:0, UInt16:4488
-	; Oper[1]: String(4488) 'qr_code_configuration'
+	LoadConstString     	Reg8:0, UInt16:15082
+	; Oper[1]: String(15082) 'qr_code_configuration'
 
 	Call2               	Reg8:2, Reg8:1, Reg8:3, Reg8:0
 	JmpTrue             	Addr8:5, Reg8:2
@@ -13,19 +13,19 @@ Function<getQRCodeConfiguration>12422(1 params, 17 registers, 0 symbols):
 	Eq                  	Reg8:6, Reg8:2, Reg8:1
 	LoadConstUndefined  	Reg8:4
 	JmpTrue             	Addr8:9, Reg8:6
-	GetById             	Reg8:4, Reg8:2, UInt8:1, UInt16:36927
-	; Oper[3]: String(36927) 'pxSize'
+	GetById             	Reg8:4, Reg8:2, UInt8:1, UInt16:35723
+	; Oper[3]: String(35723) 'pxSize'
 
 	JmpTrue             	Addr8:6, Reg8:4
 	LoadConstUInt8      	Reg8:4, UInt8:200
-	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:36927
-	; Oper[2]: String(36927) 'pxSize'
+	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:35723
+	; Oper[2]: String(35723) 'pxSize'
 
 	Eq                  	Reg8:6, Reg8:2, Reg8:1
 	LoadConstUndefined  	Reg8:4
 	JmpTrue             	Addr8:9, Reg8:6
-	GetById             	Reg8:4, Reg8:2, UInt8:2, UInt16:61124
-	; Oper[3]: String(61124) 'locationRefreshTime'
+	GetById             	Reg8:4, Reg8:2, UInt8:2, UInt16:60491
+	; Oper[3]: String(60491) 'locationRefreshTime'
 
 	JmpTrue             	Addr8:36, Reg8:4
 	LoadFromEnvironment 	Reg8:7, Reg8:5, UInt8:0
@@ -33,19 +33,19 @@ Function<getQRCodeConfiguration>12422(1 params, 17 registers, 0 symbols):
 	LoadConstUInt8      	Reg8:6, UInt8:8
 	GetByVal            	Reg8:6, Reg8:8, Reg8:6
 	Call2               	Reg8:6, Reg8:7, Reg8:3, Reg8:6
-	GetById             	Reg8:7, Reg8:6, UInt8:3, UInt16:41820
-	; Oper[3]: String(41820) 'ONE_SEC_IN_MS'
+	GetById             	Reg8:7, Reg8:6, UInt8:3, UInt16:41354
+	; Oper[3]: String(41354) 'ONE_SEC_IN_MS'
 
 	LoadConstUInt8      	Reg8:6, UInt8:5
 	Mul                 	Reg8:4, Reg8:6, Reg8:7
-	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:61124
-	; Oper[2]: String(61124) 'locationRefreshTime'
+	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:60491
+	; Oper[2]: String(60491) 'locationRefreshTime'
 
 	Eq                  	Reg8:6, Reg8:2, Reg8:1
 	LoadConstUndefined  	Reg8:4
 	JmpTrue             	Addr8:9, Reg8:6
-	GetById             	Reg8:4, Reg8:2, UInt8:4, UInt16:64222
-	; Oper[3]: String(64222) 'pollingTime'
+	GetById             	Reg8:4, Reg8:2, UInt8:4, UInt16:64192
+	; Oper[3]: String(64192) 'pollingTime'
 
 	JmpTrue             	Addr8:36, Reg8:4
 	LoadFromEnvironment 	Reg8:7, Reg8:5, UInt8:0
@@ -53,19 +53,19 @@ Function<getQRCodeConfiguration>12422(1 params, 17 registers, 0 symbols):
 	LoadConstUInt8      	Reg8:6, UInt8:8
 	GetByVal            	Reg8:6, Reg8:8, Reg8:6
 	Call2               	Reg8:6, Reg8:7, Reg8:3, Reg8:6
-	GetById             	Reg8:7, Reg8:6, UInt8:3, UInt16:41820
-	; Oper[3]: String(41820) 'ONE_SEC_IN_MS'
+	GetById             	Reg8:7, Reg8:6, UInt8:3, UInt16:41354
+	; Oper[3]: String(41354) 'ONE_SEC_IN_MS'
 
 	LoadConstUInt8      	Reg8:6, UInt8:3
 	Mul                 	Reg8:4, Reg8:6, Reg8:7
-	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:64222
-	; Oper[2]: String(64222) 'pollingTime'
+	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:64192
+	; Oper[2]: String(64192) 'pollingTime'
 
 	Eq                  	Reg8:6, Reg8:2, Reg8:1
 	LoadConstUndefined  	Reg8:4
 	JmpTrue             	Addr8:9, Reg8:6
-	GetById             	Reg8:4, Reg8:2, UInt8:5, UInt16:52150
-	; Oper[3]: String(52150) 'refreshTime'
+	GetById             	Reg8:4, Reg8:2, UInt8:5, UInt16:51570
+	; Oper[3]: String(51570) 'refreshTime'
 
 	JmpTrue             	Addr8:29, Reg8:4
 	LoadFromEnvironment 	Reg8:6, Reg8:5, UInt8:0
@@ -73,55 +73,55 @@ Function<getQRCodeConfiguration>12422(1 params, 17 registers, 0 symbols):
 	LoadConstUInt8      	Reg8:5, UInt8:8
 	GetByVal            	Reg8:5, Reg8:7, Reg8:5
 	Call2               	Reg8:5, Reg8:6, Reg8:3, Reg8:5
-	GetById             	Reg8:4, Reg8:5, UInt8:6, UInt16:44051
-	; Oper[3]: String(44051) 'TEN_SEC_IN_MS'
+	GetById             	Reg8:4, Reg8:5, UInt8:6, UInt16:43323
+	; Oper[3]: String(43323) 'TEN_SEC_IN_MS'
 
-	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:52150
-	; Oper[2]: String(52150) 'refreshTime'
+	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:51570
+	; Oper[2]: String(51570) 'refreshTime'
 
 	Eq                  	Reg8:5, Reg8:2, Reg8:1
 	LoadConstUndefined  	Reg8:4
 	JmpTrue             	Addr8:9, Reg8:5
-	GetById             	Reg8:4, Reg8:2, UInt8:7, UInt16:39080
-	; Oper[3]: String(39080) 'errorCorrectionLevel'
+	GetById             	Reg8:4, Reg8:2, UInt8:7, UInt16:41715
+	; Oper[3]: String(41715) 'errorCorrectionLevel'
 
 	JmpTrue             	Addr8:7, Reg8:4
-	LoadConstString     	Reg8:4, UInt16:33506
-	; Oper[1]: String(33506) 'M'
+	LoadConstString     	Reg8:4, UInt16:32887
+	; Oper[1]: String(32887) 'M'
 
-	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:39080
-	; Oper[2]: String(39080) 'errorCorrectionLevel'
+	PutNewOwnById       	Reg8:0, Reg8:4, UInt16:41715
+	; Oper[2]: String(41715) 'errorCorrectionLevel'
 
 	Eq                  	Reg8:4, Reg8:2, Reg8:1
 	LoadConstUndefined  	Reg8:3
 	JmpTrue             	Addr8:9, Reg8:4
-	GetById             	Reg8:3, Reg8:2, UInt8:8, UInt16:64535
-	; Oper[3]: String(64535) 'promptVolume'
+	GetById             	Reg8:3, Reg8:2, UInt8:8, UInt16:64510
+	; Oper[3]: String(64510) 'promptVolume'
 
 	JmpTrue             	Addr8:13, Reg8:3
 	LoadConstDouble     	Reg8:3, Double:0.5
-	PutNewOwnById       	Reg8:0, Reg8:3, UInt16:64535
-	; Oper[2]: String(64535) 'promptVolume'
+	PutNewOwnById       	Reg8:0, Reg8:3, UInt16:64510
+	; Oper[2]: String(64510) 'promptVolume'
 
 	Neq                 	Reg8:3, Reg8:2, Reg8:1
 	JmpFalse            	Addr8:9, Reg8:3
-	GetById             	Reg8:3, Reg8:2, UInt8:9, UInt16:65074
-	; Oper[3]: String(65074) 'useOfflineGuid'
+	GetById             	Reg8:3, Reg8:2, UInt8:9, UInt16:65066
+	; Oper[3]: String(65066) 'useOfflineGuid'
 
 	Not                 	Reg8:3, Reg8:3
 	Not                 	Reg8:3, Reg8:3
-	PutNewOwnById       	Reg8:0, Reg8:3, UInt16:65074
-	; Oper[2]: String(65074) 'useOfflineGuid'
+	PutNewOwnById       	Reg8:0, Reg8:3, UInt16:65066
+	; Oper[2]: String(65066) 'useOfflineGuid'
 
 	Neq                 	Reg8:1, Reg8:2, Reg8:1
 	JmpFalse            	Addr8:9, Reg8:1
-	GetById             	Reg8:1, Reg8:2, UInt8:10, UInt16:48645
-	; Oper[3]: String(48645) 'needsToPreventDoubleScan'
+	GetById             	Reg8:1, Reg8:2, UInt8:10, UInt16:48039
+	; Oper[3]: String(48039) 'needsToPreventDoubleScan'
 
 	Not                 	Reg8:1, Reg8:1
 	Not                 	Reg8:1, Reg8:1
-	PutNewOwnById       	Reg8:0, Reg8:1, UInt16:48645
-	; Oper[2]: String(48645) 'needsToPreventDoubleScan'
+	PutNewOwnById       	Reg8:0, Reg8:1, UInt16:48039
+	; Oper[2]: String(48039) 'needsToPreventDoubleScan'
 
 	Ret                 	Reg8:0
 EndFunction

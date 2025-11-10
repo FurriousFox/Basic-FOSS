@@ -38,7 +38,7 @@ The output is in the format `GM2:{cardnumber}:{guid}:{unix timestamp seconds}:{h
 
 ## Basic-Fit app
 
-A React Native app, compiled using [Hermes](https://github.com/facebook/hermes). The `index.android.bundle` (extracted from the apk) has been decompiled using [hbctool](https://github.com/bongtrop/hbctool), to allow for the reverse engineering of the QR code algorithm itself.
+A React Native app, compiled using [Hermes](https://github.com/facebook/hermes). The `index.android.bundle` (extracted from the apk) has been decompiled using [hbctool](https://github.com/Kirlif/HBC-Tool), to allow for the reverse engineering of the QR code algorithm itself.
 
 ## Optimal reading order
 

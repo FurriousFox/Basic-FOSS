@@ -1,26 +1,26 @@
-Function<generateShortGUID>45739(2 params, 12 registers, 0 symbols):
+Function<generateShortGUID>46595(2 params, 12 registers, 0 symbols):
 	LoadParam           	Reg8:0, UInt8:1
-	GetById             	Reg8:1, Reg8:0, UInt8:1, UInt16:63566
-	; Oper[3]: String(63566) 'isUsingOfflineGuid'
+	GetById             	Reg8:1, Reg8:0, UInt8:1, UInt16:63545
+	; Oper[3]: String(63545) 'isUsingOfflineGuid'
 
-	GetById             	Reg8:0, Reg8:0, UInt8:2, UInt16:34058
-	; Oper[3]: String(34058) 'online'
+	GetById             	Reg8:0, Reg8:0, UInt8:2, UInt16:33028
+	; Oper[3]: String(33028) 'online'
 
 	GetEnvironment      	Reg8:2, UInt8:0
 	LoadFromEnvironment 	Reg8:2, Reg8:2, UInt8:6
 	JmpTrue             	Addr8:16, Reg8:1
 	LoadConstUndefined  	Reg8:3
-	LoadConstString     	Reg8:1, UInt16:1447
-	; Oper[1]: String(1447) '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	LoadConstString     	Reg8:1, UInt16:7853
+	; Oper[1]: String(7853) '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	Call2               	Reg8:1, Reg8:2, Reg8:3, Reg8:1
 	Ret                 	Reg8:1
-	LoadConstString     	Reg8:1, UInt16:1446
-	; Oper[1]: String(1446) '0123456789'
+	LoadConstString     	Reg8:1, UInt16:7852
+	; Oper[1]: String(7852) '0123456789'
 
 	JmpFalse            	Addr8:7, Reg8:0
-	LoadConstString     	Reg8:1, UInt16:1448
-	; Oper[1]: String(1448) 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	LoadConstString     	Reg8:1, UInt16:7854
+	; Oper[1]: String(7854) 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	LoadConstUndefined  	Reg8:0
 	Call2               	Reg8:0, Reg8:2, Reg8:0, Reg8:1
