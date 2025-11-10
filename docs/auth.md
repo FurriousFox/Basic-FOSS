@@ -4,12 +4,16 @@ Basic-Fit uses an OAuth2 based authentication system.
 
 **If you just need a quick and dirty token for testing, use [this url](https://login.basic-fit.com/?redirect_uri=com.basicfit.trainingapp%3A%2Foauthredirect&client_id=hMN33iw3DpHNg5VQaeNKoRUQKmIIvQV5vxOKba8AnrM&response_type=token&auto_login=false&app=true) and extract your token from the console.**
 
-## Constants
+## Constants ([string.xml](qr/src/string.xml))
 
 - `client_id` (android)  
     `hMN33iw3DpHNg5VQaeNKoRUQKmIIvQV5vxOKba8AnrM`
 - `redirect_uri` (android)  
-    `com.basicfit.trainingapp:/oauthredirect`
+    `com.basicfit.trainingapp:/oauthredirect`  
+- `client_id` (iOS)  
+    `q6KqjlQINmjOC86rqt9JdU_i41nhD_Z4DwygpBxGiIs`
+- `redirect_uri` (iOS)  
+    `com.basicfit.bfa:/oauthredirect`
 
 ### Login method 1: PKCE authorization_code grant
 
