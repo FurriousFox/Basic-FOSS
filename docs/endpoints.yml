@@ -6,7 +6,7 @@ info:
     if you just need a quick and dirty token for testing, use [this url](https://login.basic-fit.com/?redirect_uri=com.basicfit.trainingapp%3A%2Foauthredirect&client_id=hMN33iw3DpHNg5VQaeNKoRUQKmIIvQV5vxOKba8AnrM&response_type=token&auto_login=false&app=true) and extract your token from the console.
 
     **The `Bfa-Version` header is strictly required**, it might function without, but behaviour will differ from expectations!
-    (a good example being that the deviceId field in the member info gets filled by a random UUIDv4 when it's actually empty if you don't include this header)
+    (a good example being that the deviceId field in the member info gets filled by a random UUIDv4 when it's actually empty)
   version: "1.0"
 components:
   securitySchemes:
@@ -140,7 +140,7 @@ paths:
                               type: string
                       restrictedEntryTime:
                         type: number
-                        description: Minimum time between entering a Basic-Fit location
+                        description: Minimum time in minutes between entering a Basic-Fit location
                   info:
                     type: object
                   mutationTime:
