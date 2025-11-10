@@ -1,0 +1,364 @@
+openapi: "3.1.1"
+info:
+  title: Basic-Fit
+  description: |
+    Basic-Fit's authentication is [OAuth2](https://github.com/FurriousFox/Basic-FOSS/blob/main/docs/auth.md) based,
+    if you just need a quick and dirty token for testing, use [this url](https://login.basic-fit.com/?redirect_uri=com.basicfit.trainingapp%3A%2Foauthredirect&client_id=hMN33iw3DpHNg5VQaeNKoRUQKmIIvQV5vxOKba8AnrM&response_type=token&auto_login=false&app=true) and extract your token from the console.
+
+    **The `Bfa-Version` header is strictly required**, it might function without, but behaviour will differ from expectations!
+    (a good example being that the deviceId field in the member info gets filled by a random UUIDv4 when it's actually empty if you don't include this header)
+  version: "1.0"
+components:
+  securitySchemes:
+    oauth2:
+      type: http
+      scheme: bearer
+  parameters:
+    BasicFitVersionHeader:
+      name: Bfa-Version
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: [1.79.5.2738]
+      description: Required app version header, not using this will cause issues!
+    BasicFitUserAgent:
+      name: User-Agent
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: [Basic Fit App/1.79.5.2738 (Android)]
+      description: Required app user agent
+    BasicFitClientID:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: [hMN33iw3DpHNg5VQaeNKoRUQKmIIvQV5vxOKba8AnrM]
+      description: Strongly recommended Client-Id header
+    BasicFitRedirectUri:
+      name: Redirect-Uri
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: [com.basicfit.trainingapp:/oauthredirect]
+      description: Strongly recommended Redirect-Uri header
+
+servers:
+  - url: https://bfa.basic-fit.com/
+paths:
+  /api/member/info:
+    parameters:
+      - $ref: "#/components/parameters/BasicFitVersionHeader"
+      - $ref: "#/components/parameters/BasicFitUserAgent"
+      - $ref: "#/components/parameters/BasicFitClientID"
+      - $ref: "#/components/parameters/BasicFitRedirectUri"
+    get:
+      security:
+        - oauth2: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  member:
+                    type: object
+                    properties:
+                      membershipType:
+                        type: string
+                        enum: ["comfort", "premium", "ultimate", "campaign"]
+                      id:
+                        type: string
+                        description: UUIDv4
+                      homeClubId:
+                        type: string
+                        description: UUIDv4
+                      marketingId:
+                        type: string
+                        description: UUIDv4
+                      name:
+                        type: string
+                        description: Full name
+                      addOns:
+                        type: array
+                        items:
+                          type: string
+                      articles:
+                        type: array
+                        items:
+                          type: string
+                      cardnumber:
+                        type: string
+                      dateofbirth:
+                        type: string
+                        description: ISO 8601
+                      country:
+                        type: string
+                        description: ISO 3166-1 alpha-2
+                      gender:
+                        type: string
+                        enum: ["male", "female", "neutral"]
+                      membershipnumber:
+                        type: string
+                      email:
+                        type: string
+                      mobilephone:
+                        type: string
+                      firstname:
+                        type: string
+                      prefix:
+                        type: string
+                      lastname:
+                        type: string
+                      homeClub:
+                        type: string
+                      homeClubLcid:
+                        type: string
+                      deviceId:
+                        type: string
+                      accessMethod:
+                        type: string
+                      externalId:
+                        type: string
+                      latestMembershipStartDate:
+                        type: string
+                        description: ISO 8601
+                      hasDebt:
+                        type: boolean
+                      membershipOptions:
+                        type: object
+                        properties:
+                          LinkedServices:
+                            type: array
+                            items:
+                              type: string
+                      restrictedEntryTime:
+                        type: number
+                        description: Minimum time between entering a Basic-Fit location
+                  info:
+                    type: object
+                  mutationTime:
+                    type: object
+                    properties:
+                      memberPicture:
+                        type: string
+                        description: ISO 8601
+                      favorites:
+                        type: string
+                        description: ISO 8601
+                      reminders:
+                        type: string
+                        description: ISO 8601
+                      programsDone:
+                        type: string
+                        description: ISO 8601
+                      program:
+                        type: string
+                        description: ISO 8601
+                      settings:
+                        type: string
+                        description: ISO 8601
+                      personalization:
+                        type: string
+                        description: ISO 8601
+                      homeScreen:
+                        type: string
+                        description: ISO 8601
+                examples:
+                  - {
+                      "member":
+                        {
+                          "membershipType": "ultimate",
+                          "id": "8443fd0d-dc39-4bac-aefb-181c8570b2b8",
+                          "homeClubId": "697F84DE-92E4-4D36-A550-AD337E160158",
+                          "marketingId": "1309dc16-e1fb-4a10-b1f7-5742a34e6696",
+                          "name": "Jan Janssen",
+                          "addOns": ["Yanga", "Sunbed", "App", "LiveGX"],
+                          "articles":
+                            [
+                              "yanga",
+                              "freeze",
+                              "cryobed",
+                              "hydrobed",
+                              "app",
+                              "massagechair",
+                              "livegx",
+                              "sportsbag",
+                            ],
+                          "cardnumber": "V012345678",
+                          "dateofbirth": "2000-01-01T00:00:00.000",
+                          "country": "NL",
+                          "gender": "male",
+                          "membershipnumber": "012345678",
+                          "email": "jan@example.com",
+                          "mobilephone": "",
+                          "firstname": "Jan",
+                          "prefix": "",
+                          "lastname": "Janssen",
+                          "homeClub": "Sportschool Basic-Fit Amsterdam Amstelstraat 24/7",
+                          "homeClubLcid": "151",
+                          "deviceId": "3da383d35b560fbc4749f8e6a28d29cdac3d",
+                          "accessMethod": "qr",
+                          "externalId": "001A300000AhL3zCQR",
+                          "latestMembershipStartDate": "2025-01-01T00:00:00.000",
+                          "latestMembershipEndDate": "",
+                          "hasDebt": false,
+                          "membershipOptions":
+                            {
+                              "LinkedServices": ["ultimate_friends_unlimited"],
+                            },
+                          "restrictedEntryTime": 180,
+                        },
+                      "info": {},
+                      "mutationTime":
+                        {
+                          "memberPicture": "",
+                          "favorites": "2025-01-01T00:43:17.154Z",
+                          "reminders": "",
+                          "programsDone": "",
+                          "program": "",
+                          "settings": "",
+                          "personalization": "2025-01-01T00:12:34.456Z",
+                          "homeScreen": "2025-01-01T00:14:52.123Z",
+                        },
+                    }
+                  - {
+                      "member":
+                        {
+                          "membershipType": "campaign",
+                          "id": "8443fd0d-dc39-4bac-aefb-181c8570b2b8",
+                          "homeClubId": "697F84DE-92E4-4D36-A550-AD337E160158",
+                          "marketingId": "1309dc16-e1fb-4a10-b1f7-5742a34e6696",
+                          "name": "Janice Janssen",
+                          "addOns": [],
+                          "articles": [],
+                          "cardnumber": "D250123120001337",
+                          "dateofbirth": "2000-01-01T00:00:00.000",
+                          "country": "NL",
+                          "gender": "female",
+                          "membershipnumber": "012345678",
+                          "email": "janice@example.com",
+                          "mobilephone": "",
+                          "firstname": "Janice",
+                          "prefix": "",
+                          "lastname": "Janssen",
+                          "homeClub": "BF @Home NL",
+                          "homeClubLcid": "1043",
+                          "deviceId": "3da383d35b560fbc4749f8e6a28d29cdac3d",
+                          "accessMethod": "qr",
+                          "externalId": "001A300000AhL3zCQR",
+                          "latestMembershipStartDate": "2025-01-01T00:00:00.000",
+                          "latestMembershipEndDate": "",
+                          "hasDebt": false,
+                          "restrictedEntryTime": 180,
+                        },
+                      "info": {},
+                      "mutationTime":
+                        {
+                          "memberPicture": "",
+                          "favorites": "",
+                          "reminders": "",
+                          "programsDone": "",
+                          "program": "",
+                          "settings": "",
+                          "personalization": "",
+                          "homeScreen": "2025-01-01T00:14:52.123Z",
+                        },
+                    }
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  statusCode:
+                    type: integer
+                  message:
+                    type: string
+                example:
+                  {
+                    "status": "error",
+                    "statusCode": 401,
+                    "message": "Unauthorized",
+                  }
+  /api/member/deviceInfo:
+    summary: Change deviceId
+    parameters:
+      - $ref: "#/components/parameters/BasicFitVersionHeader"
+      - $ref: "#/components/parameters/BasicFitUserAgent"
+      - $ref: "#/components/parameters/BasicFitClientID"
+      - $ref: "#/components/parameters/BasicFitRedirectUri"
+    post:
+      security:
+        - oauth2: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - deviceId
+                - deviceDescription
+              properties:
+                deviceId:
+                  type: string
+                  examples:
+                    - f392ba361c4c663afa9c5827f4eb347a22dc
+                    - b3deabd88241b2f864aed6e92279783f8b96
+                    - f7f8d5eeaf38182ac59f196a8de7ced3b219
+                deviceDescription:
+                  type: string
+                  description: |
+                    Note: An empty string still is valid input for this property, completely leaving this property out **isn't** valid.
+                  examples: [SM-S921B, M2102J20SG, GEHN3]
+      responses:
+        "204":
+          description: |
+            No Content
+
+            Successfully set new deviceId (or deviceId was unchanged)
+
+            When coming from an empty deviceId (""),
+            setting a new deviceId will subtract 1 from the maximum device switches
+            (currently only 2 times per 6 months).
+
+            **Changing** the device id **without clearing** the deviceId (setting to "" (empty string)) in between,
+            **won't subtract** 1 of the remaining amount of device switches.
+        "424":
+          description: |
+            Failed Dependency
+
+            If you've ran out of allowed device changes, the endpoint will return `424` whenever **changing the deviceId**.
+
+            If you get a `424` response when trying to set an **empty** deviceId,
+            no changes have been applied.
+
+            If you get a `424` response when trying to set **a non-empty** deviceId,
+            the changes still have been applied (even though you reached the maximum amount of device switches already).
+            This can be confirmed by fetching the member info endpoint, or by repeating te exact same request, if it returns `204`, that means the changes were applied successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  statusCode:
+                    type: integer
+                  message:
+                    type: string
+                example:
+                  {
+                    "status": "error",
+                    "statusCode": 424,
+                    "message": "Member service is unavailable",
+                  }
