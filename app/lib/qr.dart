@@ -6,9 +6,12 @@ import 'dart:math';
 
 import 'oauth.dart' as oauth;
 
-Future<String?> generateBasicQrData() async {
-  String? deviceId = await oauth.storage.read(key: "device_id");
-  String? cardNumber = await oauth.storage.read(key: "card_number");
+Future<String?> generateBasicQrData({
+  String? deviceId,
+  String? cardNumber,
+}) async {
+  deviceId ??= await oauth.storage.read(key: "device_id");
+  cardNumber ??= await oauth.storage.read(key: "card_number");
 
   if (deviceId == null || cardNumber == null) {
     return null;

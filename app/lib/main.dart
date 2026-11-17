@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:app_links/app_links.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'oauth.dart' as oauth;
 import 'qr.dart' as qrutil;
+import 'wear.dart' as wear;
 
 final appLinks = AppLinks();
 AppState? globalAppState;
@@ -34,7 +37,7 @@ void main() {
         // Schedule the OAuth code processing to not block the main thread
         Future.microtask(() => oauth.code(uri));
       } else {
-        if (!await oauth.isLoggedIn()) {
+        if (!await oauth.isLoggedIn() && !await wear.WearBridge.isWearDevice) {
           oauth.login();
         }
       }
@@ -73,6 +76,10 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
   Timer? _pollTimer;
   int _pollGeneration = 0;
   bool _isForeground = true;
+  bool _isWearDevice = false;
+  bool _deviceTypeKnown = false;
+  String? _syncedDeviceId;
+  String? _syncedCardNumber;
 
   AppState() {
     globalAppState = this;
@@ -80,11 +87,12 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     // Default to true: the app starts in the foreground, and no lifecycle
     // change event fires on initial launch (lifecycleState is null).
-    // Treat `inactive` as still effectively foreground for our polling
-    // purposes (visible but out-of-focus should keep refreshing).
+    // Only resumed is considered foreground; inactive can still be visually
+    // present while no longer receiving user input.
     _isForeground = WidgetsBinding.instance.lifecycleState != AppLifecycleState.paused
       && WidgetsBinding.instance.lifecycleState != AppLifecycleState.detached
-      && WidgetsBinding.instance.lifecycleState != AppLifecycleState.hidden;
+      && WidgetsBinding.instance.lifecycleState != AppLifecycleState.hidden
+      && WidgetsBinding.instance.lifecycleState != AppLifecycleState.inactive;
     if (!appStateReady.isCompleted) {
       appStateReady.complete();
     }
@@ -97,15 +105,29 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
 
     var success = false;
     try {
+      _isWearDevice = await wear.WearBridge.isWearDevice;
+      _deviceTypeKnown = true;
+      if (!_isForeground) return;
+      if (_isWearDevice) {
+        final storedData = await wear.WearBridge.getStoredAuthData();
+        if (!_isForeground) return;
+        _syncedDeviceId = storedData?['deviceId'];
+        _syncedCardNumber = storedData?['cardNumber'];
+        unawaited(_requestWearState());
+      }
       var isLoggedIn = await oauth.isLoggedIn();
       if (!_isForeground) return; // app went to background during await
-      if (isLoggedIn) {
-        qrData = await qrutil.generateBasicQrData();
+      if (isLoggedIn || (_syncedDeviceId != null && _syncedCardNumber != null)) {
+        qrData = await qrutil.generateBasicQrData(
+          deviceId: isLoggedIn ? null : _syncedDeviceId,
+          cardNumber: isLoggedIn ? null : _syncedCardNumber,
+        );
         if (!_isForeground) return; // app went to background during await
       }
-      loggedIn = isLoggedIn;
+      loggedIn = isLoggedIn || (_syncedDeviceId != null && _syncedCardNumber != null);
 
       notifyListeners();
+      await _publishPhoneState();
 
       success = true;
     } catch (e) {
@@ -116,7 +138,27 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
       if (success) {
         _initialized = true;
       }
-      _startPollTimer();
+      if (!_isWearDevice) _startPollTimer();
+    }
+  }
+
+  Future<void> _publishPhoneState() async {
+    if (_isWearDevice || !_isForeground) return;
+    final deviceId = await oauth.storage.read(key: 'device_id');
+    final cardNumber = await oauth.storage.read(key: 'card_number');
+    if (!_isForeground) return;
+    await wear.WearBridge.publishAuthState(
+      loggedIn: loggedIn,
+      deviceId: deviceId,
+      cardNumber: cardNumber,
+    );
+  }
+
+  Future<void> _requestWearState() async {
+    await wear.WearBridge.requestAuthState();
+    await Future<void>.delayed(const Duration(milliseconds: 750));
+    if (_isForeground) {
+      await refreshQrCode();
     }
   }
 
@@ -169,13 +211,17 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
     print('Lifecycle: didChangeAppLifecycleState -> $state');
     if (state == AppLifecycleState.resumed) {
       _isForeground = true;
-      Future.microtask(() => refreshQrCode());
-      _startPollTimer();
-    } else if (state == AppLifecycleState.paused || state == AppLifecycleState.detached || state == AppLifecycleState.hidden) {
+      if (!_deviceTypeKnown) {
+        return;
+      } else if (_isWearDevice) {
+        unawaited(_requestWearState());
+      } else {
+        Future.microtask(() => refreshQrCode());
+        _startPollTimer();
+      }
+    } else {
       _isForeground = false;
       _stopPollTimer();
-    } else {
-      print('Lifecycle: transient state (kept foreground=$_isForeground)');
     }
   }
 
@@ -201,8 +247,26 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
       } else {
         qrData = null;
       }
-      loggedIn = isLoggedIn;
+      if (!isLoggedIn && _isWearDevice) {
+        final storedData = await wear.WearBridge.getStoredAuthData();
+        if (!_isForeground) return;
+        _syncedDeviceId = storedData?['deviceId'];
+        _syncedCardNumber = storedData?['cardNumber'];
+        if (_syncedDeviceId != null && _syncedCardNumber != null) {
+          qrData = await qrutil.generateBasicQrData(
+            deviceId: _syncedDeviceId,
+            cardNumber: _syncedCardNumber,
+          );
+          loggedIn = true;
+        }
+      }
+      if (isLoggedIn) {
+        loggedIn = true;
+      } else if (_syncedDeviceId == null || _syncedCardNumber == null) {
+        loggedIn = false;
+      }
       notifyListeners();
+      await _publishPhoneState();
     } catch (e) {
       print('Error in refreshQrCode: $e');
     }
@@ -233,9 +297,6 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<AppState>();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final qrForeground = isDark ? Colors.white : Colors.black;
-    final qrBackground = isDark ? Colors.black : Colors.white;
 
     String getStatusText() {
       switch (appState.loginStatus) {
@@ -249,25 +310,33 @@ class _MainState extends State<Main> {
     }
 
     return Scaffold(
-      body: Center(
-        child: appState.loggedIn
+      body: SafeArea(
+        child: Center(
+          child: appState.loggedIn
           ? (appState.qrData != null
             ? QrImageView(
               data: appState.qrData!,
+              size: math.min(
+                MediaQuery.sizeOf(context).shortestSide * 0.78,
+                360,
+              ),
               version: QrVersions.auto,
               errorCorrectionLevel: QrErrorCorrectLevel.M,
-              backgroundColor: qrBackground,
+              backgroundColor: Colors.white,
               dataModuleStyle: QrDataModuleStyle(
-                color: qrForeground,
+                color: Colors.black,
                 dataModuleShape: QrDataModuleShape.square,
               ),
               eyeStyle: QrEyeStyle(
-                color: qrForeground,
+                color: Colors.black,
                 eyeShape: QrEyeShape.square,
               ),
               )
             : const Text('Generating QR code...'))
-          : Text(getStatusText()),
+          : Text(
+              appState._isWearDevice ? 'Login on phone' : getStatusText(),
+            ),
+        ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -282,7 +351,11 @@ class _MainState extends State<Main> {
               ),
             ),
           FloatingActionButton(
-            onPressed: appState.loggedIn ? oauth.logout : oauth.login,
+            onPressed: appState.loggedIn
+                ? oauth.logout
+                : appState._isWearDevice
+                    ? wear.WearBridge.requestAuthState
+                    : oauth.login,
             tooltip: appState.loggedIn ? 'Logout' : 'Login',
             child: Icon(appState.loggedIn ? Icons.logout : Icons.login),
           ),
