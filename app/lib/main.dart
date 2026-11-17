@@ -127,6 +127,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
       loggedIn = isLoggedIn || (_syncedDeviceId != null && _syncedCardNumber != null);
 
       notifyListeners();
+      unawaited(_updateWearBrightness());
       await _publishPhoneState();
 
       success = true;
@@ -222,6 +223,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
     } else {
       _isForeground = false;
       _stopPollTimer();
+      unawaited(_restoreWearBrightness());
     }
   }
 
@@ -230,6 +232,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
     print('AppState: dispose');
     WidgetsBinding.instance.removeObserver(this);
     _stopPollTimer();
+    unawaited(_restoreWearBrightness());
     super.dispose();
   }
 
@@ -266,9 +269,24 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
         loggedIn = false;
       }
       notifyListeners();
+      unawaited(_updateWearBrightness());
       await _publishPhoneState();
     } catch (e) {
       print('Error in refreshQrCode: $e');
+    }
+  }
+
+  Future<void> _updateWearBrightness() async {
+    if (_isWearDevice && _isForeground && loggedIn && qrData != null) {
+      await wear.WearBridge.setMaxBrightness();
+    } else {
+      await _restoreWearBrightness();
+    }
+  }
+
+  Future<void> _restoreWearBrightness() async {
+    if (_isWearDevice) {
+      await wear.WearBridge.restoreBrightness();
     }
   }
 
@@ -338,29 +356,33 @@ class _MainState extends State<Main> {
             ),
         ),
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          if (appState.loggedIn)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: FloatingActionButton(
-                onPressed: oauth.openFriendsPage,
-                tooltip: 'Friends',
-                child: const Icon(Icons.people),
-              ),
+      floatingActionButton: appState._isWearDevice && appState.loggedIn
+          ? null
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (appState.loggedIn)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: FloatingActionButton(
+                      onPressed: oauth.openFriendsPage,
+                      tooltip: 'Friends',
+                      child: const Icon(Icons.people),
+                    ),
+                  ),
+                FloatingActionButton(
+                  onPressed: appState.loggedIn
+                      ? oauth.logout
+                      : appState._isWearDevice
+                          ? wear.WearBridge.requestAuthState
+                          : oauth.login,
+                  tooltip: appState.loggedIn ? 'Logout' : 'Login',
+                  child: Icon(
+                    appState.loggedIn ? Icons.logout : Icons.login,
+                  ),
+                ),
+              ],
             ),
-          FloatingActionButton(
-            onPressed: appState.loggedIn
-                ? oauth.logout
-                : appState._isWearDevice
-                    ? wear.WearBridge.requestAuthState
-                    : oauth.login,
-            tooltip: appState.loggedIn ? 'Logout' : 'Login',
-            child: Icon(appState.loggedIn ? Icons.logout : Icons.login),
-          ),
-        ],
-      ),
     );
   }
 }

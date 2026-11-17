@@ -49,6 +49,18 @@ class MainActivity : FlutterActivity() {
                     )
                     result.success(null)
                 }
+                "setMaxBrightness" -> {
+                    window.attributes = window.attributes.apply {
+                        screenBrightness = 1.0f
+                    }
+                    result.success(null)
+                }
+                "restoreBrightness" -> {
+                    window.attributes = window.attributes.apply {
+                        screenBrightness = -1.0f
+                    }
+                    result.success(null)
+                }
                 else -> result.notImplemented()
             }
         }

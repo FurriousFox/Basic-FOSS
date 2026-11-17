@@ -50,4 +50,20 @@ class WearBridge {
       print('Wear: unable to publish phone data: $error');
     }
   }
+
+  static Future<void> setMaxBrightness() async {
+    try {
+      await _channel.invokeMethod<void>('setMaxBrightness');
+    } on PlatformException catch (error) {
+      print('Wear: unable to maximize screen brightness: $error');
+    }
+  }
+
+  static Future<void> restoreBrightness() async {
+    try {
+      await _channel.invokeMethod<void>('restoreBrightness');
+    } on PlatformException catch (error) {
+      print('Wear: unable to restore screen brightness: $error');
+    }
+  }
 }
