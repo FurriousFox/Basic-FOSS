@@ -152,7 +152,11 @@ Future<void> _performTokenExchange(String code, String codeVerifier) async {
   }
 }
 
-Future<void> _fetchMemberInfo(HttpClient httpClient, String accessToken) async {
+Future<void> _fetchMemberInfo(
+  HttpClient httpClient,
+  String accessToken, {
+  bool updateDeviceId = true,
+}) async {
   var memberInfoRequest = await httpClient.getUrl(
     Uri.parse('https://bfa.basic-fit.com/api/member/info'),
   );
@@ -170,21 +174,27 @@ Future<void> _fetchMemberInfo(HttpClient httpClient, String accessToken) async {
       .join();
   if (memberInfoResponse.statusCode == 200) {
     Map<String, dynamic> memberInfoJson = jsonDecode(memberInfoResponseBody);
+    final member = memberInfoJson['member'];
+    final memberDeviceId = member?['deviceId'];
+    final memberCardNumber = member?['cardnumber'] ?? member?['cardNumber'];
 
-    if (memberInfoJson['member']?['deviceId'] != null &&
-        memberInfoJson['member']?['cardnumber'] != null) {
-      // print('Device ID: ${memberInfoJson['member']['deviceId']}');
+    if (updateDeviceId &&
+        memberDeviceId is String &&
+        memberDeviceId.isNotEmpty) {
       await storage.write(
         key: "device_id",
-        value: memberInfoJson['member']['deviceId'],
+        value: memberDeviceId,
       );
+    }
 
-      // print('Card Number: ${memberInfoJson['member']['cardnumber']}');
+    if (memberCardNumber is String && memberCardNumber.isNotEmpty) {
       await storage.write(
         key: "card_number",
-        value: memberInfoJson['member']['cardnumber'],
+        value: memberCardNumber,
       );
+    }
 
+    if (await isLoggedIn()) {
       // Immediately refresh the QR code after successful login
       await globalAppState?.refreshQrCode();
     } else {
@@ -253,11 +263,17 @@ Future<bool> setDeviceId(
       );
     }
 
-    // The API documents that a 424 can still mean a non-empty ID was applied.
-    await _fetchMemberInfo(httpClient, accessToken);
-    if (await storage.read(key: 'device_id') != normalizedDeviceId ||
-        !await isLoggedIn()) {
-      throw Exception('Member info did not contain complete QR credentials.');
+    // The member-info endpoint no longer returns deviceId reliably. The
+    // user-entered value is authoritative after the update is accepted.
+    await storage.write(key: 'device_id', value: normalizedDeviceId);
+    try {
+      await _fetchMemberInfo(
+        httpClient,
+        accessToken,
+        updateDeviceId: false,
+      );
+    } catch (error) {
+      print('Unable to refresh member info after setting device ID: $error');
     }
     return true;
   } finally {
