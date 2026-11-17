@@ -22,11 +22,22 @@ class WearableStateService : WearableListenerService() {
             when (event.dataItem.uri.path) {
                 AUTH_PATH -> {
                     val dataMap = DataMapItem.fromDataItem(event.dataItem).dataMap
-                    getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE).edit()
+                    val editor = getSharedPreferences(
+                        PREFERENCES,
+                        Context.MODE_PRIVATE,
+                    ).edit()
                         .putBoolean(KEY_LOGGED_IN, dataMap.getBoolean(KEY_LOGGED_IN, false))
-                        .putString(KEY_DEVICE_ID, dataMap.getString(KEY_DEVICE_ID))
-                        .putString(KEY_CARD_NUMBER, dataMap.getString(KEY_CARD_NUMBER))
-                        .apply()
+                    if (dataMap.containsKey(KEY_DEVICE_ID)) {
+                        editor.putString(KEY_DEVICE_ID, dataMap.getString(KEY_DEVICE_ID))
+                    } else {
+                        editor.remove(KEY_DEVICE_ID)
+                    }
+                    if (dataMap.containsKey(KEY_CARD_NUMBER)) {
+                        editor.putString(KEY_CARD_NUMBER, dataMap.getString(KEY_CARD_NUMBER))
+                    } else {
+                        editor.remove(KEY_CARD_NUMBER)
+                    }
+                    editor.apply()
                 }
                 REQUEST_PATH -> publishStoredState()
             }
@@ -40,10 +51,14 @@ class WearableStateService : WearableListenerService() {
             KEY_LOGGED_IN,
             preferences.getBoolean(KEY_LOGGED_IN, false),
         )
-        request.dataMap.putString(KEY_DEVICE_ID, preferences.getString(KEY_DEVICE_ID, null))
-        request.dataMap.putString(KEY_CARD_NUMBER, preferences.getString(KEY_CARD_NUMBER, null))
+        preferences.getString(KEY_DEVICE_ID, null)?.let {
+            request.dataMap.putString(KEY_DEVICE_ID, it)
+        }
+        preferences.getString(KEY_CARD_NUMBER, null)?.let {
+            request.dataMap.putString(KEY_CARD_NUMBER, it)
+        }
         request.setUrgent()
-        Wearable.getDataClient(this).putDataItem(request)
+        Wearable.getDataClient(this).putDataItem(request.asPutDataRequest())
     }
 
     companion object {

@@ -75,9 +75,13 @@ class MainActivity : FlutterActivity() {
 
         val request = PutDataMapRequest.create(WearableStateService.AUTH_PATH)
         request.dataMap.putBoolean(WearableStateService.KEY_LOGGED_IN, loggedIn)
-        request.dataMap.putString(WearableStateService.KEY_DEVICE_ID, deviceId)
-        request.dataMap.putString(WearableStateService.KEY_CARD_NUMBER, cardNumber)
+        deviceId?.let {
+            request.dataMap.putString(WearableStateService.KEY_DEVICE_ID, it)
+        }
+        cardNumber?.let {
+            request.dataMap.putString(WearableStateService.KEY_CARD_NUMBER, it)
+        }
         request.setUrgent()
-        Wearable.getDataClient(this).putDataItem(request)
+        Wearable.getDataClient(this).putDataItem(request.asPutDataRequest())
     }
 }
