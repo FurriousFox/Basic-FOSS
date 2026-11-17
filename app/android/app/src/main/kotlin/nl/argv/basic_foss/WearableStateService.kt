@@ -1,6 +1,7 @@
 package nl.argv.basic_foss
 
 import android.content.Context
+import android.util.Log
 import com.google.android.gms.wearable.DataEvent
 import com.google.android.gms.wearable.DataEventBuffer
 import com.google.android.gms.wearable.DataMapItem
@@ -58,7 +59,11 @@ class WearableStateService : WearableListenerService() {
             request.dataMap.putString(KEY_CARD_NUMBER, it)
         }
         request.setUrgent()
-        Wearable.getDataClient(this).putDataItem(request.asPutDataRequest())
+        Wearable.getDataClient(this)
+            .putDataItem(request.asPutDataRequest())
+            .addOnFailureListener { error ->
+                Log.w(TAG, "Unable to respond with auth state", error)
+            }
     }
 
     companion object {
@@ -68,5 +73,6 @@ class WearableStateService : WearableListenerService() {
         const val KEY_LOGGED_IN = "loggedIn"
         const val KEY_DEVICE_ID = "deviceId"
         const val KEY_CARD_NUMBER = "cardNumber"
+        private const val TAG = "BasicFOSSWear"
     }
 }

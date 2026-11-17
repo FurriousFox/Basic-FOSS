@@ -78,6 +78,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
   bool _isForeground = true;
   bool _isWearDevice = false;
   bool _deviceTypeKnown = false;
+  bool _wearRequestInProgress = false;
   String? _syncedDeviceId;
   String? _syncedCardNumber;
 
@@ -156,10 +157,16 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
   }
 
   Future<void> _requestWearState() async {
-    await wear.WearBridge.requestAuthState();
-    await Future<void>.delayed(const Duration(milliseconds: 750));
-    if (_isForeground) {
-      await refreshQrCode();
+    if (!_isWearDevice || !_isForeground || _wearRequestInProgress) return;
+    _wearRequestInProgress = true;
+    try {
+      await wear.WearBridge.requestAuthState();
+      await Future<void>.delayed(const Duration(milliseconds: 750));
+      if (_isForeground) {
+        await refreshQrCode();
+      }
+    } finally {
+      _wearRequestInProgress = false;
     }
   }
 
@@ -230,6 +237,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
   @override
   void dispose() {
     print('AppState: dispose');
+    _isForeground = false;
     WidgetsBinding.instance.removeObserver(this);
     _stopPollTimer();
     unawaited(_restoreWearBrightness());
@@ -356,7 +364,8 @@ class _MainState extends State<Main> {
             ),
         ),
       ),
-      floatingActionButton: appState._isWearDevice && appState.loggedIn
+      floatingActionButton: !appState._deviceTypeKnown ||
+              (appState._isWearDevice && appState.loggedIn)
           ? null
           : Column(
               mainAxisAlignment: MainAxisAlignment.end,

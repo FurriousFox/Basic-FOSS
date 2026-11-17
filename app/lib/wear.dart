@@ -18,8 +18,15 @@ class WearBridge {
         'getStoredAuthData',
       );
       if (result == null) return null;
-      return result.map(
-        (key, value) => MapEntry(key.toString(), value.toString()),
+      return Map.fromEntries(
+        result.entries
+            .where((entry) => entry.value != null)
+            .map(
+              (entry) => MapEntry(
+                entry.key.toString(),
+                entry.value.toString(),
+              ),
+            ),
       );
     } on PlatformException catch (error) {
       print('Wear: unable to read stored phone data: $error');

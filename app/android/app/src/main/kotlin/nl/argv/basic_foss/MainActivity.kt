@@ -1,6 +1,7 @@
 package nl.argv.basic_foss
 
 import android.content.pm.PackageManager
+import android.util.Log
 import com.google.android.gms.wearable.PutDataMapRequest
 import com.google.android.gms.wearable.Wearable
 import io.flutter.embedding.android.FlutterActivity
@@ -8,6 +9,8 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
+    private var previousScreenBrightness: Float? = null
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         val channel = MethodChannel(
@@ -50,15 +53,20 @@ class MainActivity : FlutterActivity() {
                     result.success(null)
                 }
                 "setMaxBrightness" -> {
+                    if (previousScreenBrightness == null) {
+                        previousScreenBrightness = window.attributes.screenBrightness
+                    }
                     window.attributes = window.attributes.apply {
                         screenBrightness = 1.0f
                     }
                     result.success(null)
                 }
                 "restoreBrightness" -> {
+                    val brightness = previousScreenBrightness ?: -1.0f
                     window.attributes = window.attributes.apply {
-                        screenBrightness = -1.0f
+                        screenBrightness = brightness
                     }
+                    previousScreenBrightness = null
                     result.success(null)
                 }
                 else -> result.notImplemented()
@@ -73,8 +81,12 @@ class MainActivity : FlutterActivity() {
                     node.id,
                     WearableStateService.REQUEST_PATH,
                     ByteArray(0),
-                )
+                ).addOnFailureListener { error ->
+                    Log.w(TAG, "Unable to request phone auth state", error)
+                }
             }
+        }.addOnFailureListener { error ->
+            Log.w(TAG, "Unable to find connected Wear OS devices", error)
         }
     }
 
@@ -94,6 +106,14 @@ class MainActivity : FlutterActivity() {
             request.dataMap.putString(WearableStateService.KEY_CARD_NUMBER, it)
         }
         request.setUrgent()
-        Wearable.getDataClient(this).putDataItem(request.asPutDataRequest())
+        Wearable.getDataClient(this)
+            .putDataItem(request.asPutDataRequest())
+            .addOnFailureListener { error ->
+                Log.w(TAG, "Unable to publish auth state", error)
+            }
+    }
+
+    companion object {
+        private const val TAG = "BasicFOSSWear"
     }
 }
