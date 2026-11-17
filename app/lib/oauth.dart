@@ -36,21 +36,28 @@ String generateCodeChallenge(String codeVerifier) {
 }
 
 Future<void> login() async {
+  if (globalAppState?.loginStatus == LoginStatus.loggingIn) return;
   globalAppState?.setLoginStatus(LoginStatus.loggingIn);
 
   String codeVerifier = generateCodeVerifier();
   String codeChallenge = generateCodeChallenge(codeVerifier);
 
-  if (!await launchUrl(
-    Uri.parse(
-      'https://login.basic-fit.com/?redirect_uri=${Uri.encodeComponent(redirectUri)}&client_id=${Uri.encodeComponent(clientId)}&response_type=code&app=true&code_challenge=${Uri.encodeComponent(codeChallenge)}&code_challenge_method=S256',
-    ),
-    mode: LaunchMode.inAppBrowserView,
-  )) {
-    globalAppState?.setLoginStatus(LoginStatus.failed);
-    throw Exception('Could not open browser.');
-  } else {
+  // Persist the verifier before opening the browser. The callback can arrive
+  // immediately when an existing browser session is already authenticated.
+  try {
     await storage.write(key: "code_verifier", value: codeVerifier);
+    if (!await launchUrl(
+      Uri.parse(
+        'https://login.basic-fit.com/?redirect_uri=${Uri.encodeComponent(redirectUri)}&client_id=${Uri.encodeComponent(clientId)}&response_type=code&app=true&code_challenge=${Uri.encodeComponent(codeChallenge)}&code_challenge_method=S256',
+      ),
+      mode: LaunchMode.inAppBrowserView,
+    )) {
+      throw Exception('Could not open browser.');
+    }
+  } catch (error) {
+    await storage.delete(key: "code_verifier");
+    globalAppState?.setLoginStatus(LoginStatus.failed);
+    rethrow;
   }
 }
 
@@ -66,6 +73,12 @@ Future<void> code(Uri uri) async {
 
     String? code = uri.queryParameters['code'];
     if (code == null) {
+      if (uri.queryParameters['error'] != null) {
+        print(
+          'Login was rejected: ${uri.queryParameters['error_description'] ?? uri.queryParameters['error']}',
+        );
+        globalAppState?.setLoginStatus(LoginStatus.failed);
+      }
       return;
     }
 
