@@ -7,16 +7,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io';
 import 'main.dart' show globalAppState, LoginStatus;
 
-// String redirectUri = 'com.basicfit.trainingapp:/oauthredirect';
-// String clientId = 'hMN33iw3DpHNg5VQaeNKoRUQKmIIvQV5vxOKba8AnrM';
-
-// use iOS values on android, to prevent clashing redirect with both apps installed
 String redirectUri = 'com.basicfit.bfa:/oauthredirect';
 String clientId = 'q6KqjlQINmjOC86rqt9JdU_i41nhD_Z4DwygpBxGiIs';
+const basicFitUserAgent = 'Basic Fit App/1.79.5.2738 (Android)';
 
 final storage = FlutterSecureStorage();
 
 String? _lastProcessedCode;
+String? _activeCodeVerifier;
 Completer<bool>? _refreshCompleter;
 
 String generateCodeVerifier([int length = 128]) {
@@ -41,6 +39,7 @@ Future<void> login() async {
 
   String codeVerifier = generateCodeVerifier();
   String codeChallenge = generateCodeChallenge(codeVerifier);
+  _activeCodeVerifier = codeVerifier;
 
   // Persist the verifier before opening the browser. The callback can arrive
   // immediately when an existing browser session is already authenticated.
@@ -55,6 +54,7 @@ Future<void> login() async {
       throw Exception('Could not open browser.');
     }
   } catch (error) {
+    _activeCodeVerifier = null;
     await storage.delete(key: "code_verifier");
     globalAppState?.setLoginStatus(LoginStatus.failed);
     rethrow;
@@ -88,17 +88,21 @@ Future<void> code(Uri uri) async {
     }
     _lastProcessedCode = code;
 
-    String? codeVerifier = await storage.read(key: "code_verifier");
+    String? codeVerifier =
+        _activeCodeVerifier ?? await storage.read(key: "code_verifier");
     if (codeVerifier == null) {
       print('No code verifier found');
       globalAppState?.setLoginStatus(LoginStatus.failed);
       return;
-    } else {
-      await storage.delete(key: "code_verifier");
     }
 
     // Perform token exchange in a microtask to avoid blocking
-    await _performTokenExchange(code, codeVerifier);
+    try {
+      await _performTokenExchange(code, codeVerifier);
+    } finally {
+      _activeCodeVerifier = null;
+      await storage.delete(key: "code_verifier");
+    }
   } catch (e) {
     print('Error in code(): $e');
     globalAppState?.setLoginStatus(LoginStatus.failed);
@@ -107,6 +111,7 @@ Future<void> code(Uri uri) async {
 
 Future<void> _performTokenExchange(String code, String codeVerifier) async {
   HttpClient httpClient = HttpClient();
+  httpClient.userAgent = basicFitUserAgent;
   try {
     HttpClientRequest tokenExchange = await httpClient.postUrl(
       Uri.parse('https://auth.basic-fit.com/token'),
@@ -114,6 +119,10 @@ Future<void> _performTokenExchange(String code, String codeVerifier) async {
     tokenExchange.headers.set(
       "Content-Type",
       'application/x-www-form-urlencoded',
+    );
+    tokenExchange.headers.set(
+      HttpHeaders.userAgentHeader,
+      basicFitUserAgent,
     );
 
     tokenExchange.write(
@@ -151,7 +160,7 @@ Future<void> _fetchMemberInfo(HttpClient httpClient, String accessToken) async {
   memberInfoRequest.headers.set('Bfa-Version', '1.79.5.2738');
   memberInfoRequest.headers.set(
     'User-Agent',
-    'Basic Fit App/1.79.5.2738 (Android)',
+    basicFitUserAgent,
   );
   memberInfoRequest.headers.set('Client-Id', clientId);
   memberInfoRequest.headers.set('Redirect-Uri', redirectUri);
@@ -195,6 +204,65 @@ Future<bool> isLoggedIn() async {
       refreshToken != null &&
       deviceId != null &&
       cardNumber != null;
+}
+
+Future<bool> hasAuthenticatedSession() async {
+  return await storage.read(key: "access_token") != null;
+}
+
+Future<bool> setDeviceId(
+  String deviceId, {
+  String deviceDescription = 'Basic-FOSS',
+}) async {
+  final normalizedDeviceId = deviceId.trim().toLowerCase();
+  if (!RegExp(r'^[0-9a-f]{36}$').hasMatch(normalizedDeviceId)) {
+    throw const FormatException(
+      'Device ID must contain 36 hexadecimal characters.',
+    );
+  }
+
+  final accessToken = await storage.read(key: 'access_token');
+  if (accessToken == null) {
+    throw Exception('No access token available.');
+  }
+
+  final httpClient = HttpClient()..userAgent = basicFitUserAgent;
+  try {
+    final request = await httpClient.postUrl(
+      Uri.parse('https://bfa.basic-fit.com/api/member/deviceInfo'),
+    );
+    request.headers.set(
+      HttpHeaders.authorizationHeader,
+      'Bearer $accessToken',
+    );
+    request.headers.set('Bfa-Version', '1.79.5.2738');
+    request.headers.set(HttpHeaders.userAgentHeader, basicFitUserAgent);
+    request.headers.set('Client-Id', clientId);
+    request.headers.set('Redirect-Uri', redirectUri);
+    request.headers.contentType = ContentType.json;
+    request.write(jsonEncode({
+      'deviceId': normalizedDeviceId,
+      'deviceDescription': deviceDescription,
+    }));
+
+    final response = await request.close();
+    final responseBody = await response.transform(utf8.decoder).join();
+    if (response.statusCode != 204 && response.statusCode != 424) {
+      throw Exception(
+        'Failed to set device ID (HTTP ${response.statusCode}): $responseBody',
+      );
+    }
+
+    // The API documents that a 424 can still mean a non-empty ID was applied.
+    await _fetchMemberInfo(httpClient, accessToken);
+    if (await storage.read(key: 'device_id') != normalizedDeviceId ||
+        !await isLoggedIn()) {
+      throw Exception('Member info did not contain complete QR credentials.');
+    }
+    return true;
+  } finally {
+    httpClient.close();
+  }
 }
 
 /// Decodes the payload of a JWT token without verification
@@ -255,12 +323,14 @@ Future<bool> refreshAccessToken({bool openFriendsOnFailure = false}) async {
   }
 
   HttpClient httpClient = HttpClient();
+  httpClient.userAgent = basicFitUserAgent;
   try {
     HttpClientRequest request = await httpClient.postUrl(
       Uri.parse('https://auth.basic-fit.com/token'),
     );
     request.headers.set("Content-Type", 'application/x-www-form-urlencoded');
     request.headers.set("Accept", 'application/json');
+    request.headers.set(HttpHeaders.userAgentHeader, basicFitUserAgent);
 
     request.write(
       'refresh_token=${Uri.encodeComponent(refreshToken)}&grant_type=refresh_token&redirect_uri=${Uri.encodeComponent(redirectUri)}&client_id=${Uri.encodeComponent(clientId)}',

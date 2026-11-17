@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:app_links/app_links.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -79,6 +80,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
   bool _isWearDevice = false;
   bool _deviceTypeKnown = false;
   bool _wearRequestInProgress = false;
+  bool _needsDeviceId = false;
   String? _syncedDeviceId;
   String? _syncedCardNumber;
 
@@ -118,6 +120,8 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
       }
       var isLoggedIn = await oauth.isLoggedIn();
       if (!_isForeground) return; // app went to background during await
+      _needsDeviceId =
+          !isLoggedIn && await oauth.hasAuthenticatedSession();
       if (isLoggedIn || (_syncedDeviceId != null && _syncedCardNumber != null)) {
         qrData = await qrutil.generateBasicQrData(
           deviceId: isLoggedIn ? null : _syncedDeviceId,
@@ -250,6 +254,8 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
     try {
       var isLoggedIn = await oauth.isLoggedIn();
       if (!_isForeground) return; // app went to background during await
+      _needsDeviceId =
+          !isLoggedIn && await oauth.hasAuthenticatedSession();
       if (isLoggedIn) {
         qrData = await qrutil.generateBasicQrData();
         if (!_isForeground) return; // app went to background during await
@@ -312,6 +318,78 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  Future<void> _inputDeviceId(BuildContext context) async {
+    final controller = TextEditingController();
+    final deviceId = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Set device ID'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          autocorrect: false,
+          enableSuggestions: false,
+          textCapitalization: TextCapitalization.none,
+          decoration: const InputDecoration(
+            hintText: '36-character hexadecimal ID',
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, controller.text),
+            child: const Text('Set'),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+
+    if (!context.mounted || deviceId == null || deviceId.trim().isEmpty) {
+      return;
+    }
+
+    try {
+      await oauth.setDeviceId(deviceId);
+      if (context.mounted) {
+        await context.read<AppState>().refreshQrCode();
+        final normalizedDeviceId = deviceId.trim().toLowerCase();
+        await showDialog<void>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Device ID updated'),
+            content: SelectableText(normalizedDeviceId),
+            actions: [
+              TextButton.icon(
+                onPressed: () async {
+                  await Clipboard.setData(
+                    ClipboardData(text: normalizedDeviceId),
+                  );
+                  if (context.mounted) Navigator.pop(context);
+                },
+                icon: const Icon(Icons.copy),
+                label: const Text('Copy'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Done'),
+              ),
+            ],
+          ),
+        );
+      }
+    } catch (error) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not set device ID: $error')),
+        );
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -360,7 +438,11 @@ class _MainState extends State<Main> {
               )
             : const Text('Generating QR code...'))
           : Text(
-              appState._isWearDevice ? 'Login on phone' : getStatusText(),
+              appState._isWearDevice
+                  ? 'Login on phone'
+                  : appState._needsDeviceId
+                      ? 'Device ID required'
+                      : getStatusText(),
             ),
         ),
       ),
@@ -382,12 +464,22 @@ class _MainState extends State<Main> {
                 FloatingActionButton(
                   onPressed: appState.loggedIn
                       ? oauth.logout
-                      : appState._isWearDevice
-                          ? wear.WearBridge.requestAuthState
-                          : oauth.login,
-                  tooltip: appState.loggedIn ? 'Logout' : 'Login',
+                      : appState._needsDeviceId
+                          ? () => _inputDeviceId(context)
+                          : appState._isWearDevice
+                              ? wear.WearBridge.requestAuthState
+                              : oauth.login,
+                  tooltip: appState.loggedIn
+                      ? 'Logout'
+                      : appState._needsDeviceId
+                          ? 'Set device ID'
+                          : 'Login',
                   child: Icon(
-                    appState.loggedIn ? Icons.logout : Icons.login,
+                    appState.loggedIn
+                        ? Icons.logout
+                        : appState._needsDeviceId
+                            ? Icons.edit
+                            : Icons.login,
                   ),
                 ),
               ],
