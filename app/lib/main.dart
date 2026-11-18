@@ -150,7 +150,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
       if (success) {
         _initialized = true;
       }
-      if (!_isWearDevice) _startPollTimer();
+      _startPollTimer();
     }
   }
 
@@ -208,8 +208,12 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
           print('PollTimer: fired but stale/backgrounded, skipping [gen=$gen, current=$_pollGeneration, fg=$_isForeground]');
           return;
         }
-        print('PollTimer: fired — calling init(timed: true) [gen=$gen]');
-        await init(timed: true);
+        print('PollTimer: fired — refreshing QR state [gen=$gen]');
+        if (_isWearDevice) {
+          await refreshQrCode();
+        } else {
+          await init(timed: true);
+        }
         scheduleNext();
       });
     }
@@ -236,6 +240,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
         return;
       } else if (_isWearDevice) {
         unawaited(_requestWearState());
+        _startPollTimer();
       } else {
         Future.microtask(() => refreshQrCode());
         _startPollTimer();
