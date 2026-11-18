@@ -45,13 +45,17 @@ class WearBridge {
   static Future<void> publishAuthState({
     required bool loggedIn,
     String? deviceId,
+    String? secureDeviceId,
     String? cardNumber,
+    bool qrAccessValid = true,
   }) async {
     try {
       await _channel.invokeMethod<void>('publishAuthState', {
         'loggedIn': loggedIn,
         'deviceId': deviceId,
+        'secureDeviceId': secureDeviceId,
         'cardNumber': cardNumber,
+        'qrAccessValid': qrAccessValid,
       });
     } on PlatformException catch (error) {
       print('Wear: unable to publish phone data: $error');

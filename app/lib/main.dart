@@ -69,6 +69,7 @@ class App extends StatelessWidget {
 
 class AppState extends ChangeNotifier with WidgetsBindingObserver {
   var loggedIn = false;
+  var qrAccessValid = true;
   String? qrData;
   LoginStatus loginStatus = LoginStatus.idle;
 
@@ -80,7 +81,6 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
   bool _isWearDevice = false;
   bool _deviceTypeKnown = false;
   bool _wearRequestInProgress = false;
-  bool _needsDeviceId = false;
   String? _syncedDeviceId;
   String? _syncedCardNumber;
 
@@ -108,6 +108,7 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
 
     var success = false;
     try {
+      await oauth.ensureDeviceIds();
       _isWearDevice = await wear.WearBridge.isWearDevice;
       _deviceTypeKnown = true;
       if (!_isForeground) return;
@@ -116,13 +117,18 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
         if (!_isForeground) return;
         _syncedDeviceId = storedData?['deviceId'];
         _syncedCardNumber = storedData?['cardNumber'];
+        qrAccessValid =
+            storedData?['qrAccessValid']?.toLowerCase() != 'false';
         unawaited(_requestWearState());
       }
       var isLoggedIn = await oauth.isLoggedIn();
       if (!_isForeground) return; // app went to background during await
-      _needsDeviceId =
-          !isLoggedIn && await oauth.hasAuthenticatedSession();
-      if (isLoggedIn || (_syncedDeviceId != null && _syncedCardNumber != null)) {
+      if (!_initialized && isLoggedIn) {
+        await oauth.refreshMemberInfo();
+        if (!_isForeground) return;
+      }
+      if ((isLoggedIn && qrAccessValid) ||
+          (_syncedDeviceId != null && _syncedCardNumber != null)) {
         qrData = await qrutil.generateBasicQrData(
           deviceId: isLoggedIn ? null : _syncedDeviceId,
           cardNumber: isLoggedIn ? null : _syncedCardNumber,
@@ -151,12 +157,15 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
   Future<void> _publishPhoneState() async {
     if (_isWearDevice || !_isForeground) return;
     final deviceId = await oauth.storage.read(key: 'device_id');
+    final secureDeviceId = await oauth.storage.read(key: 'secure_device_id');
     final cardNumber = await oauth.storage.read(key: 'card_number');
     if (!_isForeground) return;
     await wear.WearBridge.publishAuthState(
       loggedIn: loggedIn,
       deviceId: deviceId,
+      secureDeviceId: secureDeviceId,
       cardNumber: cardNumber,
+      qrAccessValid: qrAccessValid,
     );
   }
 
@@ -254,10 +263,10 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
     try {
       var isLoggedIn = await oauth.isLoggedIn();
       if (!_isForeground) return; // app went to background during await
-      _needsDeviceId =
-          !isLoggedIn && await oauth.hasAuthenticatedSession();
       if (isLoggedIn) {
-        qrData = await qrutil.generateBasicQrData();
+        qrData = qrAccessValid
+            ? await qrutil.generateBasicQrData()
+            : null;
         if (!_isForeground) return; // app went to background during await
         print('refreshQrCode: updated qrData length=${qrData?.length ?? 0}');
         loginStatus = LoginStatus.idle;
@@ -269,12 +278,16 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
         if (!_isForeground) return;
         _syncedDeviceId = storedData?['deviceId'];
         _syncedCardNumber = storedData?['cardNumber'];
+        qrAccessValid =
+            storedData?['qrAccessValid']?.toLowerCase() != 'false';
         if (_syncedDeviceId != null && _syncedCardNumber != null) {
-          qrData = await qrutil.generateBasicQrData(
-            deviceId: _syncedDeviceId,
-            cardNumber: _syncedCardNumber,
-          );
           loggedIn = true;
+          qrData = qrAccessValid
+              ? await qrutil.generateBasicQrData(
+                  deviceId: _syncedDeviceId,
+                  cardNumber: _syncedCardNumber,
+                )
+              : null;
         }
       }
       if (isLoggedIn) {
@@ -308,6 +321,14 @@ class AppState extends ChangeNotifier with WidgetsBindingObserver {
     loginStatus = status;
     notifyListeners();
   }
+
+  void setQrAccessValid(bool valid) {
+    qrAccessValid = valid;
+    if (!valid) {
+      qrData = null;
+    }
+    notifyListeners();
+  }
 }
 
 class Main extends StatefulWidget {
@@ -318,78 +339,6 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  Future<void> _inputDeviceId(BuildContext context) async {
-    final controller = TextEditingController();
-    final deviceId = await showDialog<String>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Set device ID'),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          autocorrect: false,
-          enableSuggestions: false,
-          textCapitalization: TextCapitalization.none,
-          decoration: const InputDecoration(
-            hintText: '36-character hexadecimal ID',
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, controller.text),
-            child: const Text('Set'),
-          ),
-        ],
-      ),
-    );
-    controller.dispose();
-
-    if (!context.mounted || deviceId == null || deviceId.trim().isEmpty) {
-      return;
-    }
-
-    try {
-      await oauth.setDeviceId(deviceId);
-      if (context.mounted) {
-        await context.read<AppState>().refreshQrCode();
-        final normalizedDeviceId = deviceId.trim().toLowerCase();
-        await showDialog<void>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Device ID updated'),
-            content: SelectableText(normalizedDeviceId),
-            actions: [
-              TextButton.icon(
-                onPressed: () async {
-                  await Clipboard.setData(
-                    ClipboardData(text: normalizedDeviceId),
-                  );
-                  if (context.mounted) Navigator.pop(context);
-                },
-                icon: const Icon(Icons.copy),
-                label: const Text('Copy'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Done'),
-              ),
-            ],
-          ),
-        );
-      }
-    } catch (error) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Could not set device ID: $error')),
-        );
-      }
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -413,7 +362,13 @@ class _MainState extends State<Main> {
       }
     }
 
+    final orangeQrAccessFallback =
+        appState.loggedIn && !appState.qrAccessValid;
+
     return Scaffold(
+      backgroundColor: orangeQrAccessFallback
+          ? Colors.orange
+          : null,
       body: SafeArea(
         child: Center(
           child: appState.loggedIn
@@ -426,7 +381,9 @@ class _MainState extends State<Main> {
               ),
               version: QrVersions.auto,
               errorCorrectionLevel: QrErrorCorrectLevel.M,
-              backgroundColor: Colors.white,
+              backgroundColor: orangeQrAccessFallback
+                  ? Colors.orange
+                  : Colors.white,
               dataModuleStyle: QrDataModuleStyle(
                 color: Colors.black,
                 dataModuleShape: QrDataModuleShape.square,
@@ -440,9 +397,7 @@ class _MainState extends State<Main> {
           : Text(
               appState._isWearDevice
                   ? 'Login on phone'
-                  : appState._needsDeviceId
-                      ? 'Device ID required'
-                      : getStatusText(),
+                  : getStatusText(),
             ),
         ),
       ),
@@ -464,22 +419,16 @@ class _MainState extends State<Main> {
                 FloatingActionButton(
                   onPressed: appState.loggedIn
                       ? oauth.logout
-                      : appState._needsDeviceId
-                          ? () => _inputDeviceId(context)
-                          : appState._isWearDevice
-                              ? wear.WearBridge.requestAuthState
-                              : oauth.login,
+                      : appState._isWearDevice
+                          ? wear.WearBridge.requestAuthState
+                          : oauth.login,
                   tooltip: appState.loggedIn
                       ? 'Logout'
-                      : appState._needsDeviceId
-                          ? 'Set device ID'
-                          : 'Login',
+                      : 'Login',
                   child: Icon(
                     appState.loggedIn
                         ? Icons.logout
-                        : appState._needsDeviceId
-                            ? Icons.edit
-                            : Icons.login,
+                        : Icons.login,
                   ),
                 ),
               ],

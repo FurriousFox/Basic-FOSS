@@ -9,13 +9,61 @@ import 'main.dart' show globalAppState, LoginStatus;
 
 String redirectUri = 'com.basicfit.bfa:/oauthredirect';
 String clientId = 'q6KqjlQINmjOC86rqt9JdU_i41nhD_Z4DwygpBxGiIs';
-const basicFitUserAgent = 'Basic Fit App/1.79.5.2738 (Android)';
+const basicFitUserAgent = 'Basic Fit App/1.100.0.3031 (Android)';
 
 final storage = FlutterSecureStorage();
 
 String? _lastProcessedCode;
 String? _activeCodeVerifier;
 Completer<bool>? _refreshCompleter;
+
+Future<Map<String, String>> ensureDeviceIds() async {
+  var deviceId = await storage.read(key: 'device_id');
+  var secureDeviceId = await storage.read(key: 'secure_device_id');
+
+  if (deviceId == null || !RegExp(r'^J[0-9a-f]{36}$').hasMatch(deviceId)) {
+    final random = Random.secure();
+    deviceId =
+        'J${List.generate(36, (_) => random.nextInt(16).toRadixString(16)).join()}';
+    await storage.write(key: 'device_id', value: deviceId);
+  }
+
+  if (secureDeviceId == null ||
+      !RegExp(
+        r'^X[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
+      ).hasMatch(secureDeviceId)) {
+    final bytes = List<int>.generate(
+      16,
+      (_) => Random.secure().nextInt(256),
+    );
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    String hex(int index, [int length = 1]) {
+      return bytes
+          .sublist(index, index + length)
+          .map((byte) => byte.toRadixString(16).padLeft(2, '0'))
+          .join();
+    }
+
+    secureDeviceId =
+        'X${hex(0, 4)}-${hex(4, 2)}-${hex(6, 2)}-${hex(8, 2)}-${hex(10, 6)}';
+    await storage.write(key: 'secure_device_id', value: secureDeviceId);
+  }
+
+  return {
+    'deviceId': deviceId,
+    'secureDeviceId': secureDeviceId,
+  };
+}
+
+Future<void> setBfaDeviceHeaders(
+  HttpClientRequest request, [
+  Map<String, String>? deviceIds,
+]) async {
+  final ids = deviceIds ?? await ensureDeviceIds();
+  request.headers.set('Device-Id', ids['deviceId']!);
+  request.headers.set('Secure-Device-Id', ids['secureDeviceId']!);
+}
 
 String generateCodeVerifier([int length = 128]) {
   const charset =
@@ -36,6 +84,7 @@ String generateCodeChallenge(String codeVerifier) {
 Future<void> login() async {
   if (globalAppState?.loginStatus == LoginStatus.loggingIn) return;
   globalAppState?.setLoginStatus(LoginStatus.loggingIn);
+  await ensureDeviceIds();
 
   String codeVerifier = generateCodeVerifier();
   String codeChallenge = generateCodeChallenge(codeVerifier);
@@ -142,7 +191,9 @@ Future<void> _performTokenExchange(String code, String codeVerifier) async {
       // print('Access Token: $accessToken');
       // print('Refresh Token: $refreshToken');
 
-      if (!await isLoggedIn()) await _fetchMemberInfo(httpClient, accessToken);
+      if (!await isLoggedIn()) {
+        await _fetchMemberInfo(httpClient, accessToken);
+      }
     } else {
       globalAppState?.setLoginStatus(LoginStatus.failed);
       throw Exception('Failed to get tokens: $responseBody');
@@ -152,60 +203,85 @@ Future<void> _performTokenExchange(String code, String codeVerifier) async {
   }
 }
 
-Future<void> _fetchMemberInfo(
+Future<bool> _fetchMemberInfo(
   HttpClient httpClient,
-  String accessToken, {
-  bool updateDeviceId = true,
-}) async {
-  var memberInfoRequest = await httpClient.getUrl(
-    Uri.parse('https://bfa.basic-fit.com/api/member/info'),
-  );
-  memberInfoRequest.headers.set('Authorization', 'Bearer $accessToken');
-  memberInfoRequest.headers.set('Bfa-Version', '1.79.5.2738');
-  memberInfoRequest.headers.set(
-    'User-Agent',
-    basicFitUserAgent,
-  );
-  memberInfoRequest.headers.set('Client-Id', clientId);
-  memberInfoRequest.headers.set('Redirect-Uri', redirectUri);
-  var memberInfoResponse = await memberInfoRequest.close();
-  String memberInfoResponseBody = await memberInfoResponse
-      .transform(utf8.decoder)
-      .join();
-  if (memberInfoResponse.statusCode == 200) {
-    Map<String, dynamic> memberInfoJson = jsonDecode(memberInfoResponseBody);
-    final member = memberInfoJson['member'];
-    final memberDeviceId = member?['deviceId'];
-    final memberCardNumber = member?['cardnumber'] ?? member?['cardNumber'];
+  String accessToken,
+) async {
+  Map<String, dynamic>? secondResponse;
 
-    if (updateDeviceId &&
-        memberDeviceId is String &&
-        memberDeviceId.isNotEmpty) {
-      await storage.write(
-        key: "device_id",
-        value: memberDeviceId,
-      );
+  for (var requestIndex = 0; requestIndex < 2; requestIndex++) {
+    final memberInfoRequest = await httpClient.getUrl(
+      Uri.parse('https://bfa.basic-fit.com/api/member/info'),
+    );
+    await setBfaDeviceHeaders(memberInfoRequest);
+    memberInfoRequest.headers.set('Authorization', 'Bearer $accessToken');
+    memberInfoRequest.headers.set('Bfa-Version', '1.100.0.3031');
+    memberInfoRequest.headers.set(
+      'User-Agent',
+      basicFitUserAgent,
+    );
+    memberInfoRequest.headers.set('Client-Id', clientId);
+    memberInfoRequest.headers.set('Redirect-Uri', redirectUri);
+
+    final memberInfoResponse = await memberInfoRequest.close();
+    final memberInfoResponseBody =
+        await memberInfoResponse.transform(utf8.decoder).join();
+    if (memberInfoResponse.statusCode != 200) {
+      globalAppState?.setQrAccessValid(false);
+      globalAppState?.setLoginStatus(LoginStatus.failed);
+      await globalAppState?.refreshQrCode();
+      return false;
     }
 
+    secondResponse = jsonDecode(memberInfoResponseBody) as Map<String, dynamic>;
+    final member = secondResponse['member'];
+    final memberCardNumber = member is Map
+        ? member['cardnumber'] ?? member['cardNumber']
+        : null;
     if (memberCardNumber is String && memberCardNumber.isNotEmpty) {
       await storage.write(
         key: "card_number",
         value: memberCardNumber,
       );
     }
+  }
 
-    if (await isLoggedIn()) {
-      // Immediately refresh the QR code after successful login
-      await globalAppState?.refreshQrCode();
-    } else {
-      globalAppState?.setLoginStatus(LoginStatus.failed);
-    }
+  final qrAccessValid = _hasValidQrAccess(secondResponse!);
+  globalAppState?.setQrAccessValid(qrAccessValid);
+
+  if (qrAccessValid && await isLoggedIn()) {
+    await globalAppState?.refreshQrCode();
   } else {
-    globalAppState?.setLoginStatus(LoginStatus.failed);
+    if (qrAccessValid) {
+      globalAppState?.setLoginStatus(LoginStatus.failed);
+    } else {
+      await globalAppState?.refreshQrCode();
+    }
+  }
+  return qrAccessValid;
+}
+
+bool _hasValidQrAccess(Map<String, dynamic> response) {
+  final qrState = response['qrState'];
+  if (qrState is! Map) return false;
+  return qrState['hasQrAccess'] == true && qrState['shouldSwap'] == false;
+}
+
+Future<bool> refreshMemberInfo() async {
+  await ensureDeviceIds();
+  final accessToken = await storage.read(key: 'access_token');
+  if (accessToken == null) return false;
+
+  final httpClient = HttpClient()..userAgent = basicFitUserAgent;
+  try {
+    return await _fetchMemberInfo(httpClient, accessToken);
+  } finally {
+    httpClient.close();
   }
 }
 
 Future<bool> isLoggedIn() async {
+  await ensureDeviceIds();
   String? accessToken = await storage.read(key: "access_token");
   String? refreshToken = await storage.read(key: "refresh_token");
   String? deviceId = await storage.read(key: "device_id");
@@ -218,67 +294,6 @@ Future<bool> isLoggedIn() async {
 
 Future<bool> hasAuthenticatedSession() async {
   return await storage.read(key: "access_token") != null;
-}
-
-Future<bool> setDeviceId(
-  String deviceId, {
-  String deviceDescription = 'Basic-FOSS',
-}) async {
-  final normalizedDeviceId = deviceId.trim().toLowerCase();
-  if (!RegExp(r'^[0-9a-f]{36}$').hasMatch(normalizedDeviceId)) {
-    throw const FormatException(
-      'Device ID must contain 36 hexadecimal characters.',
-    );
-  }
-
-  final accessToken = await storage.read(key: 'access_token');
-  if (accessToken == null) {
-    throw Exception('No access token available.');
-  }
-
-  final httpClient = HttpClient()..userAgent = basicFitUserAgent;
-  try {
-    final request = await httpClient.postUrl(
-      Uri.parse('https://bfa.basic-fit.com/api/member/deviceInfo'),
-    );
-    request.headers.set(
-      HttpHeaders.authorizationHeader,
-      'Bearer $accessToken',
-    );
-    request.headers.set('Bfa-Version', '1.79.5.2738');
-    request.headers.set(HttpHeaders.userAgentHeader, basicFitUserAgent);
-    request.headers.set('Client-Id', clientId);
-    request.headers.set('Redirect-Uri', redirectUri);
-    request.headers.contentType = ContentType.json;
-    request.write(jsonEncode({
-      'deviceId': normalizedDeviceId,
-      'deviceDescription': deviceDescription,
-    }));
-
-    final response = await request.close();
-    final responseBody = await response.transform(utf8.decoder).join();
-    if (response.statusCode != 204 && response.statusCode != 424) {
-      throw Exception(
-        'Failed to set device ID (HTTP ${response.statusCode}): $responseBody',
-      );
-    }
-
-    // The member-info endpoint no longer returns deviceId reliably. The
-    // user-entered value is authoritative after the update is accepted.
-    await storage.write(key: 'device_id', value: normalizedDeviceId);
-    try {
-      await _fetchMemberInfo(
-        httpClient,
-        accessToken,
-        updateDeviceId: false,
-      );
-    } catch (error) {
-      print('Unable to refresh member info after setting device ID: $error');
-    }
-    return true;
-  } finally {
-    httpClient.close();
-  }
 }
 
 /// Decodes the payload of a JWT token without verification
@@ -437,10 +452,10 @@ Future<void> openFriendsPage() async {
 /// Logs out by clearing all stored credentials
 Future<void> logout() async {
   _lastProcessedCode = null;
+  globalAppState?.setQrAccessValid(true);
 
   await storage.delete(key: "access_token");
   await storage.delete(key: "refresh_token");
-  await storage.delete(key: "device_id");
   await storage.delete(key: "card_number");
   await storage.delete(key: "code_verifier");
 

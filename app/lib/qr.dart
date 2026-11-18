@@ -10,7 +10,9 @@ Future<String?> generateBasicQrData({
   String? deviceId,
   String? cardNumber,
 }) async {
-  deviceId ??= await oauth.storage.read(key: "device_id");
+  if (deviceId == null) {
+    deviceId = (await oauth.ensureDeviceIds())['deviceId'];
+  }
   cardNumber ??= await oauth.storage.read(key: "card_number");
 
   if (deviceId == null || cardNumber == null) {

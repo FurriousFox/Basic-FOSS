@@ -33,11 +33,23 @@ class WearableStateService : WearableListenerService() {
                     } else {
                         editor.remove(KEY_DEVICE_ID)
                     }
+                    if (dataMap.containsKey(KEY_SECURE_DEVICE_ID)) {
+                        editor.putString(
+                            KEY_SECURE_DEVICE_ID,
+                            dataMap.getString(KEY_SECURE_DEVICE_ID),
+                        )
+                    } else {
+                        editor.remove(KEY_SECURE_DEVICE_ID)
+                    }
                     if (dataMap.containsKey(KEY_CARD_NUMBER)) {
                         editor.putString(KEY_CARD_NUMBER, dataMap.getString(KEY_CARD_NUMBER))
                     } else {
                         editor.remove(KEY_CARD_NUMBER)
                     }
+                    editor.putBoolean(
+                        KEY_QR_ACCESS_VALID,
+                        dataMap.getBoolean(KEY_QR_ACCESS_VALID, true),
+                    )
                     editor.apply()
                 }
                 REQUEST_PATH -> publishStoredState()
@@ -55,9 +67,16 @@ class WearableStateService : WearableListenerService() {
         preferences.getString(KEY_DEVICE_ID, null)?.let {
             request.dataMap.putString(KEY_DEVICE_ID, it)
         }
+        preferences.getString(KEY_SECURE_DEVICE_ID, null)?.let {
+            request.dataMap.putString(KEY_SECURE_DEVICE_ID, it)
+        }
         preferences.getString(KEY_CARD_NUMBER, null)?.let {
             request.dataMap.putString(KEY_CARD_NUMBER, it)
         }
+        request.dataMap.putBoolean(
+            KEY_QR_ACCESS_VALID,
+            preferences.getBoolean(KEY_QR_ACCESS_VALID, true),
+        )
         request.setUrgent()
         Wearable.getDataClient(this)
             .putDataItem(request.asPutDataRequest())
@@ -72,7 +91,9 @@ class WearableStateService : WearableListenerService() {
         const val PREFERENCES = "wear_state"
         const val KEY_LOGGED_IN = "loggedIn"
         const val KEY_DEVICE_ID = "deviceId"
+        const val KEY_SECURE_DEVICE_ID = "secureDeviceId"
         const val KEY_CARD_NUMBER = "cardNumber"
+        const val KEY_QR_ACCESS_VALID = "qrAccessValid"
         private const val TAG = "BasicFOSSWear"
     }
 }

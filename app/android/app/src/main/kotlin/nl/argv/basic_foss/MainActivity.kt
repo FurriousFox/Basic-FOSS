@@ -37,6 +37,14 @@ class MainActivity : FlutterActivity() {
                                 WearableStateService.KEY_CARD_NUMBER,
                                 null,
                             ),
+                            WearableStateService.KEY_SECURE_DEVICE_ID to preferences.getString(
+                                WearableStateService.KEY_SECURE_DEVICE_ID,
+                                null,
+                            ),
+                            WearableStateService.KEY_QR_ACCESS_VALID to preferences.getBoolean(
+                                WearableStateService.KEY_QR_ACCESS_VALID,
+                                true,
+                            ),
                         ),
                     )
                 }
@@ -48,7 +56,9 @@ class MainActivity : FlutterActivity() {
                     publishAuthState(
                         call.argument<Boolean>("loggedIn") ?: false,
                         call.argument<String>("deviceId"),
+                        call.argument<String>("secureDeviceId"),
                         call.argument<String>("cardNumber"),
+                        call.argument<Boolean>("qrAccessValid") ?: true,
                     )
                     result.success(null)
                 }
@@ -90,11 +100,19 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-    private fun publishAuthState(loggedIn: Boolean, deviceId: String?, cardNumber: String?) {
+    private fun publishAuthState(
+        loggedIn: Boolean,
+        deviceId: String?,
+        secureDeviceId: String?,
+        cardNumber: String?,
+        qrAccessValid: Boolean,
+    ) {
         getSharedPreferences(WearableStateService.PREFERENCES, MODE_PRIVATE).edit()
             .putBoolean(WearableStateService.KEY_LOGGED_IN, loggedIn)
             .putString(WearableStateService.KEY_DEVICE_ID, deviceId)
+            .putString(WearableStateService.KEY_SECURE_DEVICE_ID, secureDeviceId)
             .putString(WearableStateService.KEY_CARD_NUMBER, cardNumber)
+            .putBoolean(WearableStateService.KEY_QR_ACCESS_VALID, qrAccessValid)
             .apply()
 
         val request = PutDataMapRequest.create(WearableStateService.AUTH_PATH)
@@ -102,9 +120,16 @@ class MainActivity : FlutterActivity() {
         deviceId?.let {
             request.dataMap.putString(WearableStateService.KEY_DEVICE_ID, it)
         }
+        secureDeviceId?.let {
+            request.dataMap.putString(WearableStateService.KEY_SECURE_DEVICE_ID, it)
+        }
         cardNumber?.let {
             request.dataMap.putString(WearableStateService.KEY_CARD_NUMBER, it)
         }
+        request.dataMap.putBoolean(
+            WearableStateService.KEY_QR_ACCESS_VALID,
+            qrAccessValid,
+        )
         request.setUrgent()
         Wearable.getDataClient(this)
             .putDataItem(request.asPutDataRequest())
